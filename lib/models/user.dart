@@ -8,7 +8,7 @@ String email;
   UserModel({ this.id, this.name,this.email });
 
   UserModel.fromDocumentSnapshot(DocumentSnapshot doc){
-      id=doc.documentID;
+      id=doc.id;
       name=doc["name"];
       email=doc["email"];
   }

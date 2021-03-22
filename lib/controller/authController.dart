@@ -7,19 +7,20 @@ import '../controller/userController.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<FirebaseUser> _firebaseUser = Rx<FirebaseUser>();
-  FirebaseUser get user => _firebaseUser.value;
+  Rx<User> _firebaseUser = Rx<User>();
+  User get user => _firebaseUser.value;
   // String get uid => _firebaseUser.value?.uid;
   // String get name => _firebaseUser.value?.displayName;
   @override
   // ignore: must_call_super
   void onInit() {
-    _firebaseUser.bindStream(_auth.onAuthStateChanged);
+    super.onInit();
+    _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
   Future<void> createUser(String name, String email, String password) async {
     try {
-      AuthResult _authResult = await _auth.createUserWithEmailAndPassword(
+      UserCredential _authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       //create user in firestore
@@ -36,12 +37,12 @@ class AuthController extends GetxController {
 
   Future<void> login(String email, String password) async {
     try {
-      AuthResult _authResult = await _auth.signInWithEmailAndPassword(
+      UserCredential _authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       Get.find<UserController>().user =
           await Database().getUser(_authResult.user.uid);
     } on PlatformException catch (e) {
-      Get.snackbar("Error logging in", e.message);
+      Get.snackbar(e.message, e.details);
     }
   }
 
