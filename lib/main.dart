@@ -5,8 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
-import './controller/userController.dart';
+import 'package:rasanmart/utils/app_theme.dart';
 import 'controller/dashBoardController.dart';
+import 'views/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,22 +15,13 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
       initialBinding: AuthBinding(),
       home: Root(),
     );
@@ -60,9 +52,11 @@ class Root extends GetWidget<AuthController> {
 class Login extends GetWidget<AuthController> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //key: scaffoldKey,
       appBar: AppBar(
         title: Text("Log In"),
         centerTitle: true,
@@ -154,43 +148,32 @@ class SignUp extends GetWidget<AuthController> {
   }
 }
 
-class Home extends StatelessWidget {
-  final controller = Get.find<UserController>().user;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        'Welcome ${controller.name} \n You can add items shop here',
-        textAlign: TextAlign.center,
-      )),
-
-      //bottomNavigationBar: DashboardPage()
-    );
-  }
-}
-
 class DashboardPage extends GetWidget<AuthController> {
   final DashboardController c = Get.put(DashboardController());
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Home",
-          ),
-          centerTitle: true,
-        ),
+        key: scaffoldKey,
+        // appBar: AppBar(
+        //   title: Text(
+        //     "Home",
+        //   ),
+        //   centerTitle: true,
+        // ),
         body: Obx(() {
           switch (c.selectedIndex.value) {
             case 0:
-              return RaisedButton(
-                onPressed: () {
-                  Get.snackbar('e.message',' e.details');
-                  controller.signOut();
-                },
-                child: Text('Signout'),
+              return Home(
+                scaffoldKey: scaffoldKey,
               );
+              //  RaisedButton(
+              //   onPressed: () {
+              //     Get.snackbar('e.message', ' e.details');
+              //     controller.signOut();
+              //   },
+              //   child: Text('Signout'),
+              // );
               break;
             case 1:
               return CategoriesPage();
@@ -203,24 +186,36 @@ class DashboardPage extends GetWidget<AuthController> {
         drawer: Drawer(
           child: ListView(
             children: [
+              UserAccountsDrawerHeader(
+                  accountName: null, accountEmail: Text(controller.user.email)),
+
               // GetX<UserController>(builder: (_) {
-              // //  print(_.user.id);
-              //   return _.user != null
-              //       ?
-              // UserAccountsDrawerHeader(
-              //accountName: Text(controller.user.displayName) ?? Text('')
+              //   print(_.user.name);
+              //   return UserAccountsDrawerHeader(
+              //           accountName: Text(_.user.name),
+              //           accountEmail: Text(_.user.email)) ??
+              //       Text('');
+              // }
 
-              GetX<UserController>(builder: (_) {
-                print(_.user.name);
-                return UserAccountsDrawerHeader(
-                        accountName: Text(_.user.name),
-                        accountEmail: Text(_.user.email)) ??
-                    Text('');
-              }
-
-                  //  accountEmail: Text(controller.user.email)),
-                  //     : CircularProgressIndicator();
-                  ),
+              //  accountEmail: Text(controller.user.email)),
+              //     : CircularProgressIndicator();
+              //  ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Home'),
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Log out'),
+              ),
               ListTile(
                   onTap: () {
                     controller.signOut();
@@ -234,7 +229,7 @@ class DashboardPage extends GetWidget<AuthController> {
           return BottomNavigationBar(
             onTap: (index) {
               c.changevalue(index);
-              print(c.selectedIndex);
+              //  print(c.selectedIndex);
             },
             currentIndex: c.selectedIndex.value ?? 0,
             items: [
