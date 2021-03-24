@@ -11,7 +11,7 @@ class Database {
       });
       return true;
     } catch (e) {
-      print(e);
+      print(e.toString());
       return false;
     }
   }

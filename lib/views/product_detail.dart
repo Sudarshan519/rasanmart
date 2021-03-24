@@ -1,162 +1,227 @@
-// import 'package:flutter/material.dart';
-// import 'package:rasanmart/models/productModel.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rasanmart/models/productModel.dart';
 
-// class ProductDetail extends StatefulWidget {
-//   final Product product;
-//   ProductDetail(this.product);
+import '../controller/cartController.dart';
+import '../controller/productController.dart';
+import '../utils/app_theme.dart';
+import '../controller/changeImageController.dart';
+import '../views/widgets/productContent.dart';
 
-//   // IconData _selectedIcon;
-//   // final List<IconData> icons = [
-//   //   Icons.home,
-//   //   Icons.shopping_cart,
-//   //   Icons.access_alarm
-//   // ];
-//   // @override
-//   // void initState() {
-//   //   // TODO: implement initState
-//   //   super.initState();
-//   //   setIcon();
-//   // }
+final List imagelist = [
+  'https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg',
+  'https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg',
+  'https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg',
+  'https://www.rasanmart.com/wp-content/uploads/2020/07/rasan-mart-2pmakbare.jpg',
+];
 
-//   // setIcon() {
-//   //   setState(() {
-//   //     _selectedIcon = icons[0];
-//   //   });
-//   // }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: SafeArea(
-//       child: Padding(
-//         padding: const EdgeInsets.all(8.0),
-//         child: SingleChildScrollView(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               IconButton(
-//                 icon: Icon(Icons.arrow_back_ios, color: Colors.grey),
-//                 onPressed: () {
-//                   Navigator.pop(context);
-//                 },
-//               ),
-//               Center(
-//                 child: Text(
-//                   widget.product.name,
-//                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                 ),
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Container(
-//                   alignment: Alignment.center,
-//                   //  color: Colors.green,
-//                   child: Icon(_selectedIcon, size: 300)),
-//               SizedBox(height: 10),
-//               Row(children: [
-//                 ...icons.map((p) => InkWell(
-//                       onTap: () {
-//                         setState(() {
-//                           _selectedIcon = p;
-//                         });
-//                       },
-//                       child: Container(
-//                           margin: const EdgeInsets.all(15.0),
-//                           padding: const EdgeInsets.all(3.0),
-//                           decoration: BoxDecoration(
-//                             border: Border.all(color: Colors.blueAccent),
-//                             borderRadius: BorderRadius.circular(3),
-//                           ),
-//                           child: Icon(p, size: 80)),
-//                     )),
-//                 // InkWell(
-//                 //   onTap: (){
-//                 //     _selectedIcon=icon[i]
-//                 //   },
-//               ]),
-//               Row(
-//                 children: [
-//                   Text(
-//                     'NRs. ${widget.product.price}',
-//                     style: TextStyle(
-//                         color: Colors.red,
-//                         fontSize: 20,
-//                         fontWeight: FontWeight.bold),
-//                   ),
-//                   Text(
-//                     'NRs. 50',
-//                     style: TextStyle(
-//                       decoration: TextDecoration.lineThrough,
-//                       color: Colors.red,
-//                       fontSize: 20,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Text(
-//                 'Prodcut Description',
-//                 style: style,
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Text(
-//                 widget.product.description,
-//                 maxLines: 4,
-//                 overflow: TextOverflow.ellipsis,
-//               ),
-//               SizedBox(
-//                 height: 20,
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 children: [
-//                   Text(
-//                     'Qty',
-//                     style: style,
-//                   ),
-//                   SizedBox(
-//                     width: 20,
-//                   ),
-//                   Container(
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(10),
-//                       color: Colors.red,
-//                     ),
-//                     height: 20,
-//                     child: Row(
-//                       children: [
-//                         Icon(Icons.remove),
-//                         Container(
-//                             color: Colors.white,
-//                             child: Text(
-//                               '1',
-//                               style: style,
-//                             )),
-//                         Icon(Icons.add)
-//                       ],
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               Text(
-//                 'Price (NRs.)   ${widget.product.price}',
-//                 style: style,
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     ));
-//   }
-
-
-// }
+class ProductDetail extends GetWidget<ImageController> {
+  final Product product;
+  final cartController = Get.find<CartController>();
+  final image = Get.put(ImageController());
+  ProductDetail(this.product);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back_ios, color: Colors.grey),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Center(
+                    child: Text(
+                      product.productName,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  alignment: Alignment.center,
+                  child: Obx(() {
+                    switch (image.selectedIndex.value) {
+                      case 0:
+                        return Image.network(
+                            imagelist[image.selectedIndex.value]);
+                        break;
+                      default:
+                        return Image.network(
+                            imagelist[image.selectedIndex.value]);
+                    }
+                  }),
+                  height: 180),
+              SizedBox(height: 10),
+              Wrap(children: [
+                ...imagelist.map((p) => InkWell(
+                    onTap: () {
+                      image.selectedIndex.value = imagelist.indexOf(p);
+                    },
+                    child: Container(
+                        margin: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(3.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey[300]),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Image.network(p, height: 80, width: 80)))),
+                // InkWell(
+                //   onTap: (){
+                //     _selectedIcon=icon[i]
+                //   },
+              ]),
+              Container(
+                color: AppTheme.lightBackgroundColor,
+                height: 20,
+                child: Text(
+                  ' 10% off  ',
+                  style: AppTheme.subheadingStyle
+                      .copyWith(color: Colors.grey[350]),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'NRs. ${product.price}',
+                    style: AppTheme.subheadingStyle,
+                  ),
+                  Text(
+                    '(NRs. 50)',
+                    style: AppTheme.subtitle.copyWith(
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Prodcut Description',
+                style: AppTheme.subheadingStyle.copyWith(color: Colors.black),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                product.description,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 90,
+                  ),
+                  Text(
+                    'Qty',
+                    style:
+                        AppTheme.subheadingStyle.copyWith(color: Colors.black),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppTheme.lightBackgroundColor,
+                    ),
+                    height: 15,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                            child: Container(
+                          width: 15,
+                          child:
+                              Icon(Icons.remove, size: 15, color: Colors.white),
+                        )),
+                        Container(
+                            alignment: Alignment.center,
+                            color: Colors.white,
+                            child: Obx(() {
+                              return Text(
+                                " ${product.qty.value.toString()} ",
+                                style: AppTheme.subheadingStyle
+                                    .copyWith(fontSize: 10),
+                              );
+                            })),
+                        InkWell(
+                          child: Icon(
+                            Icons.add,
+                            size: 15,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Price (NRs.)     ${product.price}',
+                style: AppTheme.headingStyle,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              Row(
+                children: [
+                  Text('Similar Products', style: AppTheme.headingStyle),
+                  Spacer(),
+                  Text(
+                    'View All',
+                    style: AppTheme.subheadingStyle,
+                  ),
+                ],
+              ),
+              Container(
+                  height: MediaQuery.of(context).size.height * .4,
+                  // decoration: BoxDecoration(border: Border.all(width: 1)),
+                  child: GetX<ProductController>(
+                      init: ProductController(),
+                      builder: (controller) {
+                        print(controller.products.length);
+                        return controller.isloading.isFalse
+                            ? ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.products.length,
+                                itemBuilder: (_, int i) {
+                                  return ProductContent(controller.products[i]);
+                                })
+                            : Center(
+                                child: CircularProgressIndicator(
+                                strokeWidth: 3,
+                              ));
+                      }))
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+}

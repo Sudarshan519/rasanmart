@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
+import 'checkout.dart';
+import '../utils/app_theme.dart';
 
 class CartPage extends GetWidget {
   final cartController = Get.find<CartController>();
@@ -14,8 +16,25 @@ class CartPage extends GetWidget {
       body: SafeArea(
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          CartItem(cartController: cartController),
-          Text('Total Price:${cartController.totalPrice}')
+          CartItem(),
+          Obx(() {
+            return Text(
+              'Total Price:${cartController.totalPrice}',
+              style: AppTheme.subheadingStyle,
+            );
+          }),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+            child: Text('Checkout'),
+            onPressed: () {
+              if (cartController.count.isBlank)
+                Get.snackbar('Add items to cart', 'Cart is empty');
+              else {
+                Get.to(CheckoutPage());
+                //Get.snackbar('Checking out ', " ${cartController.count} items");
+              }
+            },
+          )
         ]),
       ),
     );
@@ -23,12 +42,7 @@ class CartPage extends GetWidget {
 }
 
 class CartItem extends StatelessWidget {
-  const CartItem({
-    Key key,
-    @required this.cartController,
-  }) : super(key: key);
-
-  final CartController cartController;
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {

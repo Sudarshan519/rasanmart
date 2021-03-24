@@ -7,9 +7,13 @@ class CartController extends GetxController {
   var cartItems = List<Product>.empty(growable: true).obs;
   double get totalPrice =>
       cartItems.fold(0, (sum, item) => sum + item.qty * item.price);
-  final _obj = ''.obs;
-  set obj(value) => this._obj.value = value;
-  get obj => this._obj.value;
+  // final _obj = ''.obs;
+  // set obj(value) => this._obj.value = value;
+  // get obj => this._obj.value;
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
   addToCart(Product product) {
     if (!checkItems(product)) {
@@ -33,9 +37,11 @@ class CartController extends GetxController {
     if (!cartItems.contains(product)) {
       // cartItems.add(product);
     } else if (cartItems.contains(product)) {
-      if (product.qty < 1)
+      if (product.qty <= 1) {
+        // product.qty.value = 0;
+        product.decrement();
         cartItems.remove(product);
-      else
+      } else
         product.decrement();
       // print(product.qty.value);
     }

@@ -12,14 +12,8 @@ class ProductFromFirebase {
 
       return data.docs.map<Product>((e) => Product.fromJson(e.data())).toList();
     } catch (e) {
-      return [];
+      print(e.toString());
+      return null;
     }
   }
-
-  // ProductController(UserController userController);
-  // Product get product => _productModel.value;
-  // set user(Product value) => this._productModel.value = value;
-  // void clear() {
-  //   _productModel.value = Product();
-  // }
 }

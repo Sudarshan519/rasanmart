@@ -4,9 +4,10 @@ import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
 //b00000
+  static double iconsize = 16;
   static Color lightBackgroundColor = HexColor('#B30000');
   static Color lightPrimaryColor = const Color(0xfff2f2f2);
-  static Color lightAccentColor = Colors.blueGrey.shade200;
+  static Color lightAccentColor = Colors.blueGrey[50];
   static Color lightBtnColor = HexColor('#F78A04');
   static Color lightSalesolor = Colors.teal[300];
   static Color lightcounterbtnColor = Colors.grey[300];
@@ -16,7 +17,7 @@ class AppTheme {
   static Color darkAccentColor = Colors.blueGrey.shade600;
   static Color darkParticlesColor = const Color(0x441C2A3D);
   static final headingStyle = TextStyle(
-    fontSize: 24,
+    fontSize: 20,
     color: Colors.black87,
   );
   static final subheadingStyle = TextStyle(fontSize: 16, color: Colors.red);
@@ -25,17 +26,19 @@ class AppTheme {
   const AppTheme._();
 
   static final lightTheme = ThemeData(
-    brightness: Brightness.light,
-    primaryColor: lightBtnColor,
-    accentColor: lightAccentColor,
-    backgroundColor: lightBackgroundColor,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-  );
+      brightness: Brightness.light,
+      primaryColor: Colors.red,
+      accentColor: Colors.red,
+      backgroundColor: Colors.redAccent,
+      errorColor: Colors.white
+      // visualDensity: VisualDensity.adaptivePlatformDensity,
+      );
 
   static final darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: darkPrimaryColor,
     accentColor: darkAccentColor,
+    errorColor: const Color(0xFFB00020),
     //backgroundColor: darkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

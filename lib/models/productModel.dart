@@ -7,9 +7,9 @@ class Product {
   int price;
   String productName;
   String category;
-  bool discount;
+  int discount;
   bool isSale;
-
+  int oldPrice;
   Product(
       { //this.id,
       this.productName,
@@ -36,16 +36,23 @@ class Product {
   Product.fromJson(Map<String, dynamic> json) {
     //this.id = json['id'];
     this.productName = json['name'];
-    //this.description = json['description'];
+    this.description = json['description'];
     this.price = json['price'];
-    //this.discount = json['discount'];
+    this.discount = json['discount'];
     this.isSale = json['isSale'];
     this.category = json['category'];
+    this.productImage = json['productImage'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.productName;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    data['discount'] = this.discount;
+    data['isSale'] = this.isSale;
+    data['category'] = this.category;
+    data['productImage'] = this.productImage;
     return data;
   }
 }
