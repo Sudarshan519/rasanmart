@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/productController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
-import '../models/productModel.dart';
 import '../utils/app_theme.dart';
 import '../views/widgets/productContent.dart';
 import 'cart_page.dart';
@@ -29,11 +28,13 @@ class _HomeState extends State<Home> {
   bool _show;
 
   writeStorage() async {
-    await cartStorage.write('cart', cartController.cartItems.toJson());
+    var resJson = cartController.cartItems.toJson();
+    print(resJson);
+    await cartStorage.write('cart', resJson);
   }
 
   readStorage() async {
-    String prod = await cartStorage.read('cart');
+    final prod = await cartStorage.read('cart');
     print(prod);
   }
 
@@ -199,6 +200,14 @@ class _HomeState extends State<Home> {
             ]),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text('Add to cart'),
+        onPressed: () {
+          cartStorage.write('cart', []);
+          readStorage();
+          // writeStorage();
+        },
       ),
     );
   }

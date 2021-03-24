@@ -27,7 +27,6 @@ class ComplicatedImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
       child: Column(
         children: <Widget>[
           CarouselSlider(
@@ -50,10 +49,12 @@ final List<Widget> imageSliders = imgList
             margin: EdgeInsets.all(5.0),
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                child: Stack(
+                child: Column(
                   children: <Widget>[
-                    Image.network(item,
-                        fit: BoxFit.cover, height: 180, width: 1000.0),
+                    Image.network(
+                      item,
+                      fit: BoxFit.cover,
+                    ),
                     // Positioned(
                     //   bottom: 0.0,
                     //   left: 0.0,

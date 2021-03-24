@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
+import 'package:rasanmart/services/getStorage.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cart_page.dart';
 import 'package:rasanmart/views/categories_page.dart';
@@ -16,6 +17,7 @@ import 'views/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  cartStorage.write('cart', []);
   await Firebase.initializeApp();
   runApp(MyApp());
 }

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:rasanmart/models/productModel.dart';
+import 'package:rasanmart/services/getStorage.dart';
 
 class CartController extends GetxController {
   var istrue = false.obs;
@@ -7,21 +10,44 @@ class CartController extends GetxController {
   var cartItems = List<Product>.empty(growable: true).obs;
   double get totalPrice =>
       cartItems.fold(0, (sum, item) => sum + item.qty * item.price);
-  // final _obj = ''.obs;
-  // set obj(value) => this._obj.value = value;
-  // get obj => this._obj.value;
+
   @override
   void onInit() {
+    listenCart();
     super.onInit();
+    //cartStorage.delete();
+  }
+
+  listenCart() async {
+    List<dynamic> prod = await readStorage();
+    // List<Product> product;
+    prod.forEach((element) {
+      cartItems.add(Product.fromJson(element));
+    });
+  }
+
+  writeStorage(String cart) async {
+    var resJson = cartItems.toJson();
+
+    await cartStorage.write(cart, resJson);
+  }
+
+  readStorage() async {
+    final prod = await cartStorage.read('cart');
+    if (!prod.isNullOrBlank)
+      return prod;
+    else
+      return [];
   }
 
   addToCart(Product product) {
     if (!checkItems(product)) {
       cartItems.add(product);
       product.increment();
+      writeStorage('cart');
     } else if (cartItems.contains(product)) {
       product.increment();
-      print(product.qty.value);
+     // cartStorage.remove('cart');
     }
   }
 

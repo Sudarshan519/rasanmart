@@ -7,12 +7,13 @@ class LocalGetStorage {
 
   read(String cart) async {
     // List<Product>
-    String prod = box.read(cart);
-    // print(prod);
+
+    var prod = box.read(cart);
+
     return prod;
   }
 
-  write(String cart, String a) async {
+  write(String cart, var a) async {
     await box.write('cart', a);
   }
 
@@ -23,13 +24,13 @@ class LocalGetStorage {
   //   // box.removeListen(listen);
   // }
 
-  // remove(String storage) {
-  //   box.remove('quote');
-  // }
+  remove(String storage) {
+    box.remove('cart');
+  }
 
-  // delete() {
-  //   box.erase();
-  // }
+  delete() {
+    box.erase();
+  }
 }
 
 LocalGetStorage cartStorage = LocalGetStorage();

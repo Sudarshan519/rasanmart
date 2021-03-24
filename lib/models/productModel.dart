@@ -52,6 +52,7 @@ class Product {
     data['discount'] = this.discount;
     data['isSale'] = this.isSale;
     data['category'] = this.category;
+    data['qty']=this.qty;
     data['productImage'] = this.productImage;
     return data;
   }
