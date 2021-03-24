@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/productController.dart';
@@ -9,12 +10,73 @@ import 'cart_page.dart';
 
 double iconSize = 16;
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   // final controller = Get.find<UserController>().user;
-  final cartController = Get.put(CartController());
-  final productController = Get.put(ProductController());
   final scaffoldKey;
   Home({this.scaffoldKey});
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final cartController = Get.put(CartController());
+
+  final productController = Get.put(ProductController());
+
+  ScrollController _scrollBottomBarController =
+      new ScrollController(); // set controller on scrolling
+  bool isScrollingDown = false;
+  bool _show;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _show = false;
+    _scrollBottomBarController.removeListener(() {});
+    myScroll();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _scrollBottomBarController.dispose();
+    super.dispose();
+  }
+
+  void showSearchBar() {
+    setState(() {
+      _show = true;
+    });
+  }
+
+  void hideSearchBar() {
+    setState(() {
+      _show = false;
+    });
+  }
+
+  void myScroll() async {
+    _scrollBottomBarController.addListener(() {
+      if (_scrollBottomBarController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!isScrollingDown) {
+          isScrollingDown = true;
+
+          showSearchBar();
+        }
+      }
+      if (_scrollBottomBarController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isScrollingDown) {
+          isScrollingDown = false;
+
+          hideSearchBar();
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,22 +84,26 @@ class Home extends StatelessWidget {
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(Icons.menu),
-            onPressed: () => scaffoldKey.currentState.openDrawer(),
+            onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
           ),
-          title: Row(
-            children: [
-              Text(
-                'rasan',
-                style: TextStyle(
-                    color: Colors.yellow.shade900, fontStyle: FontStyle.italic),
-              ),
-              Text(
-                'mart',
-                style: TextStyle(
-                    color: Colors.redAccent[700], fontStyle: FontStyle.italic),
-              )
-            ],
-          ),
+          title: _show
+              ? Row(
+                  children: [
+                    Text(
+                      'rasan',
+                      style: TextStyle(
+                          color: Colors.yellow.shade900,
+                          fontStyle: FontStyle.italic),
+                    ),
+                    Text(
+                      'mart',
+                      style: TextStyle(
+                          color: Colors.redAccent[700],
+                          fontStyle: FontStyle.italic),
+                    )
+                  ],
+                )
+              : SearchField(),
           actions: [
             IconButton(
                 icon: Icon(Icons.shopping_basket),
@@ -78,21 +144,7 @@ class Home extends StatelessWidget {
                 //     )
                 //   ]),
                 // ),
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                      decoration: InputDecoration(
-                    contentPadding: EdgeInsets.zero,
-                    border: OutlineInputBorder(),
-                    prefixIcon: IconButton(
-                      icon: Icon(Icons.search),
-                      color: Colors.pink,
-                      onPressed: () {},
-                    ),
-                    hintText: "Search products here",
-                    hintStyle: TextStyle(fontSize: 15),
-                  )),
-                ),
+                SearchField(),
                 SizedBox(
                     height: 250.0,
                     child: Carousel(
@@ -107,7 +159,7 @@ class Home extends StatelessWidget {
                         //ExactAssetImage("assets/images/LaunchImage.jpg")
                       ],
                     )),
-
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Text(
@@ -146,6 +198,31 @@ class Home extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+class SearchField extends StatelessWidget {
+  const SearchField({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(14.0),
+      child: TextFormField(
+          decoration: InputDecoration(
+        contentPadding: EdgeInsets.zero,
+        border: OutlineInputBorder(),
+        prefixIcon: IconButton(
+          icon: Icon(Icons.search),
+          color: Colors.pink,
+          onPressed: () {},
+        ),
+        hintText: "Search products here",
+        hintStyle: TextStyle(fontSize: 15),
+      )),
+    );
   }
 }
 
