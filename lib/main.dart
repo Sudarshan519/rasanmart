@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
 import 'package:rasanmart/utils/app_theme.dart';
+import 'package:rasanmart/views/cart_page.dart';
+import 'package:rasanmart/views/categories_page.dart';
 import 'controller/dashBoardController.dart';
 import 'views/home.dart';
 
@@ -56,6 +58,7 @@ class Login extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       //key: scaffoldKey,
       appBar: AppBar(
         title: Text("Log In"),
@@ -203,6 +206,7 @@ class DashboardPage extends GetWidget<AuthController> {
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Home'),
+                onTap: ()=>Get.to(CartPage()),
               ),
               ListTile(
                 leading: Icon(Icons.home),
@@ -260,18 +264,3 @@ class AccountPage extends StatelessWidget {
   }
 }
 
-class CategoriesPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Categories'),
-    );
-  }
-}
-
-class CartPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('Account'));
-  }
-}

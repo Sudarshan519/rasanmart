@@ -14,6 +14,7 @@ class CartController extends GetxController {
   addToCart(Product product) {
     if (!checkItems(product)) {
       cartItems.add(product);
+      product.increment();
     } else if (cartItems.contains(product)) {
       product.increment();
       print(product.qty.value);
@@ -32,7 +33,10 @@ class CartController extends GetxController {
     if (!cartItems.contains(product)) {
       // cartItems.add(product);
     } else if (cartItems.contains(product)) {
-      product.decrement();
+      if (product.qty < 1)
+        cartItems.remove(product);
+      else
+        product.decrement();
       // print(product.qty.value);
     }
   }

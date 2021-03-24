@@ -4,7 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 class AppTheme {
 //b00000
-//static Color lightBackgroundColor = HexColor('#B00001');
+  static Color lightBackgroundColor = HexColor('#B30000');
   static Color lightPrimaryColor = const Color(0xfff2f2f2);
   static Color lightAccentColor = Colors.blueGrey.shade200;
   static Color lightBtnColor = HexColor('#F78A04');
@@ -28,7 +28,7 @@ class AppTheme {
     brightness: Brightness.light,
     primaryColor: lightBtnColor,
     accentColor: lightAccentColor,
-//backgroundColor: lightBackgroundColor,
+    backgroundColor: lightBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 
@@ -36,7 +36,7 @@ class AppTheme {
     brightness: Brightness.dark,
     primaryColor: darkPrimaryColor,
     accentColor: darkAccentColor,
-    backgroundColor: darkBackgroundColor,
+    //backgroundColor: darkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
