@@ -1,11 +1,11 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/productController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
-import '../models/productModel.dart';
 import '../utils/app_theme.dart';
 import '../views/widgets/productContent.dart';
 import 'cart_page.dart';
@@ -40,6 +40,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+
+    //Get.putAsync<ProductController>(() async => await ProductController());
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
@@ -74,6 +76,7 @@ class _HomeState extends State<Home> {
         leading: IconButton(
           icon: Icon(
             Icons.sort,
+            size: 30,
             color: Colors.grey,
           ),
           onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
@@ -131,36 +134,9 @@ class _HomeState extends State<Home> {
           child: SingleChildScrollView(
             controller: _scrollBottomBarController,
             child: Column(children: [
-              // Container(
-              //   color: Colors.red.shade900,
-              //   child: Row(children: [
-              //     IconButton(
-              //       icon: Icon(
-              //         Icons.menu,
-              //         color: Colors.white,
-              //       ),
-              //       onPressed: () {
-              //         scaffoldKey.currentState.openDrawer();
-              //         // scaffoldKey
-              //       },
-              //     ),
-              //     Text(
-              //       'RasanMart',
-              //       style: TextStyle(),
-              //     ),
-              //     Spacer(),
-              //     IconButton(
-              //       icon: Icon(Icons.shopping_cart),
-              //       onPressed: () {
-              //         Get.to(CartPage());
-              //       },
-              //     )
-              //   ]),
-              // ),
-              //_show ?
               SearchField(), //: Text(''),
-              ComplicatedImageDemo(),
-              //CarouselPro(),
+              //ComplicatedImageDemo(),
+              CarouselPro(),
               SizedBox(height: 10),
               Row(
                 children: [
@@ -176,9 +152,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
               SizedBox(height: 10),
-              ProductContainer(
+              TopProductContainer(
                   productController: productController,
                   cartController: cartController),
+              Divider(),
+              SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -192,8 +170,8 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(height: 10),
-              ProductContainer(
+              SizedBox(height: 15),
+              LatestProductContainer(
                   productController: productController,
                   cartController: cartController)
             ]),
@@ -212,12 +190,13 @@ class CarouselPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 280.0,
+        height: 200.0,
         child: Carousel(
           indicatorBgPadding: 8,
           images: [
             NetworkImage(
-                'https://www.rasanmart.com/wp-content/uploads/2020/06/101953524_259183725496744_2867387748120002560_n.png'),
+              'https://www.rasanmart.com/wp-content/uploads/2020/06/101953524_259183725496744_2867387748120002560_n.png',
+            ),
             NetworkImage(
                 'https://www.rasanmart.com/wp-content/uploads/2020/06/101522295_895508060956667_1800978657359953920_n.png'),
             NetworkImage(
@@ -253,8 +232,8 @@ class SearchField extends StatelessWidget {
   }
 }
 
-class ProductContainer extends StatelessWidget {
-  const ProductContainer({
+class TopProductContainer extends StatelessWidget {
+  const TopProductContainer({
     Key key,
     @required this.productController,
     @required this.cartController,
@@ -267,18 +246,29 @@ class ProductContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: MediaQuery.of(context).size.height * .4,
+        width: MediaQuery.of(context).size.width,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
               print(productController.products.length);
               return controller.isloading.isFalse
-                  ? ListView.builder(
+                  ? GridView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
-                        return ProductContent(productController.products[i]);
-                      })
+                        if (productController.products[i].totalFavourite > 100)
+                          return ProductContent(productController.products[i]);
+                        else
+                          return null;
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 30,
+                        mainAxisExtent: 150.0,
+                      ),
+                    )
                   : Center(
                       child: CircularProgressIndicator(
                       strokeWidth: 3,
@@ -287,6 +277,57 @@ class ProductContainer extends StatelessWidget {
   }
 }
 
+class LatestProductContainer extends StatelessWidget {
+  const LatestProductContainer({
+    Key key,
+    @required this.productController,
+    @required this.cartController,
+  }) : super(key: key);
+
+  final ProductController productController;
+  final CartController cartController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height * .4,
+        width: MediaQuery.of(context).size.width,
+        // decoration: BoxDecoration(border: Border.all(width: 1)),
+        child: GetX<ProductController>(
+            init: ProductController(),
+            builder: (controller) {
+              return controller.isloading.isFalse
+                  ? GridView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.products.length,
+                      itemBuilder: (_, int i) {
+                        print(productController.products[i].dateTime);
+                        //  print(productController.products[i].dateTime
+                        //     .compareTo(Timestamp.fromDate(DateTime.now())));
+                        DateTime productadded =
+                            productController.products[i].dateTime.toDate();
+                        var dDay = new DateTime.now();
+                        Duration difference = dDay.difference(productadded);
+                        print(difference);
+                        if (difference < Duration(days: 99))
+                          return ProductContent(productController.products[i]);
+                        else
+                          return null;
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 30,
+                        mainAxisExtent: 150.0,
+                      ),
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(
+                      strokeWidth: 3,
+                    ));
+            }));
+  }
+}
 // class ProductDetail extends StatelessWidget {
 //   const ProductDetail({
 //     Key key,

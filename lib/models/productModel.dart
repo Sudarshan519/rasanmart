@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class Product {
-  // int id;
+  int id;
   String description;
   String productImage;
   int price;
@@ -10,8 +11,10 @@ class Product {
   int discount;
   bool isSale;
   int oldPrice;
+  Timestamp dateTime;
+  int totalFavourite;
   Product(
-      { //this.id,
+      {this.id,
       this.productName,
       this.description,
       this.productImage,
@@ -19,6 +22,8 @@ class Product {
       this.category,
       this.isSale,
       this.discount,
+      this.dateTime,
+      this.totalFavourite,
       this.qty});
   var isFaourite = false.obs;
   var qty = 0.obs;
@@ -34,18 +39,21 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    //this.id = json['id'];
+    this.id = json['id'];
     this.productName = json['name'];
     this.description = json['description'];
     this.price = json['price'];
     this.discount = json['discount'];
+    this.totalFavourite = json['totalfavourite'];
     this.isSale = json['isSale'];
     this.category = json['category'];
+    this.dateTime = json['dateadded'];
     this.productImage = json['productImage'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['name'] = this.productName;
     data['description'] = this.description;
     data['price'] = this.price;

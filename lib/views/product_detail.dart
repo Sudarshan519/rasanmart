@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/models/productModel.dart';
+import 'package:rasanmart/views/widgets/cartButton.dart';
 
 import '../controller/cartController.dart';
 import '../controller/productController.dart';
@@ -127,59 +128,66 @@ class ProductDetail extends GetWidget<ImageController> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 90,
-                  ),
-                  Text(
-                    'Qty',
-                    style:
-                        AppTheme.subheadingStyle.copyWith(color: Colors.black),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppTheme.lightBackgroundColor,
-                    ),
-                    height: 15,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                            child: Container(
-                          width: 15,
-                          child:
-                              Icon(Icons.remove, size: 15, color: Colors.white),
-                        )),
-                        Container(
-                            alignment: Alignment.center,
-                            color: Colors.white,
-                            child: Obx(() {
-                              return Text(
-                                " ${product.qty.value.toString()} ",
-                                style: AppTheme.subheadingStyle
-                                    .copyWith(fontSize: 10),
-                              );
-                            })),
-                        InkWell(
-                          child: Icon(
-                            Icons.add,
-                            size: 15,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              CartButton(product: product, cartController: cartController),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     SizedBox(
+              //       width: 90,
+              //     ),
+              //     Text(
+              //       'Qty',
+              //       style:
+              //           AppTheme.subheadingStyle.copyWith(color: Colors.black),
+              //     ),
+              //     SizedBox(
+              //       width: 20,
+              //     ),
+              //     Container(
+              //       decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(10),
+              //         color: AppTheme.lightBackgroundColor,
+              //       ),
+              //       height: 15,
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //         children: [
+              //           InkWell(
+              //               onTap: () {
+              //                 cartController.removefromCart(product);
+              //               },
+              //               child: Container(
+              //                 width: 15,
+              //                 child: Icon(Icons.remove,
+              //                     size: 15, color: Colors.white),
+              //               )),
+              //           Container(
+              //               alignment: Alignment.center,
+              //               color: Colors.white,
+              //               child: Obx(() {
+              //                 return Text(
+              //                   " ${product.qty.value.toString()} ",
+              //                   style: AppTheme.subheadingStyle
+              //                       .copyWith(fontSize: 10),
+              //                 );
+              //               })),
+              //           InkWell(
+              //             onTap: () {
+              //               cartController.addToCart(product);
+              //             },
+              //             child: Icon(
+              //               Icons.add,
+              //               size: 15,
+              //               color: Colors.white,
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Text(
                 'Price (NRs.)     ${product.price}',
@@ -199,15 +207,24 @@ class ProductDetail extends GetWidget<ImageController> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                   height: MediaQuery.of(context).size.height * .4,
-                  // decoration: BoxDecoration(border: Border.all(width: 1)),
+                  width: MediaQuery.of(context).size.width,
                   child: GetX<ProductController>(
                       init: ProductController(),
                       builder: (controller) {
                         print(controller.products.length);
                         return controller.isloading.isFalse
-                            ? ListView.builder(
+                            ? GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 1,
+                                  mainAxisSpacing: 30,
+                                  mainAxisExtent: 150.0,
+                                ),
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.products.length,
                                 itemBuilder: (_, int i) {

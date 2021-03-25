@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cart_page.dart';
 import 'package:rasanmart/views/categories_page.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  await firebaseProduct.fetchProduct();
   runApp(MyApp());
 }
 
@@ -304,6 +306,12 @@ class DashboardPage extends GetWidget<AuthController> {
               leading: Icon(Icons.person),
               title: Text('Profile'),
             ),
+            ListTile(
+                leading: Icon(Icons.category),
+                title: Text('Categories'),
+                onTap: () {
+                  Get.to(CategoriesPage());
+                }),
             ListTile(
                 onTap: () {
                   controller.signOut();
