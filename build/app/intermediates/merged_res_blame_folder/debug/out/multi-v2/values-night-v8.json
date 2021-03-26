@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\tutorial\\rasanmart\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "/home/narayan/Documents/sudarshan/rasanmart/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\tutorial\\rasanmart\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "/home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,15",
                         "startColumns": "4,4",
-                        "startOffsets": "175,888",
+                        "startOffsets": "172,873",
                         "endLines": "8,17",
                         "endColumns": "12,12",
-                        "endOffsets": "530,1054"
+                        "endOffsets": "522,1037"
                     },
                     "to": {
                         "startLines": "2,8",

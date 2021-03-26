@@ -251,7 +251,7 @@ class TopProductContainer extends StatelessWidget {
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
-              print(productController.products.length);
+             // print(productController.products.length);
               return controller.isloading.isFalse
                   ? GridView.builder(
                       scrollDirection: Axis.horizontal,
