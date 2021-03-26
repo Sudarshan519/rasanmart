@@ -38,12 +38,26 @@ class CartPage extends GetWidget {
                   padding: const EdgeInsets.only(left: 18.0),
                   child: Obx(() {
                     return Text(
-                      'Grand Total :${cartController.totalPrice}',
+                      'Delivery       :        Rs.  100',
                       style: AppTheme.title.copyWith(
                           color: Colors.blueGrey, fontWeight: FontWeight.bold),
                     );
                   }),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18.0),
+                  child: Obx(() {
+                    return Text(
+                      'Grand Total :        Rs. ${cartController.totalPrice}',
+                      style: AppTheme.title.copyWith(
+                          color: Colors.blueGrey, fontWeight: FontWeight.bold),
+                    );
+                  }),
+                ),
+                SizedBox(),
                 Container(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -58,7 +72,7 @@ class CartPage extends GetWidget {
                       }
                     },
                   ),
-                )
+                ),
               ]),
         ),
       ),
@@ -88,7 +102,7 @@ class CartItem extends StatelessWidget {
                     width: 100,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -99,11 +113,13 @@ class CartItem extends StatelessWidget {
                             color: Colors.black,
                           ),
                         ),
+                        SizedBox(height: 10),
                         Text(
                           "Price: Rs. ${cartController.cartItems[i].price}",
                           style: AppTheme.subtitle
                               .copyWith(color: Colors.blueGrey),
                         ),
+                        SizedBox(height: 10),
                         Obx(
                           () {
                             return Text(

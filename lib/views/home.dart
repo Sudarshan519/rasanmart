@@ -1,5 +1,4 @@
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:rasanmart/utils/app_theme.dart';
 import '../utils/app_theme.dart';
 import '../views/widgets/productContent.dart';
 import 'cart_page.dart';
-import './widgets/carousel_slider.dart';
 import '../services/getStorage.dart';
 
 class Home extends StatefulWidget {
@@ -251,7 +249,7 @@ class TopProductContainer extends StatelessWidget {
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
-             // print(productController.products.length);
+              // print(productController.products.length);
               return controller.isloading.isFalse
                   ? GridView.builder(
                       scrollDirection: Axis.horizontal,
@@ -266,7 +264,7 @@ class TopProductContainer extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         mainAxisSpacing: 30,
-                        mainAxisExtent: 150.0,
+                        // mainAxisExtent: 150.0,
                       ),
                     )
                   : Center(
@@ -290,7 +288,7 @@ class LatestProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .4,
+        height: MediaQuery.of(context).size.width * .4,
         width: MediaQuery.of(context).size.width,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
@@ -301,14 +299,14 @@ class LatestProductContainer extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
-                        print(productController.products[i].dateTime);
+                        // print(productController.products[i].dateTime);
                         //  print(productController.products[i].dateTime
                         //     .compareTo(Timestamp.fromDate(DateTime.now())));
                         DateTime productadded =
                             productController.products[i].dateTime.toDate();
                         var dDay = new DateTime.now();
                         Duration difference = dDay.difference(productadded);
-                        print(difference);
+                        // print(difference);
                         if (difference < Duration(days: 99))
                           return ProductContent(productController.products[i]);
                         else
@@ -318,7 +316,7 @@ class LatestProductContainer extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         mainAxisSpacing: 30,
-                        mainAxisExtent: 150.0,
+                        //mainAxisExtent: 150.0,
                       ),
                     )
                   : Center(

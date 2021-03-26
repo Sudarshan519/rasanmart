@@ -38,7 +38,7 @@ class Product {
     }
   }
 
-  Product.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json, {String productid}) {
     this.id = json['id'];
     this.productName = json['name'];
     this.description = json['description'];

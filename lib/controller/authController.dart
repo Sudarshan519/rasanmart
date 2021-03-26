@@ -21,7 +21,7 @@ class AuthController extends GetxController {
   Future<void> createUser(String name, String email, String password) async {
     try {
       UserCredential _authResult = await _auth.createUserWithEmailAndPassword(
-          email: email,  password);
+          email: email, password: password);
 
       //create user in firestore
       UserModel _user =

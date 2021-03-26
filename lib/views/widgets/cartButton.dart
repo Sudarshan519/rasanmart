@@ -37,6 +37,7 @@ class CartButton extends StatelessWidget {
               ),
             )
           : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Qty',

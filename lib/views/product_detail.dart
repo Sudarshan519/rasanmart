@@ -222,8 +222,8 @@ class ProductDetail extends GetWidget<ImageController> {
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
-                                  mainAxisSpacing: 30,
-                                  mainAxisExtent: 150.0,
+                                  mainAxisSpacing: 0,
+                                  //mainAxisExtent: 150.0,
                                 ),
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.products.length,

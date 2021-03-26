@@ -6,7 +6,6 @@ INJECTED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/A
 INJECTED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/AndroidManifest.xml:1:1-41:12
 MERGED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/AndroidManifest.xml:1:1-41:12
 MERGED from [:firebase_auth] /home/narayan/Documents/sudarshan/rasanmart/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
-MERGED from [:shared_preferences] /home/narayan/Documents/sudarshan/rasanmart/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:cloud_firestore] /home/narayan/Documents/sudarshan/rasanmart/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:path_provider] /home/narayan/Documents/sudarshan/rasanmart/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_core] /home/narayan/Documents/sudarshan/rasanmart/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
@@ -23,20 +22,20 @@ MERGED from [com.google.firebase:firebase-common:19.5.0] /home/narayan/.gradle/c
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/66aa62912f1bb22f724252fb9fcb750c/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/549e3b8964e71b26e74a8a46d4ccd1ac/jetified-play-services-basement-17.1.0/AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/c04265d883a901226b766b9b95f9fef5/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/0431d4577daa4d74bd9a68e4c40dc790/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/1316a964466246522a98dbed81f3acd8/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d5a8f8b1247cb984a6e15b5ee0388174/customview-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/5bc6767e703915bebf3f5f7cf8b4cead/core-1.1.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/e10f45fbfa719535dd59d164bed2ac52/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/22e972da8ab7aee3c08ffafb5b3650fc/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/c5c092d600efed0e26345587afc412ad/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/b16d95769f61127a713d5fc1b2a9c9af/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d8a76312737e5e9e1506752b847695c4/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/70be07b25ea308fd153e8fd9b6229388/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/797757c36eb2300818637a8d031d37c8/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.firebase:protolite-well-known-types:17.1.1] /home/narayan/.gradle/caches/transforms-2/files-2.1/d51babbdaecde9609e498a511edea38c/jetified-protolite-well-known-types-17.1.1/AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.28.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/95a6fc454bbe13677ad6068a30f92007/jetified-grpc-android-1.28.0/AndroidManifest.xml:2:1-13:12
 INJECTED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/debug/AndroidManifest.xml:1:1-7:12
@@ -138,8 +137,6 @@ INJECTED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/A
 INJECTED from /home/narayan/Documents/sudarshan/rasanmart/android/app/src/main/AndroidManifest.xml
 MERGED from [:firebase_auth] /home/narayan/Documents/sudarshan/rasanmart/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_auth] /home/narayan/Documents/sudarshan/rasanmart/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] /home/narayan/Documents/sudarshan/rasanmart/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] /home/narayan/Documents/sudarshan/rasanmart/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] /home/narayan/Documents/sudarshan/rasanmart/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] /home/narayan/Documents/sudarshan/rasanmart/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] /home/narayan/Documents/sudarshan/rasanmart/build/path_provider/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
@@ -172,12 +169,12 @@ MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/narayan
 MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/549e3b8964e71b26e74a8a46d4ccd1ac/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/c04265d883a901226b766b9b95f9fef5/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/c04265d883a901226b766b9b95f9fef5/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/0431d4577daa4d74bd9a68e4c40dc790/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/0431d4577daa4d74bd9a68e4c40dc790/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/1316a964466246522a98dbed81f3acd8/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/1316a964466246522a98dbed81f3acd8/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/8705fa83e90485e805026c3c4b38dadf/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d5a8f8b1247cb984a6e15b5ee0388174/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d5a8f8b1247cb984a6e15b5ee0388174/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/5bc6767e703915bebf3f5f7cf8b4cead/core-1.1.0/AndroidManifest.xml:20:5-22:41
@@ -190,16 +187,16 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/narayan/.gradle/
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/c5c092d600efed0e26345587afc412ad/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/b16d95769f61127a713d5fc1b2a9c9af/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/b16d95769f61127a713d5fc1b2a9c9af/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d8a76312737e5e9e1506752b847695c4/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/d8a76312737e5e9e1506752b847695c4/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/70be07b25ea308fd153e8fd9b6229388/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/70be07b25ea308fd153e8fd9b6229388/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/797757c36eb2300818637a8d031d37c8/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/797757c36eb2300818637a8d031d37c8/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/6a045541d5de667acdafc1e287cc5a1a/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.1.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/cb6fc842b1d283b3a6e6c18c47355f26/jetified-firebase-components-16.1.0/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:protolite-well-known-types:17.1.1] /home/narayan/.gradle/caches/transforms-2/files-2.1/d51babbdaecde9609e498a511edea38c/jetified-protolite-well-known-types-17.1.1/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:17.1.1] /home/narayan/.gradle/caches/transforms-2/files-2.1/d51babbdaecde9609e498a511edea38c/jetified-protolite-well-known-types-17.1.1/AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.28.0] /home/narayan/.gradle/caches/transforms-2/files-2.1/95a6fc454bbe13677ad6068a30f92007/jetified-grpc-android-1.28.0/AndroidManifest.xml:7:5-9:41

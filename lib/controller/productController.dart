@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:rasanmart/models/product.dart';
 import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/services/firestoreProducts.dart';
 
@@ -13,8 +14,10 @@ class ProductController extends GetxController {
 
   void fetchProducts() async {
     isloading.toggle();
-    List<Product> productlist = await ProductFromFirebase().fetchProduct();
-    products = productlist.obs;
+    List<ProductModel> productlist = await ProductFromFirebase().fetchProduct();
+    print(productlist[0].product);
+    List<Product> product = productlist.map((e) => e.product).toList();
+    products = product.obs;
     isloading.toggle();
   }
 }

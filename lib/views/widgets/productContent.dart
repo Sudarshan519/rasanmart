@@ -89,6 +89,7 @@ class ProductContent extends StatelessWidget {
       Divider(),
       Obx(() => Row(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               InkWell(
                 onTap: () {
