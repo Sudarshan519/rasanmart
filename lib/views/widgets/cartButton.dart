@@ -17,7 +17,7 @@ class CartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return product.qty.value == 0
+      return !cartController.checkItems(product)
           ? Container(
               height: 30,
               child: ElevatedButton(
@@ -60,7 +60,7 @@ class CartButton extends StatelessWidget {
                           cartController.removefromCart(product);
                         },
                         child: Icon(Icons.remove, size: AppTheme.iconsize))),
-                Text(" ${product.qty.toString()} "),
+                Text(" ${cartController.getItems(product).toString()} "),
                 Container(
                     height: 15,
                     width: 30,

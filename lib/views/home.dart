@@ -1,15 +1,14 @@
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/productController.dart';
+import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import '../utils/app_theme.dart';
 import '../views/widgets/productContent.dart';
 import 'cart_page.dart';
-import './widgets/carousel_slider.dart';
 import '../services/getStorage.dart';
 
 class Home extends StatefulWidget {
@@ -29,12 +28,27 @@ class _HomeState extends State<Home> {
   bool _show;
 
   writeStorage() async {
-    await cartStorage.write('cart', cartController.cartItems.toJson());
+    var resJson = cartController.cartItems.toJson();
+    print(resJson);
+    if (resJson != []) {
+      await cartStorage.clear('cart');
+      await cartStorage.write('cart', resJson);
+    } else
+      print('Put some value');
   }
 
   readStorage() async {
-    String prod = await cartStorage.read('cart');
-    print(prod);
+    //List<Product> products = [];
+    try {
+      List<dynamic> prod = await cartStorage.read('cart');
+      if (prod != null)
+        prod.forEach((element) {
+          print(element);
+          cartController.cartItems.add(Product.fromJson(element));
+        });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   @override
@@ -71,114 +85,120 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(
-            Icons.sort,
-            size: 30,
-            color: Colors.grey,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(
+              Icons.sort,
+              size: 30,
+              color: Colors.grey,
+            ),
+            onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
           ),
-          onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
+          title: !_show
+              ? Row(
+                  children: [
+                    Text(
+                      'rasan',
+                      style: TextStyle(
+                          color: Colors.yellow.shade900,
+                          fontStyle: FontStyle.italic),
+                    ),
+                    Text(
+                      'mart',
+                      style: TextStyle(
+                          color: Colors.redAccent[700],
+                          fontStyle: FontStyle.italic),
+                    )
+                  ],
+                )
+              : SearchField(),
+          actions: [
+            IconButton(
+                icon: Stack(
+                  children: [
+                    Icon(
+                      Icons.shopping_basket,
+                      color: Colors.grey,
+                    ),
+                    Align(
+                        alignment: Alignment.bottomRight,
+                        child: CircleAvatar(
+                          backgroundColor: AppTheme.lightBackgroundColor,
+                          radius: 7,
+                          child: Obx(() {
+                            return Text(
+                              '${cartController.count}',
+                              style: AppTheme.subtitle
+                                  .copyWith(fontSize: 12, color: Colors.white),
+                            );
+                          }),
+                        ))
+                  ],
+                ),
+                onPressed: () {
+                  // Get.snackbar("Error creating user", 'e.message');
+                  Get.to(CartPage());
+                }),
+          ],
         ),
-        title: !_show
-            ? Row(
-                children: [
-                  Text(
-                    'rasan',
-                    style: TextStyle(
-                        color: Colors.yellow.shade900,
-                        fontStyle: FontStyle.italic),
-                  ),
-                  Text(
-                    'mart',
-                    style: TextStyle(
-                        color: Colors.redAccent[700],
-                        fontStyle: FontStyle.italic),
-                  )
-                ],
-              )
-            : SearchField(),
-        actions: [
-          IconButton(
-              icon: Stack(
-                children: [
-                  Icon(
-                    Icons.shopping_basket,
-                    color: Colors.grey,
-                  ),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: CircleAvatar(
-                        backgroundColor: AppTheme.lightBackgroundColor,
-                        radius: 7,
-                        child: Obx(() {
-                          return Text(
-                            '${cartController.count}',
-                            style: AppTheme.subtitle
-                                .copyWith(fontSize: 12, color: Colors.white),
-                          );
-                        }),
-                      ))
-                ],
-              ),
-              onPressed: () {
-                // Get.snackbar("Error creating user", 'e.message');
-                Get.to(CartPage());
-              }),
-        ],
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: SingleChildScrollView(
-            controller: _scrollBottomBarController,
-            child: Column(children: [
-              SearchField(), //: Text(''),
-              //ComplicatedImageDemo(),
-              CarouselPro(),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    'Top Products',
-                    style: AppTheme.headingStyle,
-                  ),
-                  Spacer(),
-                  Text(
-                    'View All',
-                    style: AppTheme.subheadingStyle,
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
-              TopProductContainer(
-                  productController: productController,
-                  cartController: cartController),
-              Divider(),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    'Latest Products',
-                    style: AppTheme.headingStyle,
-                  ),
-                  Spacer(),
-                  Text(
-                    'View All',
-                    style: AppTheme.subheadingStyle,
-                  )
-                ],
-              ),
-              SizedBox(height: 15),
-              LatestProductContainer(
-                  productController: productController,
-                  cartController: cartController)
-            ]),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: SingleChildScrollView(
+              controller: _scrollBottomBarController,
+              child: Column(children: [
+                SearchField(), //: Text(''),
+                //ComplicatedImageDemo(),
+                CarouselPro(),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      'Top Products',
+                      style: AppTheme.headingStyle,
+                    ),
+                    Spacer(),
+                    Text(
+                      'View All',
+                      style: AppTheme.subheadingStyle,
+                    )
+                  ],
+                ),
+                SizedBox(height: 10),
+                TopProductContainer(
+                    productController: productController,
+                    cartController: cartController),
+                Divider(),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      'Latest Products',
+                      style: AppTheme.headingStyle,
+                    ),
+                    Spacer(),
+                    Text(
+                      'View All',
+                      style: AppTheme.subheadingStyle,
+                    )
+                  ],
+                ),
+                SizedBox(height: 15),
+                LatestProductContainer(
+                    productController: productController,
+                    cartController: cartController)
+              ]),
+            ),
           ),
         ),
-      ),
-    );
+        // floatingActionButton: FloatingActionButton.extended(
+        //     onPressed: () {
+        //       cartController.writeStorage();
+        //       cartController.readStorage();
+        //     },
+        //     label: Text('Test'))
+        );
   }
 }
 

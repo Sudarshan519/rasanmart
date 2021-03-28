@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:rasanmart/models/productModel.dart';
+import 'package:rasanmart/services/getStorage.dart';
 
 class CartController extends GetxController {
   var istrue = false.obs;
@@ -7,30 +10,65 @@ class CartController extends GetxController {
   var cartItems = List<Product>.empty(growable: true).obs;
   double get totalPrice =>
       cartItems.fold(0, (sum, item) => sum + item.qty * item.price);
-  // final _obj = ''.obs;
-  // set obj(value) => this._obj.value = value;
-  // get obj => this._obj.value;
+
   @override
   void onInit() {
     super.onInit();
+    readStorage();
+  }
+
+  getItems(Product product) {
+    int qty = 0;
+    cartItems.forEach((element) {
+      if (element.id == product.id) {
+        qty = element.qty.value;
+      }
+    });
+    return qty;
+  }
+
+  writeStorage() async {
+    var resJson = cartItems.toJson();
+    print(resJson);
+    if (resJson != [])
+      await cartStorage.write('cart', resJson);
+    else
+      print('Put some value');
+  }
+
+  readStorage() async {
+    List<dynamic> prod = await cartStorage.read('cart');
+    prod.forEach((element) {
+      print(element);
+      cartItems.add(Product.fromJson(element));
+    });
+    print(cartItems.length);
   }
 
   addToCart(Product product) {
     if (!checkItems(product)) {
       cartItems.add(product);
       product.increment();
-    } else if (cartItems.contains(product)) {
+    } else {
       product.increment();
+
       print(product.qty.value);
     }
+    writeStorage();
   }
 
   checkItems(Product product) {
-    if (!cartItems.contains(product)) {
-      return false;
-    } else if (cartItems.contains(product)) {
-      return true;
-    }
+    bool isFound = false;
+    // if (!cartItems.contains(product)) {
+    //   isFound = false;
+    // } else {
+    cartItems.forEach((element) {
+      if (element.id == product.id) {
+        isFound = true;
+      }
+    });
+    // }
+    return isFound;
   }
 
   removefromCart(Product product) {
@@ -45,5 +83,6 @@ class CartController extends GetxController {
         product.decrement();
       // print(product.qty.value);
     }
+    writeStorage();
   }
 }

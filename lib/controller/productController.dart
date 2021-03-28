@@ -11,6 +11,10 @@ class ProductController extends GetxController {
     fetchProducts();
   }
 
+  Future searchProducts() {
+    List<Product> products=[];
+    //return 
+  }
   void fetchProducts() async {
     isloading.toggle();
     List<Product> productlist = await ProductFromFirebase().fetchProduct();

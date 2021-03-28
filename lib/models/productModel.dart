@@ -46,6 +46,7 @@ class Product {
     this.discount = json['discount'];
     this.totalFavourite = json['totalfavourite'];
     this.isSale = json['isSale'];
+    this.qty.value = json['qty'];
     this.category = json['category'];
     this.dateTime = json['dateadded'];
     this.productImage = json['productImage'];
@@ -61,6 +62,7 @@ class Product {
     data['isSale'] = this.isSale;
     data['category'] = this.category;
     data['productImage'] = this.productImage;
+    data['qty'] = this.qty;
     return data;
   }
 }

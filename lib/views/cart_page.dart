@@ -134,6 +134,7 @@ class CartItem extends StatelessWidget {
                     ),
                     Container(
                       child: Obx(() {
+                        print(cartController.cartItems[i].qty);
                         return Text(
                             "   ${cartController.cartItems[i].qty.toString()}    ",
                             style: AppTheme.subheadingStyle

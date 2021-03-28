@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
 import './cartButton.dart';
 import '../../controller/cartController.dart';
 import '../../utils/app_theme.dart';
@@ -92,6 +93,7 @@ class ProductContent extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
+                  firebaseProduct.addlike();
                   product.isFaourite.toggle();
                 },
                 child: product.isFaourite.value
