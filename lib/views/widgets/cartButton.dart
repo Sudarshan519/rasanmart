@@ -5,14 +5,13 @@ import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 
 class CartButton extends StatelessWidget {
-  const CartButton({
+  CartButton({
     Key key,
     @required this.product,
-    @required this.cartController,
   }) : super(key: key);
 
   final Product product;
-  final CartController cartController;
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class CartButton extends StatelessWidget {
                           cartController.removefromCart(product);
                         },
                         child: Icon(Icons.remove, size: AppTheme.iconsize))),
-                Text(" ${cartController.getItems(product).toString()} "),
+                Obx(() => Text(" ${cartController.getItems(product)} ")),
                 Container(
                     height: 15,
                     width: 30,

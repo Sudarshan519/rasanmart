@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
@@ -19,13 +18,16 @@ class CartPage extends GetWidget {
             Get.back();
           },
         ),
-        title: Text(
-          "Cart",
-          style: AppTheme.headingStyle,
+        title: Row(
+          children: [
+            Icon(Icons.shopping_cart, size: 30, color: Colors.grey),
+            Text(
+              "Cart",
+              style: AppTheme.headingStyle,
+            ),
+          ],
         ),
-        actions: [
-          Icon(FontAwesomeIcons.shoppingCart),
-        ],
+        actions: [],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -1,6 +1,5 @@
 import 'package:get_storage/get_storage.dart';
 
-import '../models/productModel.dart';
 
 class LocalGetStorage {
   final box = GetStorage();
@@ -23,7 +22,7 @@ class LocalGetStorage {
   //   // box.removeListen(listen);
   // }
 
-  clear(String storage) {
+  clear() {
     box.remove('cart');
   }
 

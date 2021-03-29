@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/services/getStorage.dart';
@@ -29,7 +27,7 @@ class CartController extends GetxController {
 
   writeStorage() async {
     var resJson = cartItems.toJson();
-    print(resJson);
+    // print(resJson);
     if (resJson != [])
       await cartStorage.write('cart', resJson);
     else
@@ -39,50 +37,59 @@ class CartController extends GetxController {
   readStorage() async {
     List<dynamic> prod = await cartStorage.read('cart');
     prod.forEach((element) {
-      print(element);
+      //print(element);
+
       cartItems.add(Product.fromJson(element));
     });
-    print(cartItems.length);
+    // print(cartItems.length);
+  }
+
+  increment(Product product) {
+    //  print(product.qty);
+    product.qty++;
+  }
+
+  decrement(Product product) {
+    //print(product.qty);
+    product.qty--;
   }
 
   addToCart(Product product) {
     if (!checkItems(product)) {
       cartItems.add(product);
-      product.increment();
+      increment(product);
     } else {
-      product.increment();
+      increment(product);
 
-      print(product.qty.value);
+      //print(product.qty.value);
     }
     writeStorage();
   }
 
   checkItems(Product product) {
     bool isFound = false;
-    // if (!cartItems.contains(product)) {
-    //   isFound = false;
-    // } else {
     cartItems.forEach((element) {
+      product.qty = element.qty;
       if (element.id == product.id) {
         isFound = true;
       }
     });
-    // }
     return isFound;
   }
 
   removefromCart(Product product) {
-    if (!cartItems.contains(product)) {
-      // cartItems.add(product);
-    } else if (cartItems.contains(product)) {
-      if (product.qty <= 1) {
-        // product.qty.value = 0;
-        product.decrement();
-        cartItems.remove(product);
-      } else
-        product.decrement();
-      // print(product.qty.value);
-    }
+    int index;
+    cartItems.forEach((element) {
+      if (element.id == product.id) {
+        if (product.qty.value <= 1) {
+          element.decrement();
+          index = cartItems.indexOf(element);
+        } else
+          element.decrement();
+      }
+    });
+    if (index != null) cartItems.removeAt(index);
+
     writeStorage();
   }
 }

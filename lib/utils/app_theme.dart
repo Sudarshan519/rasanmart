@@ -27,10 +27,10 @@ class AppTheme {
 
   static final lightTheme = ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.red,
-      accentColor: Colors.red,
-      backgroundColor: Colors.redAccent,
-      errorColor: Colors.white
+      primaryColor: lightPrimaryColor,
+      accentColor: lightAccentColor,
+      backgroundColor: lightBackgroundColor,
+      errorColor: lightPrimaryColor
       // visualDensity: VisualDensity.adaptivePlatformDensity,
       );
 
@@ -38,7 +38,8 @@ class AppTheme {
     brightness: Brightness.dark,
     primaryColor: darkPrimaryColor,
     accentColor: darkAccentColor,
-    errorColor: const Color(0xFFB00020),
+    errorColor: lightBackgroundColor,
+    //const Color(0xFFB00020),
     //backgroundColor: darkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );

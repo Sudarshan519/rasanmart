@@ -7,8 +7,9 @@ INJECTED from D:\tutorial\rasanmart\android\app\src\main\AndroidManifest.xml:1:1
 MERGED from D:\tutorial\rasanmart\android\app\src\main\AndroidManifest.xml:1:1-41:12
 MERGED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:shared_preferences] D:\tutorial\rasanmart\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:connectivity] D:\tutorial\rasanmart\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:path_provider] D:\tutorial\rasanmart\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:hexcolor] D:\tutorial\rasanmart\build\hexcolor\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.multidex:multidex:2.0.0] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\1f51d360bf1b64423ce9ce0fd2b616e6\multidex-2.0.0\AndroidManifest.xml:17:1-22:12
@@ -140,10 +141,12 @@ MERGED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermedi
 MERGED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] D:\tutorial\rasanmart\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] D:\tutorial\rasanmart\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] D:\tutorial\rasanmart\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:connectivity] D:\tutorial\rasanmart\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\tutorial\rasanmart\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider] D:\tutorial\rasanmart\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:hexcolor] D:\tutorial\rasanmart\build\hexcolor\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -246,6 +249,16 @@ ADDED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermedia
 		ADDED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_auth] D:\tutorial\rasanmart\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:connectivity] D:\tutorial\rasanmart\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
+MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\65866ab71aac7497902490185fe68a8e\jetified-firebase-auth-20.0.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\65866ab71aac7497902490185fe68a8e\jetified-firebase-auth-20.0.1\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-firestore:22.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\d4af528e8123cc1871f56a650c742dc7\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-firestore:22.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\d4af528e8123cc1871f56a650c742dc7\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:13:5-79
+MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\95a6fc454bbe13677ad6068a30f92007\jetified-grpc-android-1.28.0\AndroidManifest.xml:11:5-79
+MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\95a6fc454bbe13677ad6068a30f92007\jetified-grpc-android-1.28.0\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from [:connectivity] D:\tutorial\rasanmart\build\connectivity\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
 ADDED from [:cloud_firestore] D:\tutorial\rasanmart\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -258,14 +271,6 @@ ADDED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermedia
 		ADDED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:firebase_core] D:\tutorial\rasanmart\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-124
-uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\65866ab71aac7497902490185fe68a8e\jetified-firebase-auth-20.0.1\AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-firestore:22.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\d4af528e8123cc1871f56a650c742dc7\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:13:5-79
-MERGED from [com.google.firebase:firebase-firestore:22.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\d4af528e8123cc1871f56a650c742dc7\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:13:5-79
-MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\95a6fc454bbe13677ad6068a30f92007\jetified-grpc-android-1.28.0\AndroidManifest.xml:11:5-79
-MERGED from [io.grpc:grpc-android:1.28.0] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\95a6fc454bbe13677ad6068a30f92007\jetified-grpc-android-1.28.0\AndroidManifest.xml:11:5-79
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\65866ab71aac7497902490185fe68a8e\jetified-firebase-auth-20.0.1\AndroidManifest.xml:24:22-76
 activity#com.google.firebase.auth.internal.GenericIdpActivity
 ADDED from [com.google.firebase:firebase-auth:20.0.1] C:\Users\user.DESKTOP-HG8HHKK\.gradle\caches\transforms-2\files-2.1\65866ab71aac7497902490185fe68a8e\jetified-firebase-auth-20.0.1\AndroidManifest.xml:27:9-44:20
 	android:excludeFromRecents

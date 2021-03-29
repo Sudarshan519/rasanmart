@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:rasanmart/services/firestoreProducts.dart';
 import './cartButton.dart';
-import '../../controller/cartController.dart';
 import '../../utils/app_theme.dart';
 import 'package:rasanmart/models/productModel.dart';
 
@@ -16,7 +14,7 @@ class ProductContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartController = Get.find<CartController>();
+    // final cartController = Get.find<CartController>();
     return Column(children: [
       Expanded(
         child: Stack(
@@ -24,8 +22,8 @@ class ProductContent extends StatelessWidget {
           children: [
             Image.network(
               product.productImage,
-              height: 200,
-              width: 200,
+              // height: 200,
+              // width: 200,
             ),
             Row(
               children: [
@@ -57,7 +55,9 @@ class ProductContent extends StatelessWidget {
       Text('Rs. ${product.price.toString()}',
           style: TextStyle(color: Colors.red)),
       SizedBox(height: 5),
-      CartButton(product: product, cartController: cartController),
+      CartButton(
+        product: product,
+      ),
       SizedBox(height: 10),
       InkWell(
         onTap: () {
@@ -87,49 +87,49 @@ class ProductContent extends StatelessWidget {
           ),
         ],
       ),
-      Divider(),
-      Obx(() => Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
-                onTap: () {
-                  firebaseProduct.addlike();
-                  product.isFaourite.toggle();
-                },
-                child: product.isFaourite.value
-                    ? Icon(
-                        Icons.thumb_up_alt_outlined,
-                        color: Colors.grey,
-                      )
-                    : Icon(FontAwesomeIcons.thumbsUp,
-                        color: Colors.redAccent.shade700),
-              ),
-              // InkWell(
-              //   child: product.isFaourite.value
-              //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
-              //       : Icon(Icons.star_border, size: 10),
-              //   onTap: () {
-              //     product.isFaourite.toggle();
-              //   },
-              // ),
-              // InkWell(
-              //   child: product.isFaourite.value
-              //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
-              //       : Icon(Icons.star_border, size: 10),
-              //   onTap: () {
-              //     product.isFaourite.toggle();
-              //   },
-              // ),
-              // InkWell(
-              //   child: product.isFaourite.value
-              //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
-              //       : Icon(Icons.star_border, size: 10),
-              //   onTap: () {
-              //     product.isFaourite.toggle();
-              //   },
-              // ),
-            ],
-          )),
+      // Divider(),
+      // Obx(() => Row(
+      //       mainAxisSize: MainAxisSize.min,
+      //       children: [
+      //         InkWell(
+      //           onTap: () {
+      //             firebaseProduct.addlike();
+      //             product.isFaourite.toggle();
+      //           },
+      //           child: product.isFaourite.value
+      //               ? Icon(
+      //                   Icons.thumb_up_alt_outlined,
+      //                   color: Colors.grey,
+      //                 )
+      //               : Icon(FontAwesomeIcons.thumbsUp,
+      //                   color: Colors.redAccent.shade700),
+      //         ),
+      // InkWell(
+      //   child: product.isFaourite.value
+      //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
+      //       : Icon(Icons.star_border, size: 10),
+      //   onTap: () {
+      //     product.isFaourite.toggle();
+      //   },
+      // ),
+      // InkWell(
+      //   child: product.isFaourite.value
+      //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
+      //       : Icon(Icons.star_border, size: 10),
+      //   onTap: () {
+      //     product.isFaourite.toggle();
+      //   },
+      // ),
+      // InkWell(
+      //   child: product.isFaourite.value
+      //       ? Icon(Icons.star, size: 15, color: Colors.yellow)
+      //       : Icon(Icons.star_border, size: 10),
+      //   onTap: () {
+      //     product.isFaourite.toggle();
+      //   },
+      // ),
+      //    ],
+      //)),
     ]);
   }
 }

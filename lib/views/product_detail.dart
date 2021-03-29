@@ -128,7 +128,9 @@ class ProductDetail extends GetWidget<ImageController> {
               SizedBox(
                 height: 20,
               ),
-              CartButton(product: product, cartController: cartController),
+              CartButton(
+                product: product,
+              ),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.start,
               //   children: [

@@ -11,10 +11,18 @@ class ProductController extends GetxController {
     fetchProducts();
   }
 
-  Future searchProducts() {
-    List<Product> products=[];
-    //return 
+  searchItems(String query) {
+    List<Product> prod = [];
+    products.forEach((element) {
+      if (element.productName.toLowerCase().contains(query.toLowerCase()) ||
+          element.description.toLowerCase().contains(query.toLowerCase())) {
+        prod.add(element);
+      }
+    });
+    print(prod.toString());
+    return prod;
   }
+
   void fetchProducts() async {
     isloading.toggle();
     List<Product> productlist = await ProductFromFirebase().fetchProduct();

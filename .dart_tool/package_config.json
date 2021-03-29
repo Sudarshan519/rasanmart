@@ -80,6 +80,30 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "connectivity",
+      "rootUri": "file:///D:/tutorial/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-3.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "connectivity_for_web",
+      "rootUri": "file:///D:/tutorial/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_for_web-0.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "connectivity_macos",
+      "rootUri": "file:///D:/tutorial/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_macos-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "connectivity_platform_interface",
+      "rootUri": "file:///D:/tutorial/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_platform_interface-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///D:/tutorial/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.0",
       "packageUri": "lib/",
@@ -410,7 +434,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-03-24T11:24:17.129488Z",
+  "generated": "2021-03-29T11:56:01.981156Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }

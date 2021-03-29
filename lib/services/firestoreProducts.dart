@@ -21,7 +21,7 @@ class ProductFromFirebase extends GetxService {
   }
 
   readlike() async {
-    int count = 0;
+    int count;
     var data = await referencelike.get();
     data.docs.forEach((element) {
       count++;
@@ -32,7 +32,7 @@ class ProductFromFirebase extends GetxService {
     var data = await referencelike
         .where("userid", isEqualTo: FirebaseAuth.instance.currentUser.uid)
         .get();
-    if (data != null && data != [])
+    if (data != null && data.isBlank)
       data.docs.forEach((element) {
         print(element.id);
         return element.id;
@@ -46,13 +46,13 @@ class ProductFromFirebase extends GetxService {
     if (id != null) referencelike.doc(id).delete();
   }
 
+  CollectionReference productReference =
+      FirebaseFirestore.instance.collection("products");
   Future<List<Product>> fetchProduct() async {
-    CollectionReference productReference =
-        FirebaseFirestore.instance.collection("products");
     try {
       var data = await productReference.get();
       data.docs.forEach((element) {
-        print(element.id);
+        // print(element.id);
       });
       return data.docs.map<Product>((e) => Product.fromJson(e.data())).toList();
     } catch (e) {
@@ -60,6 +60,10 @@ class ProductFromFirebase extends GetxService {
       return null;
     }
   }
+}
+
+Future searchProduct() {
+  return null;
 }
 
 Future<void> uploadCategory() async {
@@ -91,6 +95,7 @@ Future<List<Product>> testuploadProduct() async {
             price: 123,
             isSale: true)
         .toJson());
+    return null;
   } catch (e) {
     print(e.toString());
     return null;
