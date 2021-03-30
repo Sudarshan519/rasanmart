@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
 import 'package:rasanmart/services/getStorage.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cart_page.dart';
 import 'package:rasanmart/views/categories_page.dart';
@@ -17,8 +18,8 @@ import 'views/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  cartStorage.write('cart', []);
   await Firebase.initializeApp();
+  await firebaseProduct.fetchProduct();
   runApp(MyApp());
 }
 
@@ -307,6 +308,12 @@ class DashboardPage extends GetWidget<AuthController> {
               title: Text('Profile'),
             ),
             ListTile(
+                leading: Icon(Icons.category),
+                title: Text('Categories'),
+                onTap: () {
+                  Get.to(CategoriesPage());
+                }),
+            ListTile(
                 onTap: () {
                   controller.signOut();
                 },
@@ -315,29 +322,29 @@ class DashboardPage extends GetWidget<AuthController> {
           ],
         ),
       ),
-      // bottomNavigationBar: Obx(() {
-      //   return BottomNavigationBar(
-      //     onTap: (index) {
-      //       c.changevalue(index);
-      //       //  print(c.selectedIndex);
-      //     },
-      //     currentIndex: c.selectedIndex.value ?? 0,
-      //     items: [
-      //       BottomNavigationBarItem(
-      //         icon: Icon(CupertinoIcons.home),
-      //         label: 'Home',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(FontAwesomeIcons.cat),
-      //         label: 'Categories',
-      //       ),
-      //       BottomNavigationBarItem(
-      //         icon: Icon(CupertinoIcons.person),
-      //         label: 'Account',
-      //       ),
-      //     ],
-      //   );
-      // }),
+      bottomNavigationBar: Obx(() {
+        return BottomNavigationBar(
+          onTap: (index) {
+            c.changevalue(index);
+            //  print(c.selectedIndex);
+          },
+          currentIndex: c.selectedIndex.value ?? 0,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.select_all),
+              label: 'Categories',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.person),
+              label: 'Account',
+            ),
+          ],
+        );
+      }),
     );
   }
 }

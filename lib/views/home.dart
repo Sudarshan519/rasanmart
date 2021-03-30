@@ -8,8 +8,6 @@ import 'package:rasanmart/utils/app_theme.dart';
 import '../utils/app_theme.dart';
 import '../views/widgets/productContent.dart';
 import 'cart_page.dart';
-import './widgets/carousel_slider.dart';
-import '../services/getStorage.dart';
 
 class Home extends StatefulWidget {
   final scaffoldKey;
@@ -20,27 +18,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final cartController = Get.put(CartController());
-
   final productController = Get.put(ProductController());
-
+  final cartController = Get.put(CartController());
   ScrollController _scrollBottomBarController = new ScrollController();
   bool _show;
-
-  writeStorage() async {
-    var resJson = cartController.cartItems.toJson();
-    print(resJson);
-    await cartStorage.write('cart', resJson);
-  }
-
-  readStorage() async {
-    final prod = await cartStorage.read('cart');
-    print(prod);
-  }
 
   @override
   void initState() {
     super.initState();
+
+    //Get.putAsync<ProductController>(() async => await ProductController());
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
@@ -75,6 +62,7 @@ class _HomeState extends State<Home> {
         leading: IconButton(
           icon: Icon(
             Icons.sort,
+            size: 30,
             color: Colors.grey,
           ),
           onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
@@ -132,36 +120,9 @@ class _HomeState extends State<Home> {
           child: SingleChildScrollView(
             controller: _scrollBottomBarController,
             child: Column(children: [
-              // Container(
-              //   color: Colors.red.shade900,
-              //   child: Row(children: [
-              //     IconButton(
-              //       icon: Icon(
-              //         Icons.menu,
-              //         color: Colors.white,
-              //       ),
-              //       onPressed: () {
-              //         scaffoldKey.currentState.openDrawer();
-              //         // scaffoldKey
-              //       },
-              //     ),
-              //     Text(
-              //       'RasanMart',
-              //       style: TextStyle(),
-              //     ),
-              //     Spacer(),
-              //     IconButton(
-              //       icon: Icon(Icons.shopping_cart),
-              //       onPressed: () {
-              //         Get.to(CartPage());
-              //       },
-              //     )
-              //   ]),
-              // ),
-              //_show ?
               SearchField(), //: Text(''),
-              ComplicatedImageDemo(),
-              //CarouselPro(),
+              //ComplicatedImageDemo(),
+              CarouselPro(),
               SizedBox(height: 10),
               Row(
                 children: [
@@ -177,9 +138,11 @@ class _HomeState extends State<Home> {
                 ],
               ),
               SizedBox(height: 10),
-              ProductContainer(
-                  productController: productController,
-                  cartController: cartController),
+              TopProductContainer(
+                productController: productController,
+              ),
+              Divider(),
+              SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -193,22 +156,22 @@ class _HomeState extends State<Home> {
                   )
                 ],
               ),
-              SizedBox(height: 10),
-              ProductContainer(
-                  productController: productController,
-                  cartController: cartController)
+              SizedBox(height: 15),
+              LatestProductContainer(
+                productController: productController,
+              )
             ]),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: Text('Add to cart'),
-        onPressed: () {
-          cartStorage.write('cart', []);
-          readStorage();
-          // writeStorage();
-        },
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   label: Text('Add to cart'),
+      //   onPressed: () {
+      //     cartStorage.write('cart', []);
+      //     readStorage();
+      //     // writeStorage();
+      //   },
+      // ),
     );
   }
 }
@@ -221,12 +184,13 @@ class CarouselPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 280.0,
+        height: 200.0,
         child: Carousel(
           indicatorBgPadding: 8,
           images: [
             NetworkImage(
-                'https://www.rasanmart.com/wp-content/uploads/2020/06/101953524_259183725496744_2867387748120002560_n.png'),
+              'https://www.rasanmart.com/wp-content/uploads/2020/06/101953524_259183725496744_2867387748120002560_n.png',
+            ),
             NetworkImage(
                 'https://www.rasanmart.com/wp-content/uploads/2020/06/101522295_895508060956667_1800978657359953920_n.png'),
             NetworkImage(
@@ -262,32 +226,41 @@ class SearchField extends StatelessWidget {
   }
 }
 
-class ProductContainer extends StatelessWidget {
-  const ProductContainer({
+class TopProductContainer extends StatelessWidget {
+  const TopProductContainer({
     Key key,
     @required this.productController,
-    @required this.cartController,
   }) : super(key: key);
 
   final ProductController productController;
-  final CartController cartController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .4,
+        height: MediaQuery.of(context).size.height * .24,
+        width: MediaQuery.of(context).size.width,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
-              print(productController.products.length);
+              //  print(productController.products.length);
               return controller.isloading.isFalse
-                  ? ListView.builder(
+                  ? GridView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
-                        return ProductContent(productController.products[i]);
-                      })
+                        if (productController.products[i].totalFavourite > 100)
+                          return ProductContent(productController.products[i]);
+                        else
+                          return null;
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 30,
+                        mainAxisExtent: 150.0,
+                      ),
+                    )
                   : Center(
                       child: CircularProgressIndicator(
                       strokeWidth: 3,
@@ -296,6 +269,54 @@ class ProductContainer extends StatelessWidget {
   }
 }
 
+class LatestProductContainer extends StatelessWidget {
+  const LatestProductContainer({
+    Key key,
+    @required this.productController,
+  }) : super(key: key);
+
+  final ProductController productController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height * .25,
+        // decoration: BoxDecoration(border: Border.all(width: 1)),
+        child: GetX<ProductController>(
+            init: ProductController(),
+            builder: (controller) {
+              return controller.isloading.isFalse
+                  ? GridView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.products.length,
+                      itemBuilder: (_, int i) {
+                        // print(productController.products[i].dateTime);
+                        //  print(productController.products[i].dateTime
+                        //     .compareTo(Timestamp.fromDate(DateTime.now())));
+                        DateTime productadded =
+                            productController.products[i].dateTime.toDate();
+                        var dDay = new DateTime.now();
+                        Duration difference = dDay.difference(productadded);
+                        //  print(difference);
+                        if (difference < Duration(days: 99))
+                          return ProductContent(productController.products[i]);
+                        else
+                          return null;
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 30,
+                        mainAxisExtent: 150.0,
+                      ),
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(
+                      strokeWidth: 3,
+                    ));
+            }));
+  }
+}
 // class ProductDetail extends StatelessWidget {
 //   const ProductDetail({
 //     Key key,

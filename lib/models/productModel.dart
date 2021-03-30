@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 class Product {
-  // int id;
+  int id;
   String description;
   String productImage;
   int price;
@@ -10,8 +11,10 @@ class Product {
   int discount;
   bool isSale;
   int oldPrice;
+  Timestamp dateTime;
+  int totalFavourite;
   Product(
-      { //this.id,
+      {this.id,
       this.productName,
       this.description,
       this.productImage,
@@ -19,12 +22,14 @@ class Product {
       this.category,
       this.isSale,
       this.discount,
+      this.dateTime,
+      this.totalFavourite,
       this.qty});
   var isFaourite = false.obs;
   var qty = 0.obs;
   void increment() {
     qty.value = qty.value + 1;
-    print(qty.value);
+    //print(qty.value);
   }
 
   void decrement() {
@@ -34,26 +39,51 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    //this.id = json['id'];
+    this.id = json['id'];
     this.productName = json['name'];
     this.description = json['description'];
     this.price = json['price'];
     this.discount = json['discount'];
+    this.totalFavourite = json['totalfavourite'];
     this.isSale = json['isSale'];
     this.category = json['category'];
+    this.dateTime = json['dateadded'];
     this.productImage = json['productImage'];
+    this.qty.value = json['qty'];
+    print(json['qty']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    
     data['name'] = this.productName;
     data['description'] = this.description;
     data['price'] = this.price;
     data['discount'] = this.discount;
     data['isSale'] = this.isSale;
     data['category'] = this.category;
-    data['qty']=this.qty;
+    data['qty'] = this.qty;
     data['productImage'] = this.productImage;
+    return data;
+  }
+}
+
+class MyModel {
+
+  int id;
+  String name;
+
+  MyModel({ this.id, this.name });
+
+  MyModel.fromJson(Map<String, dynamic> json){
+      this.id = json['id'];
+      this.name = json['name'];
+  }
+
+  Map<String, dynamic> toJson(){
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
     return data;
   }
 }
