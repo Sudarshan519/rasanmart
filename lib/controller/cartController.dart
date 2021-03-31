@@ -44,24 +44,12 @@ class CartController extends GetxController {
     // print(cartItems.length);
   }
 
-  increment(Product product) {
-    //  print(product.qty);
-    product.qty++;
-  }
-
-  decrement(Product product) {
-    //print(product.qty);
-    product.qty--;
-  }
-
   addToCart(Product product) {
     if (!checkItems(product)) {
       cartItems.add(product);
-      increment(product);
+      product.increment();
     } else {
-      increment(product);
-
-      //print(product.qty.value);
+      product.increment();
     }
     writeStorage();
   }
@@ -69,8 +57,9 @@ class CartController extends GetxController {
   checkItems(Product product) {
     bool isFound = false;
     cartItems.forEach((element) {
-      product.qty = element.qty;
+      //product.qty = element.qty;
       if (element.id == product.id) {
+        product.qty = element.qty;
         isFound = true;
       }
     });
@@ -82,10 +71,10 @@ class CartController extends GetxController {
     cartItems.forEach((element) {
       if (element.id == product.id) {
         if (product.qty.value <= 1) {
-          element.decrement();
+          product.decrement();
           index = cartItems.indexOf(element);
         } else
-          element.decrement();
+          product.decrement();
       }
     });
     if (index != null) cartItems.removeAt(index);

@@ -48,6 +48,13 @@ class ProductFromFirebase extends GetxService {
 
   CollectionReference productReference =
       FirebaseFirestore.instance.collection("products");
+  
+  Future<List<Product>> getCategory(){
+    try {
+    
+    } catch (e) {
+    }
+  }
   Future<List<Product>> fetchProduct() async {
     try {
       var data = await productReference.get();

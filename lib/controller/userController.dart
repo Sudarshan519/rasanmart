@@ -1,7 +1,26 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../models/user.dart';
 
 class UserController extends GetxController {
+  var userPhoto = ''.obs;
+  final picker = ImagePicker();
+  var img = null.obs;
+  void changePhoto(String photo) {
+    this.userPhoto.value = photo;
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      img = File(pickedFile.path).obs;
+    } else {
+      print('No image selected.');
+    }
+  }
+
   Rx<UserModel> _userModel = UserModel().obs;
   void onInit() {
     super.onInit();

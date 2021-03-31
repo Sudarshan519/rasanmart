@@ -20,8 +20,9 @@ class AppTheme {
     fontSize: 20,
     color: Colors.black87,
   );
-  static final subheadingStyle = TextStyle(fontSize: 16, color: Colors.red);
-  static final title = TextStyle(fontSize: 16, color: Colors.grey);
+  static final subheadingStyle =
+      TextStyle(fontSize: 16, color: lightBackgroundColor);
+  static final title = TextStyle(fontSize: 14, color: Colors.grey);
   static final subtitle = TextStyle(fontSize: 12, color: Colors.red);
   const AppTheme._();
 
@@ -40,7 +41,7 @@ class AppTheme {
     accentColor: darkAccentColor,
     errorColor: lightBackgroundColor,
     //const Color(0xFFB00020),
-    //backgroundColor: darkBackgroundColor,
+    backgroundColor: darkBackgroundColor,
     visualDensity: VisualDensity.adaptivePlatformDensity,
   );
 }
