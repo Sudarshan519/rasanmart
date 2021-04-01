@@ -29,3 +29,5 @@ class AuthController extends GetxController {
 
   
 }
+
+final authController=Get.put(AuthController());

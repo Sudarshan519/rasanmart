@@ -1,4 +1,5 @@
-import 'package:get/state_manager.dart';
+
+import 'package:get/get.dart';
 
 class OrderController extends GetxController {
   var isloading = false.obs;
@@ -34,3 +35,5 @@ class OrderController extends GetxController {
 //   set obj(value) => this._obj.value = value;
 //   get obj => this._obj.value;
 // }
+
+final orderController=Get.put(OrderController());

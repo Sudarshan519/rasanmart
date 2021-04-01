@@ -5,3 +5,5 @@ class DashboardController extends GetxController {
 
   void changevalue(index) => this.selectedIndex.value = index;
 }
+
+final dashboardController = Get.put(DashboardController());

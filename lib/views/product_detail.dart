@@ -79,10 +79,6 @@ class ProductDetail extends GetWidget<ImageController> {
                           borderRadius: BorderRadius.circular(3),
                         ),
                         child: Image.network(p, height: 80, width: 80)))),
-                // InkWell(
-                //   onTap: (){
-                //     _selectedIcon=icon[i]
-                //   },
               ]),
               Container(
                 color: AppTheme.lightBackgroundColor,
@@ -128,9 +124,12 @@ class ProductDetail extends GetWidget<ImageController> {
               SizedBox(
                 height: 20,
               ),
-              CartButton(
-                product: product,
-              ),
+
+              Container(
+                  height: 20,
+                  child: CartButton(
+                    product: product,
+                  )),
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.start,
               //   children: [

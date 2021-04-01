@@ -6,7 +6,8 @@ import 'package:rasanmart/models/productModel.dart';
 
 import '../product_detail.dart';
 
-double fontSize=12;
+double fontSize = 12;
+
 class ProductContent extends StatelessWidget {
   final Product product;
 
@@ -66,8 +67,11 @@ class ProductContent extends StatelessWidget {
           SizedBox(height: 5),
           SizedBox(height: 5),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            CartButton(
-              product: product,
+            Container(
+              height: 20,
+              child: CartButton(
+                product: product,
+              ),
             ),
             SizedBox(width: 5),
           ]),

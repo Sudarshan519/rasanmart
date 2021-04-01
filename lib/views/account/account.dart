@@ -7,6 +7,7 @@ import 'package:get/state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
+import 'package:rasanmart/views/login/login.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 
 class AccountContent extends StatelessWidget {
@@ -14,126 +15,153 @@ class AccountContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Card(
-                child: Container(
-                  padding:
-                      EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(authController.user.photoURL) ??
-                                    Icon(Icons.person),
-                            backgroundColor: Colors.grey.shade400,
-                            radius: 40,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Obx(
-                                  () => Text(authController.user.email ?? '',
-                                      style: kTitleStyle.copyWith(
-                                          color: Colors.black)),
-                                ),
-                                Text(
-                                  '9484848484',
-                                  style: subtitleStyle.copyWith(
-                                      color: Colors.black),
-                                ),
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    primary: Colors.red,
-                                    backgroundColor:
-                                        Theme.of(context).buttonColor,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                  ),
-                                  child: Text('Edit'),
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (_) {
-                                          return CustomAlertDialog();
-                                        });
-                                  },
-                                ),
-                              ]),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SpaceBox(),
-              Text(
-                'Account ',
-                style: TextStyle(color: Colors.grey),
-              ),
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text(
-                    'Profile',
-                    style: titleStyle,
-                  ),
-                ),
-              ),
-              SpaceBox(),
-              SpaceBox(),
-              Text(
-                'Settings ',
-                style: TextStyle(color: Colors.grey),
-              ),
-              Card(
-                child: ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.language,
-                  ),
-                  title: Text(
-                    'Language',
-                    style: subtitleStyle,
-                  ),
-                ),
-              ),
-              SpaceBox(),
-              Card(
-                child: ListTile(
-                  leading: Icon(
-                    Icons.logout,
-                    color: Colors.grey,
-                  ),
-                  title: Text('Log out',
-                      style: subtitleStyle.copyWith(color: Colors.black)),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Center(
-                  child: Text('Version 7.4.1',
-                      style: subtitleStyle.copyWith(color: Colors.grey)))
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
+        // leading: InkWell(
+        //   onTap: () {
+        //     Get.back();
+        //   },
+        //   child: Icon(Icons.arrow_back, color: Colors.white),
+        // ),
+        title: Text(
+          'Account',
+          style: TextStyle(color: Colors.white),
         ),
+      ),
+      body: SafeArea(
+        child: authController.user == null
+            ? InkWell(
+                child: Center(
+                    child: TextButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).backgroundColor,
+                    primary: Theme.of(context).primaryColor),
+                onPressed: () {
+                  Get.to(Login());
+                },
+                child: Text('Sign in'),
+              )))
+            : SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Card(
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            left: 10, right: 10, bottom: 10, top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                          authController.user.photoURL) ??
+                                      Icon(Icons.person),
+                                  backgroundColor: Colors.grey.shade400,
+                                  radius: 40,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Obx(
+                                        () => Text(
+                                            authController.user.email ?? '',
+                                            style: kTitleStyle.copyWith(
+                                                color: Colors.black)),
+                                      ),
+                                      Text(
+                                        '9484848484',
+                                        style: subtitleStyle.copyWith(
+                                            color: Colors.black),
+                                      ),
+                                      TextButton(
+                                        style: TextButton.styleFrom(
+                                          primary: Colors.red,
+                                          backgroundColor:
+                                              Theme.of(context).buttonColor,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        child: Text('Edit'),
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (_) {
+                                                return CustomAlertDialog();
+                                              });
+                                        },
+                                      ),
+                                    ]),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SpaceBox(),
+                    Text(
+                      'Account ',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Card(
+                      child: ListTile(
+                        leading: Icon(Icons.person),
+                        title: Text(
+                          'Profile',
+                          style: titleStyle,
+                        ),
+                      ),
+                    ),
+                    SpaceBox(),
+                    SpaceBox(),
+                    Text(
+                      'Settings ',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Card(
+                      child: ListTile(
+                        onTap: () {},
+                        leading: Icon(
+                          Icons.language,
+                        ),
+                        title: Text(
+                          'Language',
+                          style: subtitleStyle,
+                        ),
+                      ),
+                    ),
+                    SpaceBox(),
+                    Card(
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.logout,
+                          color: Colors.grey,
+                        ),
+                        title: Text('Log out',
+                            style: subtitleStyle.copyWith(color: Colors.black)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Center(
+                        child: Text('Version 7.4.1',
+                            style: subtitleStyle.copyWith(color: Colors.grey)))
+                  ],
+                ),
+              ),
       ),
     );
   }

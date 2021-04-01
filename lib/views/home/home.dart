@@ -6,6 +6,7 @@ import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/networkController.dart';
 import 'package:rasanmart/controller/productController.dart';
 import 'package:rasanmart/models/category_model.dart';
+import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cartpage/cart_page.dart';
 import 'package:rasanmart/views/categories/categories_page.dart';
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
   final cartController = Get.put(CartController());
 
   final productController = Get.put(ProductController());
-
+  final searchController = TextEditingController();
   ScrollController _scrollBottomBarController = new ScrollController();
   bool _show;
   bool upDirection = true;
@@ -107,6 +108,7 @@ class _HomeState extends State<Home> {
           : TextFormField(
               textAlign: TextAlign.start,
               style: TextStyle(color: Colors.white),
+              controller: searchController,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                   hintText: 'What are you looking for?',
@@ -114,7 +116,15 @@ class _HomeState extends State<Home> {
                   fillColor: Colors.grey,
                   border: InputBorder.none,
                   labelStyle: TextStyle(color: Colors.white),
-                  prefixIcon: Icon(Icons.search, color: Colors.white))),
+                  prefixIcon: InkWell(
+                      onTap: () {
+                        List<Product> search = productController
+                            .searchItems(searchController.text);
+                        Get.to(SearchResult(
+                            searchController: searchController,
+                            search: search));
+                      },
+                      child: Icon(Icons.search, color: Colors.white)))),
       actions: [
         IconButton(
           icon: Icon(
@@ -184,9 +194,9 @@ class _HomeState extends State<Home> {
                 InkWell(
                   onTap: () {
                     String item = 'topProducts';
-                    Get.to(
-                      Categories(item: item),
-                    );
+                    // Get.to(
+                    //   Categories(item: item),
+                    // );
                   },
                   child: Text(
                     'View All',
@@ -208,9 +218,11 @@ class _HomeState extends State<Home> {
                   style: AppTheme.headingStyle,
                 ),
                 Spacer(),
-                Text(
-                  'View All',
-                  style: AppTheme.subheadingStyle,
+                InkWell(
+                  child: Text(
+                    'View All',
+                    style: AppTheme.subheadingStyle,
+                  ),
                 )
               ],
             ),
@@ -243,9 +255,9 @@ class CategoriesContainer extends StatelessWidget {
       SizedBox(height: 10),
       Container(
         color: Colors.white,
-        padding: EdgeInsets.only(left: 15),
         height: 200,
         child: GridView.builder(
+          padding: EdgeInsets.only(left: 20),
           scrollDirection: Axis.horizontal,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -260,10 +272,8 @@ class CategoriesContainer extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Card(
-                      child: Image.network(category[i].categoryImage,
-                          fit: BoxFit.fill, height: 55, width: 55),
-                    ),
+                    Image.network(category[i].categoryImage,
+                        fit: BoxFit.fill, height: 55, width: 55),
                     SizedBox(height: 10),
                     Text(
                       category[i].categoryName.toUpperCase(),
@@ -319,35 +329,30 @@ class TopProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .3,
-        width: MediaQuery.of(context).size.width,
-        // decoration: BoxDecoration(border: Border.all(width: 1)),
-        child: GetX<ProductController>(
-            init: ProductController(),
-            builder: (controller) {
-              // print(productController.products.length);
-              return controller.isloading.isFalse
-                  ? GridView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.products.length,
-                      itemBuilder: (_, int i) {
-                        if (productController.products[i].totalFavourite > 100)
-                          return ProductContent(productController.products[i]);
-                        else
-                          return null;
-                      },
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 30,
-                        mainAxisExtent: 150.0,
-                      ),
-                    )
-                  : Center(
-                      child: CircularProgressIndicator(
-                      strokeWidth: 3,
-                    ));
-            }));
+      height: MediaQuery.of(context).size.height * .3,
+      child: Obx(()  {
+        List<Product> prod= productController.topItems();
+        return productController.isloading.isFalse
+            //    (productController.products[i].totalFavourite > 100)
+            ? GridView.builder(
+                //padding: EdgeInsets.symmetric( horizontal:10),
+                scrollDirection: Axis.horizontal,
+                itemCount:prod.length,
+                itemBuilder: (_, int i) {
+                  return ProductContent(prod[i]);
+                },
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  //  mainAxisSpacing: 30,
+                  mainAxisExtent: 150.0,
+                ),
+              )
+            : Center(
+                child: CircularProgressIndicator(
+                strokeWidth: 3,
+              ));
+      }),
+    );
   }
 }
 

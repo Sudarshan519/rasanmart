@@ -82,3 +82,5 @@ class CartController extends GetxController {
     writeStorage();
   }
 }
+
+final cartController=Get.put(CartController());

@@ -30,9 +30,7 @@ class CartPage extends GetWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height - 100,
+          child: Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

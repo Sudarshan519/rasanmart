@@ -1,4 +1,5 @@
-import 'package:get/state_manager.dart';
+
+import 'package:get/get.dart';
 
 class ScrollController extends GetxController {
   var isloading = false.obs;
@@ -12,3 +13,6 @@ class ScrollController extends GetxController {
     isloading.toggle();
   }
 }
+
+
+final scrollController=Get.put(ScrollController());

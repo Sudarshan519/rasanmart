@@ -18,29 +18,38 @@ class CartButton extends StatelessWidget {
     return Obx(() {
       return !cartController.checkItems(product)
           ? Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 24,
-              width: 70,
+         
+              padding: EdgeInsets.only(left: 5, right: 5),
               child: InkWell(
                 onTap: () {
                   cartController.addToCart(product);
                 },
                 child: Container(
-                  //color: Colors.red,
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(5)),
                   alignment: Alignment.center,
                   child: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.shopping_cart, size: 10, color: Colors.grey),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(Icons.shopping_cart,
+                          size: 10, color: Colors.grey[700]),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text(
                         'ADD TO CART',
                         style: AppTheme.subtitle.copyWith(
-                            color: Colors.grey,
-                            fontSize: 8,
+                            color: Colors.grey[700],
+                            fontSize: 10,
                             fontWeight: FontWeight.w600),
-                      )
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
                     ],
                   ),
                 ),
@@ -73,7 +82,10 @@ class CartButton extends StatelessWidget {
                         },
                         child:
                             Icon(Icons.remove, size: 12, color: Colors.white))),
-                Obx(() => Text("${cartController.getItems(product)} ",style: TextStyle(fontSize:12),)),
+                Obx(() => Text(
+                      "${cartController.getItems(product)} ",
+                      style: TextStyle(fontSize: 12),
+                    )),
                 Container(
                     height: 12,
                     width: 20,

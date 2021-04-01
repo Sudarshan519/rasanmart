@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final headingStyle = TextStyle(color: kBlackColor, fontSize: 20);
 final titleStyle = TextStyle(color: kBlackColor, fontSize: 18);
 final subtitleStyle = TextStyle(color: kBlackColor, fontSize: 12);
-
+final appbarStyle=TextStyle(color:Colors.white,fontSize:20);
 final Color kPrimaryColor = Colors.red.shade900;
 final Color kShadowColor = Colors.grey.withOpacity(.2);
 final Color kBlackColor = Colors.black87;

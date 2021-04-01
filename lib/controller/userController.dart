@@ -35,3 +35,5 @@ class UserController extends GetxController {
     _userModel.value = UserModel();
   }
 }
+
+final userController=Get.put(UserController());

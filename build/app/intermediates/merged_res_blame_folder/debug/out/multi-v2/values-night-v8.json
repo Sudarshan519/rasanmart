@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\tutorial\\rasanmart\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\a\\Downloads\\rasanmart\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\tutorial\\rasanmart\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\a\\Downloads\\rasanmart\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,15",
                         "startColumns": "4,4",
