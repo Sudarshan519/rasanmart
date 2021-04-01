@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/orderController.dart';
+import 'package:rasanmart/models/orderModel.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 
 class CheckoutPage extends GetWidget {
@@ -129,9 +131,12 @@ class CheckoutPage extends GetWidget {
                                     backgroundColor:
                                         Theme.of(context).backgroundColor),
                                 onPressed: () {
-                                  String json =
-                                      jsonEncode(cartController.cartItems);
-                                  
+                                  // String json =
+                                  //     jsonEncode(cartController.cartItems);
+                                  OrderModelModel order=OrderModelModel(id:1,address:'12324',city:'city',products:cartController.cartItems,phone: 3232332,contact: 'sudarshan@gmail.com' );
+                                
+
+                                  firebaseProduct.addOrder(order);
                                 },
                                 child: Text('Place Order'),
                               ))),

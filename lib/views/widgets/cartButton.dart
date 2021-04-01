@@ -18,36 +18,49 @@ class CartButton extends StatelessWidget {
     return Obx(() {
       return !cartController.checkItems(product)
           ? Container(
-              height: 30,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red, // background
-                  onPrimary: Colors.white, // foreground
-                ),
-                onPressed: () {
+              padding: EdgeInsets.only(left: 5),
+              height: 24,
+              width: 70,
+              child: InkWell(
+                onTap: () {
                   cartController.addToCart(product);
                 },
-                child: Text(
-                  'ADD TO CART',
-                  style: AppTheme.subtitle.copyWith(
-                    color: Colors.white,
+                child: Container(
+                  //color: Colors.red,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(5)),
+                  alignment: Alignment.center,
+                  child: Row(
+                    children: [
+                      Icon(Icons.shopping_cart, size: 10, color: Colors.grey),
+                      Text(
+                        'ADD TO CART',
+                        style: AppTheme.subtitle.copyWith(
+                            color: Colors.grey,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
                   ),
                 ),
-              ),
-            )
+              ))
           : Row(
               children: [
+                SizedBox(
+                  width: 5,
+                ),
                 Text(
                   'Qty',
-                  style:
-                      AppTheme.subheadingStyle.copyWith(color: Colors.blueGrey),
+                  style: AppTheme.subheadingStyle
+                      .copyWith(color: Colors.blueGrey, fontSize: 10),
                 ),
                 SizedBox(
-                  width: 10,
+                  width: 5,
                 ),
                 Container(
-                    height: 15,
-                    width: 30,
+                    height: 12,
+                    width: 20,
                     decoration: BoxDecoration(
                       color: AppTheme.lightBackgroundColor,
                       borderRadius: BorderRadius.only(
@@ -58,11 +71,12 @@ class CartButton extends StatelessWidget {
                         onTap: () {
                           cartController.removefromCart(product);
                         },
-                        child: Icon(Icons.remove, size: AppTheme.iconsize))),
-                Obx(() => Text(" ${cartController.getItems(product)} ")),
+                        child:
+                            Icon(Icons.remove, size: 12, color: Colors.white))),
+                Obx(() => Text("${cartController.getItems(product)} ",style: TextStyle(fontSize:12),)),
                 Container(
-                    height: 15,
-                    width: 30,
+                    height: 12,
+                    width: 20,
                     decoration: BoxDecoration(
                       color: AppTheme.lightBackgroundColor,
                       borderRadius: BorderRadius.only(
@@ -75,7 +89,8 @@ class CartButton extends StatelessWidget {
                         },
                         child: Icon(
                           Icons.add,
-                          size: AppTheme.iconsize,
+                          size: 12,
+                          color: Colors.white,
                         ))),
               ],
             );

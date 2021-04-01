@@ -29,15 +29,15 @@ class _HomeState extends State<Home> {
 
   ScrollController _scrollBottomBarController = new ScrollController();
   bool _show;
-
+  bool upDirection = true;
   @override
   void initState() {
     super.initState();
 
-    //Get.putAsync<ProductController>(() async => await ProductController());
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
+    //checkScroll();
   }
 
   @override
@@ -61,9 +61,20 @@ class _HomeState extends State<Home> {
     });
   }
 
+  checkScroll() {
+    if (_scrollBottomBarController.position.userScrollDirection ==
+        ScrollDirection.forward)
+      setState(() {
+        upDirection = false;
+      });
+    else
+      upDirection = true;
+  }
+
   Widget buildAppBar() {
     return AppBar(
-      backgroundColor: Theme.of(context).backgroundColor,
+      // centerTitle: true,
+      backgroundColor: Colors.red.shade900,
       leading: IconButton(
         icon: Icon(
           Icons.sort,
@@ -74,26 +85,44 @@ class _HomeState extends State<Home> {
       ),
       title: !_show
           ? Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   'Rasan',
                   style: TextStyle(
-                      color: Colors.yellow, fontStyle: FontStyle.normal),
+                      color: Colors.orange,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 30),
                 ),
                 Text(
-                  'mart',
+                  'Mart',
                   style: TextStyle(
-                    color: Colors.red,
+                    fontSize: 30,
+                    color: Colors.pink[900],
                   ),
                 )
               ],
             )
-          : SearchField(),
+          : TextFormField(
+              textAlign: TextAlign.start,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  hintText: 'What are you looking for?',
+                  hintStyle: TextStyle(color: Colors.white),
+                  fillColor: Colors.grey,
+                  border: InputBorder.none,
+                  labelStyle: TextStyle(color: Colors.white),
+                  prefixIcon: Icon(Icons.search, color: Colors.white))),
       actions: [
-        Icon(
-          Icons.notifications,
-          size: 30,
-          color: Theme.of(context).primaryColor,
+        IconButton(
+          icon: Icon(
+            Icons.notifications,
+            size: 25,
+            color: Theme.of(context).primaryColor,
+          ),
+          onPressed: () {},
         ),
         IconButton(
             icon: Stack(
@@ -101,7 +130,7 @@ class _HomeState extends State<Home> {
               children: [
                 Icon(
                   Icons.shopping_cart,
-                  size: 30,
+                  size: 25,
                   color: Theme.of(context).primaryColor,
                 ),
                 Align(
@@ -130,68 +159,66 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: buildAppBar(),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            controller: _scrollBottomBarController,
-            child: Column(children: [
-              networkController.connectionStatus.value == 0
-                  ? Text('Connect to Internet')
-                  : Container(),
-              SearchField(),
-              CarouselPro(),
-              SizedBox(height: 10),
-              CategoriesContainer(productController: productController),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    'Top Products',
-                    style: AppTheme.headingStyle,
-                  ),
-                  Spacer(),
-                  InkWell(
-                    onTap: () {
-                      String item = 'topProducts';
-                      Get.to(
-                        Categories(item: item),
-                      );
-                    },
-                    child: Text(
-                      'View All',
-                      style: AppTheme.subheadingStyle,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 10),
-              TopProductContainer(
-                  productController: productController,
-                  cartController: cartController),
-              Divider(),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    'Latest Products',
-                    style: AppTheme.headingStyle,
-                  ),
-                  Spacer(),
-                  Text(
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          controller: _scrollBottomBarController,
+          child: Column(children: [
+            networkController.connectionStatus.value == 0
+                ? Text('Connect to Internet')
+                : Container(),
+            SearchField(),
+            CarouselPro(),
+            SizedBox(height: 10),
+            CategoriesContainer(productController: productController),
+            SizedBox(height: 15),
+            Row(
+              children: [
+                Text(
+                  'Top Products',
+                  style: AppTheme.headingStyle,
+                ),
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    String item = 'topProducts';
+                    Get.to(
+                      Categories(item: item),
+                    );
+                  },
+                  child: Text(
                     'View All',
                     style: AppTheme.subheadingStyle,
-                  )
-                ],
-              ),
-              SizedBox(height: 15),
-              LatestProductContainer(
-                  productController: productController,
-                  cartController: cartController)
-            ]),
-          ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 10),
+            TopProductContainer(
+                productController: productController,
+                cartController: cartController),
+            Divider(),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                Text(
+                  'Latest Products',
+                  style: AppTheme.headingStyle,
+                ),
+                Spacer(),
+                Text(
+                  'View All',
+                  style: AppTheme.subheadingStyle,
+                )
+              ],
+            ),
+            SizedBox(height: 15),
+            LatestProductContainer(
+                productController: productController,
+                cartController: cartController)
+          ]),
         ),
       ),
     );
@@ -215,39 +242,34 @@ class CategoriesContainer extends StatelessWidget {
       ),
       SizedBox(height: 10),
       Container(
-        height: 170,
+        color: Colors.white,
+        padding: EdgeInsets.only(left: 15),
+        height: 200,
         child: GridView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 0,
-          ),
+              crossAxisCount: 2, mainAxisSpacing: 15, crossAxisSpacing: 10),
           itemBuilder: (context, int i) {
             return InkWell(
               onTap: () {
-                Get.to(CategoriesPage(category[i].categoryName,
-                    productController.cagegoryItems(category[i].categoryName)));
+                Get.to(CategoriesPage(
+                  category[i].categoryName,
+                ));
               },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      color: Colors.blue,
-                      height: 30,
-                      width: 30,
-                      child: Image.network(
-                        category[i].categoryImage,
-                        fit: BoxFit.fill,
-                      ),
+                    Card(
+                      child: Image.network(category[i].categoryImage,
+                          fit: BoxFit.fill, height: 55, width: 55),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 10),
                     Text(
-                      category[i].categoryName,
-                      textAlign: TextAlign.center,
-                      style: subtitleStyle.copyWith(
-                        fontSize: 12,
-                      ),
+                      category[i].categoryName.toUpperCase(),
+                      overflow: TextOverflow.fade,
+                      style:
+                          subtitleStyle.copyWith(fontWeight: FontWeight.bold),
                     ),
                   ]),
             );
@@ -266,8 +288,10 @@ class CarouselPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        color: Colors.red,
         height: 200.0,
         child: Carousel(
+          dotSize: 0,
           indicatorBgPadding: 0,
           images: [
             NetworkImage(
@@ -277,7 +301,6 @@ class CarouselPro extends StatelessWidget {
                 'https://www.rasanmart.com/wp-content/uploads/2020/06/101522295_895508060956667_1800978657359953920_n.png'),
             NetworkImage(
                 'https://www.rasanmart.com/wp-content/uploads/2020/04/received_2656387371248213.png'),
-            //ExactAssetImage("assets/images/LaunchImage.jpg")
           ],
         ));
   }
@@ -341,7 +364,7 @@ class LatestProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .4,
+        height: MediaQuery.of(context).size.height * .3,
         width: MediaQuery.of(context).size.width,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
@@ -352,14 +375,11 @@ class LatestProductContainer extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
-                        //  print(productController.products[i].dateTime);
-                        //  print(productController.products[i].dateTime
-                        //     .compareTo(Timestamp.fromDate(DateTime.now())));
                         DateTime productadded =
                             productController.products[i].dateTime.toDate();
                         var dDay = new DateTime.now();
                         Duration difference = dDay.difference(productadded);
-                        //print(difference);
+
                         if (difference < Duration(days: 99))
                           return ProductContent(productController.products[i]);
                         else
@@ -368,7 +388,7 @@ class LatestProductContainer extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
-                        mainAxisSpacing: 30,
+                        //  mainAxisSpacing: 30,
                         mainAxisExtent: 150.0,
                       ),
                     )

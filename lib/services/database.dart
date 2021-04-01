@@ -8,6 +8,9 @@ class Database {
       await _firestore.collection("users").doc(user.id).set({
         "name": user.name,
         "email": user.email,
+        "address":user.address,
+        "city":user.city,
+        "phone":user.phone,
       });
       return true;
     } catch (e) {

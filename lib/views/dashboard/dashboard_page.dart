@@ -10,8 +10,7 @@ import 'package:rasanmart/services/getStorage.dart';
 import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/cartpage/cart_page.dart';
 import 'package:rasanmart/views/home/home.dart';
-
-import '../../main.dart';
+import 'package:rasanmart/views/login/login.dart';
 
 class DashboardPage extends GetWidget {
   final authController = Get.find<AuthController>();
@@ -24,9 +23,16 @@ class DashboardPage extends GetWidget {
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-            accountName:
-                Obx(() => Text(authController.user.displayName) ?? Text('')),
-            accountEmail: Obx(() => Text(authController.user.email ?? '')),
+            accountName: Obx(() =>
+                Text(
+                  authController.user.displayName,
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ) ??
+                Text('')),
+            accountEmail: Obx(() => Text(
+                  authController.user.email ?? '',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                )),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.redAccent,
               backgroundImage:
@@ -39,7 +45,7 @@ class DashboardPage extends GetWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
-            onTap: () => Get.to(CartPage()),
+            onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.settings),
@@ -82,9 +88,9 @@ class DashboardPage extends GetWidget {
             );
 
             break;
+
           case 1:
-          case 2:
-            return AccountPage();
+            return AccountContent();
           default:
             return Home();
         }
@@ -92,10 +98,12 @@ class DashboardPage extends GetWidget {
       drawer: _buildDrawer(context),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).backgroundColor,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(Login());
+        },
         child: Icon(
           Icons.qr_code,
-          color: Colors.black,
+          color: Colors.white,
           size: 33,
         ),
       ),
@@ -103,8 +111,8 @@ class DashboardPage extends GetWidget {
       bottomNavigationBar: Obx(() {
         return BottomAppBar(
           shape: CircularNotchedRectangle(),
+          notchMargin: 6,
           color: Colors.blueGrey,
-          notchMargin: 2.0,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
               selectedItemColor: Theme.of(context).backgroundColor,
@@ -121,20 +129,15 @@ class DashboardPage extends GetWidget {
                   )),
                   label: "Home",
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.tags),
-                  label: 'Categories',
-                ),
+
+                // BottomNavigationBarItem(
+                //   icon: Icon(FontAwesomeIcons.tags),
+                //   label: 'Categories',
+                // ),
                 BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.user),
                   label: 'Account',
                 ),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.cancel), label: "Title"),
               ]),
         );
       }),

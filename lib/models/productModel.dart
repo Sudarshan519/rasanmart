@@ -39,17 +39,18 @@ class Product {
   }
 
   Product.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.productName = json['name'];
-    this.description = json['description'];
-    this.price = json['price'];
-    this.discount = json['discount'];
-    this.totalFavourite = json['totalfavourite'];
-    this.isSale = json['isSale'];
-    this.qty.value = json['qty'];
-    this.category = json['category'];
-    this.dateTime = json['dateadded'];
-    this.productImage = json['productImage'];
+    this.id = json['id']??0;
+    this.productName = json['name']??"";
+    this.description = json['description'] ?? '';
+    this.price = json['price'] ?? 0;
+    this.discount = json['discount'] ?? 0;
+    this.totalFavourite = json['totalfavourite'] ?? 0;
+    this.isSale = json['isSale'] ?? false;
+    this.qty.value = json['qty'] ?? 0;
+    this.category = json['category']??"";
+    this.dateTime = json['dateadded'] ?? Timestamp.now();
+    this.productImage = json['productImage'] ??
+        'https://tse3.mm.bing.net/th?id=OIP.6Hec0K-YQL1hL-sfqyPHBwAAAA&pid=Api&P=0&w=300&h=300';
   }
 
   Map<String, dynamic> toJson() {

@@ -41,7 +41,7 @@ final List<Category> category = [
       categoryImage:
           'https://firebasestorage.googleapis.com/v0/b/mechanic-finder-f3fee.appspot.com/o/Categories%2Fhousehold.PNG?alt=media&token=4dbccf95-a35a-4247-9f07-add97e62097d'),
   Category(
-      categoryName: 'Personal\nCare',
+      categoryName: 'Personal Care',
       categoryImage:
           'https://firebasestorage.googleapis.com/v0/b/mechanic-finder-f3fee.appspot.com/o/Categories%2Fpersonalcare.PNG?alt=media&token=020a7c62-8f33-41a8-aeb1-a7f565e3c798'),
   Category(

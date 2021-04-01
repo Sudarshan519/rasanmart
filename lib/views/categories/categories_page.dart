@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rasanmart/controller/productController.dart';
 import 'package:rasanmart/models/productModel.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
+import 'package:rasanmart/views/widgets/productContent.dart';
 
 class CategoriesPage extends StatefulWidget {
   final String categoryName;
-  final List<Product> prod;
   CategoriesPage(
     this.categoryName,
-    this.prod,
   );
 
   @override
@@ -15,25 +16,20 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  //   cagegoryItems(String category) {
-  //   List<Product> prod = [];
-  //   products.forEach((element) {
-  //     products.forEach((element) {
-  //       if (element.category.toLowerCase().contains(category.toLowerCase())) {
-  //         prod.add(element);
-  //       }
-  //     });
-  //   });
-  //   return prod;
-  // }
-  //  getSearch() async {
-  //   var product = await controller.cagegoryItems(widget.categoryName);
-  //    setState(() {
-  //      prod=product;
-  //    });
-  // }List<Product> prod =[];
+  final productController = Get.find<ProductController>();
+
+  List<Product> prod;
+  fetchProd() async {
+    List<Product> all =
+        await firebaseProduct.searchProduct(widget.categoryName);
+    setState(() {
+      prod = all;
+    });
+  }
+
   @override
   void initState() {
+    fetchProd();
     // TODO: implement initState
     super.initState();
   }
@@ -42,68 +38,36 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(Icons.arrow_back, color: Colors.white)),
+        backgroundColor: Theme.of(context).backgroundColor,
         title: Column(
-          children: [Text(widget.categoryName)],
+          children: [
+            Text(widget.categoryName,
+                style: TextStyle(color: Theme.of(context).primaryColor))
+          ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: widget.prod.length,
-        itemBuilder: (_, int i) {
-          return Text(widget.prod[i].productName);
-        },
-
-        //children: [
-        // ListTile(
-        //   onTap: () {
-        //     setState(() {
-        //       isExpanded = !isExpanded;
-        //     });
-        //   },
-        //   leading: Icon(Icons.remove_red_eye),
-        //   title: Text('View All Products'),
-        //   trailing: isExpanded
-        //       ? Icon(Icons.arrow_forward_ios)
-        //       : Transform(
-        //           transform: new Matrix4.identity()
-        //             ..rotateZ(90 * 3.1415927 / 180),
-        //           child: Icon(Icons.arrow_forward_ios)),
-        // ),
-        // if (!isExpanded)
-        //   Container(
-        //     child: Text('Items'),
-        //   ),
-        // ListTile(
-        //   leading: Icon(Icons.shopping_basket),
-        //   title: Text('Glocerry'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.list_alt),
-        //   title: Text('Breverage'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.shopping_basket),
-        //   title: Text('Branded'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.shopping_basket),
-        //   title: Text('BabyCare'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.shopping_basket),
-        //   title: Text('Personal Care'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        // ListTile(
-        //   leading: Icon(Icons.shopping_basket),
-        //   title: Text('Household'),
-        //   trailing: Icon(Icons.arrow_forward_ios),
-        // ),
-        //  ],
-      ),
+      body: prod == null
+          ? CircularProgressIndicator()
+          : prod.length == 0
+              ? Center(
+                  child: Text('No items found'),
+                )
+              : GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: .7,
+                  ),
+                  shrinkWrap: true,
+                  itemCount: prod.length,
+                  itemBuilder: (_, int i) {
+                    return ProductContent(prod[i]);
+                  },
+                ),
     );
   }
 }
