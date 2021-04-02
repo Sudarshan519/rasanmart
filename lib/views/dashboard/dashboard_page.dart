@@ -1,4 +1,4 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +11,7 @@ import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/home/home.dart';
 import 'package:rasanmart/views/login/login.dart';
 import '../settings/settings.dart';
+
 class DashboardPage extends GetWidget {
   final authController = Get.find<AuthController>();
   final DashboardController c = Get.put(DashboardController());
@@ -20,29 +21,35 @@ class DashboardPage extends GetWidget {
     return Drawer(
       child: ListView(
         children: [
-        authController.user!=null?  UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
-            accountName: Obx(() =>
-                Text(
-                  authController.user.displayName??'',
-                  style: TextStyle(color: Theme.of(context).primaryColor),
-                ) ??
-                Text('')),
-            accountEmail: Obx(() => Text(
-                  authController.user.email ?? '',
-                  style: TextStyle(color: Theme.of(context).primaryColor)??Text(''),
-                )),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.redAccent,
-              // backgroundImage:
-              //     NetworkImage(FirebaseAuth.instance.currentUser.photoURL??"https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511367461989-f85a21fda167%3Fixid%3DMXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%253D%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&tbnid=c4DKZX1IkCpVhM&vet=12ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ..i&docid=b5C9ViMmmhpq-M&w=1000&h=563&q=profile%20image&safe=active&ved=2ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ"),
-              // backgroundImage: NetworkImage(authController.user.photoURL ??
-              //         "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511367461989-f85a21fda167%3Fixid%3DMXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%253D%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&tbnid=c4DKZX1IkCpVhM&vet=12ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ..i&docid=b5C9ViMmmhpq-M&w=1000&h=563&q=profile%20image&safe=active&ved=2ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ") ??
-              //     Icon(Icons.person)
-            ),
-          ):  UserAccountsDrawerHeader(
-            
-            accountName: Text('exampleuser'), accountEmail: Text('example@gmail.com')),
+          authController.user != null
+              ? UserAccountsDrawerHeader(
+                  decoration:
+                      BoxDecoration(color: Theme.of(context).backgroundColor),
+                  accountName: Obx(() =>
+                      Text(
+                        authController.user.displayName ?? '',
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ) ??
+                      Text('')),
+                  accountEmail: Obx(() => Text(
+                        authController.user.email ?? '',
+                        style:
+                            TextStyle(color: Theme.of(context).primaryColor) ??
+                                Text(''),
+                      )),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.redAccent,
+                    backgroundImage: NetworkImage(FirebaseAuth
+                            .instance.currentUser.photoURL ??
+                        "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511367461989-f85a21fda167%3Fixid%3DMXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%253D%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&tbnid=c4DKZX1IkCpVhM&vet=12ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ..i&docid=b5C9ViMmmhpq-M&w=1000&h=563&q=profile%20image&safe=active&ved=2ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ"),
+                    // backgroundImage: NetworkImage(authController.user.photoURL ??
+                    //         "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511367461989-f85a21fda167%3Fixid%3DMXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%253D%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&tbnid=c4DKZX1IkCpVhM&vet=12ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ..i&docid=b5C9ViMmmhpq-M&w=1000&h=563&q=profile%20image&safe=active&ved=2ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ") ??
+                    //     Icon(Icons.person)
+                  ),
+                )
+              : UserAccountsDrawerHeader(
+                  accountName: Text('exampleuser'),
+                  accountEmail: Text('example@gmail.com')),
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
@@ -51,7 +58,7 @@ class DashboardPage extends GetWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
-            onTap: (){
+            onTap: () {
               Get.to(SettingsPage());
             },
           ),

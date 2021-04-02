@@ -5,16 +5,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
-import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/utils/app_theme.dart';
+import 'package:rasanmart/views/onboarding/onboarding.dart';
 import 'utils/app_theme.dart';
-import 'views/dashboard/dashboard_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
-  await firebaseProduct.fetchProduct();
+//  await firebaseProduct.fetchProduct();
   runApp(MyApp());
 }
 
@@ -40,7 +39,7 @@ class Root extends StatelessWidget {
         if (_.loading.value) {
           return CircularProgressIndicator();
         }
-        return DashboardPage();
+        return OnboardingPage();
       },
     );
   }

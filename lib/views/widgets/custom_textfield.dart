@@ -6,31 +6,51 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hintText;
   final Function validator;
+  final IconData icon;
   final TextEditingController controller;
 
-  const CustomTextField({Key key, this.label, this.hintText, this.validator, this.controller}) : super(key: key);
+  const CustomTextField(
+      {Key key,
+      this.label,
+      this.hintText,
+      this.validator,
+      this.controller,
+      this.icon})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.red,
+      cursorHeight: 15,
       decoration: InputDecoration(
           labelText: label,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(4)),
-            borderSide: BorderSide(width: 1, color: Colors.white),
+            borderSide: BorderSide(width: 1, color: Colors.grey),
           ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(4)),
+            borderSide: BorderSide(width: 1, color: Colors.grey),
+          ),
+          errorStyle: TextStyle(color: Colors.red),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderSide: BorderSide(width: 1, color: Colors.grey)),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(4)),
-              borderSide: BorderSide(width: 1, color: Colors.white)),
-          labelStyle: AppTheme.subheadingStyle.copyWith(color: Colors.white),
-          contentPadding: EdgeInsets.zero,
-          prefixIcon: Icon(Icons.email),
+              borderSide: BorderSide(width: 1, color: Colors.red)),
+          labelStyle: AppTheme.subheadingStyle.copyWith(color: Colors.grey),
+          contentPadding: EdgeInsets.only(left: 20, right: 20),
+          prefixIcon: Icon(icon),
           hintText: hintText,
           border: OutlineInputBorder(
             borderSide: new BorderSide(color: Colors.teal),
             borderRadius: BorderRadius.circular(10),
           )),
       controller: controller,
-      validator: validator,
+      validator: (v) {
+        if (v.isEmpty) return 'Enter valid value';
+      },
     );
   }
 }

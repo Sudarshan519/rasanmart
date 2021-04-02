@@ -52,7 +52,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
         ),
       ),
       body: prod == null
-          ? CircularProgressIndicator()
+          ? Center(
+              child: CircularProgressIndicator(
+              backgroundColor: Theme.of(context).primaryColor,
+            ))
           : prod.length == 0
               ? Center(
                   child: Text('No items found'),

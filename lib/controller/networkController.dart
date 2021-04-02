@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class NetworkController extends GetxController {
-  //TODO: Implement NetworkController
-
   var connectionStatus = 0.obs;
   final Connectivity _connectivity = Connectivity();
   StreamSubscription<ConnectivityResult> _connectivitySubscription;
@@ -59,4 +57,4 @@ class NetworkController extends GetxController {
   //void increment() => connectionStatus.value++;
 }
 
-final networkController = Get.put(NetworkController());
+final networkController =NetworkController();

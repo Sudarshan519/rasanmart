@@ -7,7 +7,10 @@ class CartController extends GetxController {
   int get count => cartItems.length;
   var cartItems = List<Product>.empty(growable: true).obs;
   double get totalPrice =>
-      cartItems.fold(0, (sum, item) => sum + item.qty * item.price);
+      cartItems.fold(100, (sum, item) => sum + item.qty * item.price);
+
+  double get discount => cartItems.fold(
+      0, (sum, item) => sum + item.qty * item.discount / 100 * item.price);
 
   @override
   void onInit() {
@@ -83,4 +86,4 @@ class CartController extends GetxController {
   }
 }
 
-final cartController=Get.put(CartController());
+final cartController =CartController();

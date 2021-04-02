@@ -13,7 +13,6 @@ import 'package:rasanmart/views/categories/categories_page.dart';
 import 'package:rasanmart/views/search/search_field.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import 'package:rasanmart/views/widgets/productContent.dart';
-import '../categories.dart';
 
 class Home extends StatefulWidget {
   final scaffoldKey;
@@ -110,13 +109,13 @@ class _HomeState extends State<Home> {
               style: TextStyle(color: Colors.white),
               controller: searchController,
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  contentPadding: EdgeInsets.fromLTRB(0, 10.0, 20.0, 10.0),
                   hintText: 'What are you looking for?',
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white, fontSize: 12),
                   fillColor: Colors.grey,
                   border: InputBorder.none,
                   labelStyle: TextStyle(color: Colors.white),
-                  prefixIcon: InkWell(
+                  icon: InkWell(
                       onTap: () {
                         List<Product> search = productController
                             .searchItems(searchController.text);
@@ -125,6 +124,7 @@ class _HomeState extends State<Home> {
                             search: search));
                       },
                       child: Icon(Icons.search, color: Colors.white)))),
+
       actions: [
         IconButton(
           icon: Icon(
@@ -330,14 +330,14 @@ class TopProductContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * .3,
-      child: Obx(()  {
-        List<Product> prod= productController.topItems();
+      child: Obx(() {
+        List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
             //    (productController.products[i].totalFavourite > 100)
             ? GridView.builder(
                 //padding: EdgeInsets.symmetric( horizontal:10),
                 scrollDirection: Axis.horizontal,
-                itemCount:prod.length,
+                itemCount: prod.length,
                 itemBuilder: (_, int i) {
                   return ProductContent(prod[i]);
                 },
