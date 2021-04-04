@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class OrderController extends GetxController {
   var isloading = false.obs;
-
+var pay='p'.obs;
   setloading(value) {
     isloading.value = false;
   }

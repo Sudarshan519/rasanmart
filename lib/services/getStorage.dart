@@ -1,9 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
 
 class LocalGetStorage {
   final box = GetStorage();
 
+  onboard(){
+    bool onboard =  box.read('onboard') ?? true;
+    if(onboard)
+   { 
+     print(onboard);
+     box.write('onboard', false);}
+    return onboard;
+  }
   read(String cart) async {
     // List<Product>
     var prod = box.read(cart);

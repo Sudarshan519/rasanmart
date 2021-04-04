@@ -27,6 +27,7 @@ class _HomeState extends State<Home> {
 
   final productController = Get.put(ProductController());
   final searchController = TextEditingController();
+  final networkController=Get.find<NetworkController>();
   ScrollController _scrollBottomBarController = new ScrollController();
   bool _show;
   bool upDirection = true;
@@ -89,14 +90,14 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Rasan',
+                  'rasan'.tr,
                   style: TextStyle(
                       color: Colors.orange,
                       fontStyle: FontStyle.normal,
                       fontSize: 30),
                 ),
                 Text(
-                  'Mart',
+                  'mart'.tr,
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.pink[900],
@@ -119,9 +120,11 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         List<Product> search = productController
                             .searchItems(searchController.text);
-                        Get.to(SearchResult(
-                            searchController: searchController,
-                            search: search));
+                        Get.to(
+                            SearchResult(
+                                searchController: searchController,
+                                search: search),
+                            transition: Transition.leftToRight);
                       },
                       child: Icon(Icons.search, color: Colors.white)))),
 
@@ -160,7 +163,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             onPressed: () {
-              Get.to(CartPage());
+              Get.to(CartPage(),transition: Transition.rightToLeft);
             }),
       ],
     );
@@ -171,11 +174,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          controller: _scrollBottomBarController,
-          child: Column(children: [
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        controller: _scrollBottomBarController,
+        child: Obx(
+                    ()=> Column(children: [
             networkController.connectionStatus.value == 0
                 ? Text('Connect to Internet')
                 : Container(),
@@ -206,6 +209,11 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 10),
+            // Container(
+            //   height: 300,
+            //   width: 250,
+            //   color: Colors.green,
+            // ),
             TopProductContainer(
                 productController: productController,
                 cartController: cartController),
@@ -255,25 +263,26 @@ class CategoriesContainer extends StatelessWidget {
       SizedBox(height: 10),
       Container(
         color: Colors.white,
-        height: 200,
+        height: MediaQuery.of(context).size.height * .34,
         child: GridView.builder(
-          padding: EdgeInsets.only(left: 20),
+          padding: EdgeInsets.only(left: 10),
           scrollDirection: Axis.horizontal,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 15, crossAxisSpacing: 10),
+              crossAxisCount: 2, mainAxisSpacing: 6, crossAxisSpacing: 5),
           itemBuilder: (context, int i) {
             return InkWell(
               onTap: () {
                 Get.to(CategoriesPage(
                   category[i].categoryName,
-                ));
+                
+                ),transition: Transition.leftToRight);
               },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(category[i].categoryImage,
-                        fit: BoxFit.fill, height: 55, width: 55),
+                        fit: BoxFit.fill, height: 50, width: 50),
                     SizedBox(height: 10),
                     Text(
                       category[i].categoryName.toUpperCase(),
@@ -298,8 +307,7 @@ class CarouselPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.red,
-        height: 200.0,
+        height: MediaQuery.of(context).size.height * .3,
         child: Carousel(
           dotSize: 0,
           indicatorBgPadding: 0,
@@ -344,7 +352,7 @@ class TopProductContainer extends StatelessWidget {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                   //  mainAxisSpacing: 30,
-                  mainAxisExtent: 150.0,
+                  // mainAxisExtent: 150.0,
                 ),
               )
             : Center(
@@ -369,14 +377,15 @@ class LatestProductContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .3,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * .34,
+
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
               return controller.isloading.isFalse
                   ? GridView.builder(
+                    
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
@@ -393,8 +402,9 @@ class LatestProductContainer extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
-                        //  mainAxisSpacing: 30,
-                        mainAxisExtent: 150.0,
+                          mainAxisSpacing: 0,
+                          crossAxisSpacing: 1
+                        //  mainAxisExtent: 150.0,
                       ),
                     )
                   : Center(

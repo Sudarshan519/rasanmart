@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
@@ -12,72 +13,79 @@ class CartPage extends GetWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.grey, size: 30),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        title: Row(
-          children: [
-            Icon(Icons.shopping_cart, size: 20, color: Colors.white),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Cart",
-              style: AppTheme.headingStyle.copyWith(color: Colors.white),
-            ),
-          ],
-        ),
-        actions: [],
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(child: CartItem()),
-            Text(
-              'Delivery Charge : 100',
-              style: AppTheme.title.copyWith(
-                  color: Colors.blueGrey, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            GetX<CartController>(
-                init: CartController(),
-                builder: (_) => Text(
-                      'Grand Total :${_.totalPrice}',
-                      style: AppTheme.title.copyWith(
-                          color: Colors.blueGrey, fontWeight: FontWeight.bold),
-                    )),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 20),
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.redAccent),
-                child: Text('Checkout'),
-                onPressed: () {
-                  if (cartController.count.isBlank)
-                    Get.snackbar('Add items to cart', 'Cart is empty');
-                  else {
-                    Get.to(CheckoutPage());
-                  }
-                },
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.grey, size: 30),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: Row(
+            children: [
+              Icon(Icons.shopping_cart, size: 20, color: Colors.white),
+              SizedBox(
+                height: 20,
               ),
-            )
-          ],
+              Text(
+                "Cart",
+                style: AppTheme.headingStyle.copyWith(color: Colors.white),
+              ),
+            ],
+          ),
+          actions: [],
         ),
-      ),
-    );
+        body: Obx(
+          () => cartController.cartItems.length == 0
+              ? Center(child: Text('Your cart is empty'))
+              : Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(child: CartItem()),
+                      Text(
+                        'Delivery Charge : 100',
+                        style: AppTheme.title.copyWith(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      GetX<CartController>(
+                          init: CartController(),
+                          builder: (_) => Text(
+                                'Grand Total :${_.totalPrice}',
+                                style: AppTheme.title.copyWith(
+                                    color: Colors.blueGrey,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(left: 10, right: 20),
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.redAccent),
+                          child: Text('Checkout'),
+                          onPressed: () {
+                            if (cartController.count.isBlank)
+                              Get.snackbar(
+                                  'Add items to cart', 'Cart is empty');
+                            else {
+                              Get.to(CheckoutPage(),transition: Transition.rightToLeft);
+                            }
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+        ));
   }
 }
 
@@ -189,11 +197,16 @@ class CartItem extends StatelessWidget {
                                     children: [
                                       TextButton(
                                         style: TextButton.styleFrom(
-                                            backgroundColor: Colors.deepOrange),
-                                        child: Text('Confirm'),
-                                        onPressed: () {},
+                                            backgroundColor: Colors.red),
+                                        child: Text('Delete'),
+                                        onPressed: () {
+                                          cartController.deleteItem(
+                                              cartController.cartItems[i]);
+                                        },
                                       ),
                                       TextButton(
+                                        style: TextButton.styleFrom(
+                                            backgroundColor: Colors.red),
                                         child: Text('Cancel'),
                                         onPressed: () {
                                           Get.back();

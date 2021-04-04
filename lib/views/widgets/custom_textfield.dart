@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -20,8 +19,8 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: Colors.red,
-      cursorHeight: 15,
+     // cursorColor: Colors.red,
+     // cursorHeight: 15,
       decoration: InputDecoration(
           labelText: label,
           enabledBorder: OutlineInputBorder(
@@ -40,8 +39,9 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(4)),
               borderSide: BorderSide(width: 1, color: Colors.red)),
           labelStyle: AppTheme.subheadingStyle.copyWith(color: Colors.grey),
-          contentPadding: EdgeInsets.only(left: 20, right: 20),
-          prefixIcon: Icon(icon),
+          //contentPadding: EdgeInsets.zero,
+          contentPadding: EdgeInsets.only(left: 10, right: 20),
+          suffixIcon: Icon(icon),
           hintText: hintText,
           border: OutlineInputBorder(
             borderSide: new BorderSide(color: Colors.teal),
@@ -50,6 +50,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       validator: (v) {
         if (v.isEmpty) return 'Enter valid value';
+        else return '';
       },
     );
   }

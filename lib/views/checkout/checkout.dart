@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
@@ -7,9 +5,13 @@ import 'package:rasanmart/controller/orderController.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import 'package:rasanmart/views/widgets/custom_textfield.dart';
 
+import '../../controller/authController.dart';
+import '../../controller/orderController.dart';
+
 class CheckoutPage extends GetWidget {
   final cartController = Get.find<CartController>();
-  final orderController = Get.put(OrderController());
+  final authController = Get.find<AuthController>();
+  final orderController = Get.find<OrderController>();
   final address = TextEditingController();
   final contact = TextEditingController();
   final city = TextEditingController();
@@ -19,6 +21,7 @@ class CheckoutPage extends GetWidget {
   @override
   Widget build(BuildContext context) {
     final items = cartController.cartItems;
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
@@ -36,7 +39,8 @@ class CheckoutPage extends GetWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          height: MediaQuery.of(context).size.height,
+
+          ///  height: MediaQuery.of(context).size.height,
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,8 +61,61 @@ class CheckoutPage extends GetWidget {
                                 children: [
                                   Container(
                                     height: 2,
+                                    width: double.infinity,
                                     color: Colors.red.shade900,
                                   ),
+                                  SizedBox(height: 10),
+                                  authController.firebaseUser == null
+                                      ? Text('Get special offers by signing in',
+                                          style: TextStyle(
+                                              color: Colors.grey[800]))
+                                      : Text(
+                                          'Get coupon code',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(.3),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 2,
+                                    width: double.infinity,
+                                    color: Colors.red.shade900,
+                                    child: authController.user == null
+                                        ? Text(
+                                            'Get special offers by signing in',
+                                            style:
+                                                TextStyle(color: Colors.black))
+                                        : Text(
+                                            'Get coupon code',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Have a coupon?',
+                                        style:
+                                            TextStyle(color: Colors.grey[800]),
+                                      ),
+                                      Text(' Click here to enter your code',
+                                          style: TextStyle(
+                                              color: Colors.red.shade800))
+                                    ],
+                                  )
                                 ],
                               )),
                           SizedBox(
@@ -66,7 +123,8 @@ class CheckoutPage extends GetWidget {
                           ),
                           Container(
                             height: 30,
-                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(left: 20),
+                            alignment: Alignment.centerLeft,
                             width: double.infinity,
                             color: Colors.red.shade900,
                             child: Text(
@@ -87,6 +145,7 @@ class CheckoutPage extends GetWidget {
                                           fontWeight: FontWeight.bold)),
                                 ),
                                 Expanded(
+                                  flex: 2,
                                   child: Text('Name',
                                       style: TextStyle(
                                           fontSize: 12,
@@ -104,12 +163,12 @@ class CheckoutPage extends GetWidget {
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold)),
                                 ),
-                                Expanded(
-                                  child: Text('Total Discount',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold)),
-                                ),
+                                // Expanded(
+                                //   child: Text('Total Discount',
+                                //       style: TextStyle(
+                                //           fontSize: 12,
+                                //           fontWeight: FontWeight.bold)),
+                                // ),
                               ],
                             ),
                           ),
@@ -123,10 +182,12 @@ class CheckoutPage extends GetWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Expanded(
-                                        child: Text('$i.',
+                                        child: Text('${i + 1}.',
                                             style: TextStyle(fontSize: 12))),
                                     Expanded(
-                                      child: Text(items[i].productName,
+                                      flex: 2,
+                                      child: Text(
+                                          "${items[i].productName} x${items[i].qty}",
                                           style: TextStyle(fontSize: 12)),
                                     ),
                                     Expanded(
@@ -139,15 +200,15 @@ class CheckoutPage extends GetWidget {
                                               .toString(),
                                           style: TextStyle(fontSize: 12)),
                                     ),
-                                    Expanded(
-                                      child: Text(
-                                          (items[i].price *
-                                                  items[i].discount /
-                                                  100 *
-                                                  items[i].qty.value)
-                                              .toString(),
-                                          style: TextStyle(fontSize: 12)),
-                                    ),
+                                    // Expanded(
+                                    //   child: Text(
+                                    //       (items[i].price *
+                                    //               items[i].discount /
+                                    //               100 *
+                                    //               items[i].qty.value)
+                                    //           .toString(),
+                                    //       style: TextStyle(fontSize: 12)),
+                                    // ),
                                   ],
                                 ),
                                 Divider(),
@@ -289,6 +350,48 @@ class CheckoutPage extends GetWidget {
                               ],
                             )),
                           ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 100,
+                          color: Colors.grey.withOpacity(.3),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Obx(
+                                    () => Radio(
+                                      activeColor: Colors.red,
+                                        value: 'k',
+                                        groupValue:   orderController.pay.value,
+                                        onChanged: (v) {
+                                          print(v);
+                                          orderController.pay.value = v;
+                                        }),
+                                  ),
+                                  Text('Cash on delivery'),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Obx(
+                                    () => Radio(
+                                      activeColor: Colors.red,
+                                        value: 'p',
+                                        groupValue: orderController.pay.value,
+                                        onChanged: (v) {
+                                          print(v);
+                                          
+                                          orderController.pay.value = v;
+                                        }),
+                                  ),
+                                  Text('Khalti'),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 10,

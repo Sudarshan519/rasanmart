@@ -125,7 +125,7 @@ class SearchResult extends StatelessWidget {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         mainAxisSpacing: 30,
-                        mainAxisExtent: 150.0,
+                      //  mainAxisExtent: 150.0,
                       ),
                     ))
         ],

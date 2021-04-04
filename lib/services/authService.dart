@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import '../views/dashboard/dashboard_page.dart';
 
 class AuthService extends GetxService {
   final auth = FirebaseAuth.instance;
@@ -8,7 +11,12 @@ class AuthService extends GetxService {
     try {
       UserCredential _authResult = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+     if(_authResult.isNull){
 
+       Get.snackbar("Error creating user", "message");
+     }
+     else 
+     Get.to(DashboardPage(),transition: Transition.downToUp);
       //create user in firestore
       // UserModel _user =
       //     UserModel(id: _authResult.user.uid, name: name, email: email);
@@ -16,8 +24,10 @@ class AuthService extends GetxService {
       //user created successfully
       //Get.find<UserController>().user = _user;}
 
+    } on FirebaseAuthException catch (e) {
+      showSnackbar(e.code, e.message);
     } on PlatformException catch (e) {
-      Get.snackbar("Error creating user", e.message);
+      Get.snackbar("Error creating user", "${e.message}",);
     }
   }
 
@@ -27,6 +37,8 @@ class AuthService extends GetxService {
           email: email, password: password);
       // Get.find<UserController>().user =
       //     await Database().getUser(_authResult.user.uid);
+    } on FirebaseAuthException catch (e) {
+      showSnackbar(e.code, e.message);
     } on PlatformException catch (e) {
       Get.snackbar(e.message, e.details);
     }
@@ -47,3 +59,7 @@ class AuthService extends GetxService {
 }
 
 final authService = AuthService();
+
+showSnackbar(String title, String message) {
+  Get.snackbar(title, message,backgroundColor: Colors.green,colorText: Colors.white);
+}

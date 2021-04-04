@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
+import 'package:rasanmart/controller/bindings/allControllerBinding.dart';
 import 'package:rasanmart/controller/bindings/authBindings.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/onboarding/onboarding.dart';
+import 'services/getStorage.dart';
 import 'utils/app_theme.dart';
+import 'utils/localization.dart';
+import 'views/dashboard/dashboard_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +28,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
-      initialBinding: AuthBinding(),
+      locale: Locale('en', 'US'), //Get.device local
+      fallbackLocale: Locale('en', 'US'), //if wrong or not avaivable is chosen
+      translations: Messages(),
+      initialBinding: AllControllerBinding(),
+      defaultTransition: Transition.leftToRightWithFade,
       home: Root(),
     );
   }
@@ -39,7 +47,8 @@ class Root extends StatelessWidget {
         if (_.loading.value) {
           return CircularProgressIndicator();
         }
-        return OnboardingPage();
+
+        return cartStorage.onboard() ? OnboardingPage() : DashboardPage();
       },
     );
   }

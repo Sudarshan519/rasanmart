@@ -14,6 +14,11 @@ class SignUp extends GetWidget<AuthController> {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
+        leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(Icons.arrow_back, color: Colors.white)),
         backgroundColor: Theme.of(context).backgroundColor,
         title: Text("Sign Up",
             style: TextStyle(color: Theme.of(context).primaryColor)),
@@ -26,32 +31,32 @@ class SignUp extends GetWidget<AuthController> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.home,
-                      color: Theme.of(context).backgroundColor),
-                  labelText: "Name",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(4)),
-                    borderSide: BorderSide(width: 1, color: Colors.white),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      borderSide: BorderSide(width: 1, color: Colors.white)),
-                  labelStyle:
-                      AppTheme.subheadingStyle.copyWith(color: Colors.white),
-                  contentPadding: EdgeInsets.zero,
-                  hintText: "Name",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                controller: name,
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     fillColor: Colors.white,
+              //     prefixIcon: Icon(Icons.home,
+              //         color: Theme.of(context).backgroundColor),
+              //     labelText: "Name",
+              //     enabledBorder: OutlineInputBorder(
+              //       borderRadius: BorderRadius.all(Radius.circular(4)),
+              //       borderSide: BorderSide(width: 1, color: Colors.white),
+              //     ),
+              //     focusedErrorBorder: OutlineInputBorder(
+              //         borderRadius: BorderRadius.all(Radius.circular(4)),
+              //         borderSide: BorderSide(width: 1, color: Colors.white)),
+              //     labelStyle:
+              //         AppTheme.subheadingStyle.copyWith(color: Colors.white),
+              //     contentPadding: EdgeInsets.zero,
+              //     hintText: "Name",
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //     ),
+              //   ),
+              //   controller: name,
+              // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
               TextFormField(
                 decoration: InputDecoration(
                     labelText: "Email",
@@ -143,10 +148,11 @@ class SignUp extends GetWidget<AuthController> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
-                      authService.createUser(
-                          name.text, email.text, password.text);
+                      Get.back();
+                      // authService.createUser(
+                      //     name.text, email.text, password.text);
                     },
-                    child: Text("Log In")),
+                    child: Text("Back to Log In")),
               ),
             ],
           ),

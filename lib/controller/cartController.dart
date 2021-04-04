@@ -39,6 +39,7 @@ class CartController extends GetxController {
 
   readStorage() async {
     List<dynamic> prod = await cartStorage.read('cart');
+   if(prod!=null)
     prod.forEach((element) {
       //print(element);
 
@@ -84,6 +85,16 @@ class CartController extends GetxController {
 
     writeStorage();
   }
+
+  deleteItem(Product product) {
+    cartItems.forEach((element) {
+      if (element.id == product.id) {
+        cartItems.remove(element);
+        product.qty.value = 0;
+        Get.back();
+      }
+    });
+  }
 }
 
-final cartController =CartController();
+final cartController = CartController();

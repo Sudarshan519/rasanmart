@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import '../../controller/languageController.dart';
+import '../../controller/languageController.dart';
+import '../../controller/languageController.dart';
+import '../../controller/languageController.dart';
 
 class SettingsPage extends StatelessWidget {
   final style =
@@ -19,7 +22,7 @@ class SettingsPage extends StatelessWidget {
             child: Icon(Icons.arrow_back, color: Colors.white),
           ),
           title: Text(
-            'Settings',
+            'settings'.tr,
             style: appbarStyle,
           ),
           backgroundColor: Theme.of(context).backgroundColor,
@@ -29,7 +32,7 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Account ',
+                'account'.tr,
                 style: TextStyle(color: Colors.grey),
               ),
               Card(
@@ -39,7 +42,7 @@ class SettingsPage extends StatelessWidget {
                   },
                   leading: Icon(Icons.person),
                   title: Text(
-                    'Profile',
+                    'profile'.tr,
                     style: subtitleStyle,
                   ),
                 ),
@@ -47,7 +50,7 @@ class SettingsPage extends StatelessWidget {
               SpaceBox(),
               SpaceBox(),
               Text(
-                'Settings ',
+                'settings'.tr,
                 style: TextStyle(color: Colors.grey),
               ),
               Card(
@@ -103,6 +106,7 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 0;
+                                    languageController.changeLanguage('en', 'US');
                                   },
                                   child: Row(
                                     children: [
@@ -133,6 +137,7 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 1;
+                                     languageController.changeLanguage('hi', 'IN');
                                   },
                                   child: Row(children: [
                                     Text(
@@ -163,6 +168,7 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 2;
+                                    languageController.changeLanguage('ne',"NE");
                                   },
                                   child: Row(children: [
                                     Text(
@@ -201,7 +207,7 @@ class SettingsPage extends StatelessWidget {
                     Icons.language,
                   ),
                   title: Text(
-                    'Language',
+                    'language'.tr,
                     style: subtitleStyle,
                   ),
                 ),
@@ -213,7 +219,7 @@ class SettingsPage extends StatelessWidget {
                     Icons.logout,
                     color: Colors.grey,
                   ),
-                  title: Text('Log out', style: subtitleStyle.copyWith()),
+                  title: Text('logout'.tr, style: subtitleStyle.copyWith()),
                 ),
               ),
               SizedBox(
