@@ -4,9 +4,6 @@ import 'package:get/get.dart';
 import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import '../../controller/languageController.dart';
-import '../../controller/languageController.dart';
-import '../../controller/languageController.dart';
-import '../../controller/languageController.dart';
 
 class SettingsPage extends StatelessWidget {
   final style =

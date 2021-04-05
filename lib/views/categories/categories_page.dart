@@ -54,7 +54,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
       body: prod == null
           ? Center(
               child: CircularProgressIndicator(
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).backgroundColor,
             ))
           : prod.length == 0
               ? Center(

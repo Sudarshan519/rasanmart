@@ -1,0 +1,2399 @@
+define(['dart_sdk', 'packages/get/get_instance/src/extension_instance.dart', 'packages/rasanmart/controller/cartController.dart', 'packages/get/get_core/src/get_main.dart', 'packages/rasanmart/controller/changeImageController.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/safe_area.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/get/get_state_manager/src/rx_flutter/rx_obx_widget.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/rasanmart/utils/app_theme.dart', 'packages/flutter/src/rendering/paragraph.dart', 'packages/rasanmart/views/widgets/cartButton.dart', 'packages/flutter/src/widgets/spacer.dart', 'packages/get/get_navigation/src/routes/route_middleware.dart', 'packages/rasanmart/controller/productController.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/rendering/sliver_grid.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/material/progress_indicator.dart', 'packages/get/get_state_manager/src/simple/get_view.dart', 'packages/rasanmart/models/productModel.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/material/circle_avatar.dart'], (function load__packages__rasanmart__views__product_detail_dart(dart_sdk, packages__get__get_instance__src__extension_instance$46dart, packages__rasanmart__controller__cartController$46dart, packages__get__get_core__src__get_main$46dart, packages__rasanmart__controller__changeImageController$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__safe_area$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__alignment$46dart, packages__get__get_state_manager__src__rx_flutter__rx_obx_widget$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__rasanmart__utils__app_theme$46dart, packages__flutter__src__rendering__paragraph$46dart, packages__rasanmart__views__widgets__cartButton$46dart, packages__flutter__src__widgets__spacer$46dart, packages__get__get_navigation__src__routes__route_middleware$46dart, packages__rasanmart__controller__productController$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__rendering__sliver_grid$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__material__progress_indicator$46dart, packages__get__get_state_manager__src__simple__get_view$46dart, packages__rasanmart__models__productModel$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__material__circle_avatar$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const convert = dart_sdk.convert;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const extension_instance = packages__get__get_instance__src__extension_instance$46dart.get_instance__src__extension_instance;
+  const cartController = packages__rasanmart__controller__cartController$46dart.controller__cartController;
+  const get_main = packages__get__get_core__src__get_main$46dart.get_core__src__get_main;
+  const changeImageController = packages__rasanmart__controller__changeImageController$46dart.controller__changeImageController;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const icon_button = packages__flutter__src__material__icon_button$46dart.src__material__icon_button;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  const divider = packages__flutter__src__material__icon_button$46dart.src__material__divider;
+  const safe_area = packages__flutter__src__widgets__safe_area$46dart.src__widgets__safe_area;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const rx_obx_widget = packages__get__get_state_manager__src__rx_flutter__rx_obx_widget$46dart.get_state_manager__src__rx_flutter__rx_obx_widget;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const app_theme = packages__rasanmart__utils__app_theme$46dart.utils__app_theme;
+  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
+  const cartButton = packages__rasanmart__views__widgets__cartButton$46dart.views__widgets__cartButton;
+  const spacer = packages__flutter__src__widgets__spacer$46dart.src__widgets__spacer;
+  const rx_getx_widget = packages__get__get_navigation__src__routes__route_middleware$46dart.get_state_manager__src__rx_flutter__rx_getx_widget;
+  const extension_navigation = packages__get__get_navigation__src__routes__route_middleware$46dart.get_navigation__src__extension_navigation;
+  const productController = packages__rasanmart__controller__productController$46dart.controller__productController;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const sliver_grid = packages__flutter__src__rendering__sliver_grid$46dart.src__rendering__sliver_grid;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const progress_indicator = packages__flutter__src__material__progress_indicator$46dart.src__material__progress_indicator;
+  const get_view = packages__get__get_state_manager__src__simple__get_view$46dart.get_state_manager__src__simple__get_view;
+  const productModel = packages__rasanmart__models__productModel$46dart.models__productModel;
+  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const circle_avatar = packages__flutter__src__material__circle_avatar$46dart.src__material__circle_avatar;
+  var product_detail = Object.create(dart.library);
+  var productContent = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $indexOf = dartx.indexOf;
+  var $map = dartx.map;
+  var $toString = dartx.toString;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    CartControllerL: () => (T.CartControllerL = dart.constFn(dart.legacy(cartController.CartController)))(),
+    ImageControllerL: () => (T.ImageControllerL = dart.constFn(dart.legacy(changeImageController.ImageController)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    ImageL: () => (T.ImageL = dart.constFn(dart.legacy(image.Image)))(),
+    VoidToImageL: () => (T.VoidToImageL = dart.constFn(dart.fnType(T.ImageL(), [])))(),
+    ListOfWidgetL: () => (T.ListOfWidgetL = dart.constFn(core.List$(T.WidgetL())))(),
+    InkWellL: () => (T.InkWellL = dart.constFn(dart.legacy(ink_well.InkWell)))(),
+    dynamicToInkWellL: () => (T.dynamicToInkWellL = dart.constFn(dart.fnType(T.InkWellL(), [dart.dynamic])))(),
+    ProductControllerL: () => (T.ProductControllerL = dart.constFn(dart.legacy(productController.ProductController)))(),
+    GetXOfProductControllerL: () => (T.GetXOfProductControllerL = dart.constFn(rx_getx_widget.GetX$(T.ProductControllerL())))(),
+    ProductContentL: () => (T.ProductContentL = dart.constFn(dart.legacy(productContent.ProductContent)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    BuildContextLAndintLToProductContentL: () => (T.BuildContextLAndintLToProductContentL = dart.constFn(dart.fnType(T.ProductContentL(), [T.BuildContextL(), T.intL()])))(),
+    ProductControllerLToWidgetL: () => (T.ProductControllerLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.ProductControllerL()])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 8,
+        [EdgeInsets_right]: 8,
+        [EdgeInsets_top]: 8,
+        [EdgeInsets_left]: 8
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 38,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 54,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 40,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 21,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 21,
+        [_Location_line]: 41,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.constList([C[7] || CT.C7, C[8] || CT.C8], T._LocationL());
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[6] || CT.C6,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 39,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 31,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 46,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 45,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18], T._LocationL());
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 55,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 54,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "src",
+        [_Location_column]: 38,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 62,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "src",
+        [_Location_column]: 38,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27], T._LocationL());
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 66,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 30,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.constList([C[30] || CT.C30], T._LocationL());
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[29] || CT.C29,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 59,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 19,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35], T._LocationL());
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[32] || CT.C32,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 57,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 24,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38], T._LocationL());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 10,
+        [EdgeInsets_right]: 10,
+        [EdgeInsets_top]: 10,
+        [EdgeInsets_left]: 10
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 3,
+        [EdgeInsets_right]: 3,
+        [EdgeInsets_top]: 3,
+        [EdgeInsets_left]: 3
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "src",
+        [_Location_column]: 46,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 49,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 61,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44, C[45] || CT.C45], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 84,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 25,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 25,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 25,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.constList([C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[47] || CT.C47,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 77,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 21,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 41,
+        [_Location_line]: 73,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 20,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 72,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 90,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 91,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 89,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66, C[67] || CT.C67], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 86,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.constList([C[70] || CT.C70], T._LocationL());
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[69] || CT.C69,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 95,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 44,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73, C[74] || CT.C74], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 100,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 105,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.constList([C[77] || CT.C77, C[78] || CT.C78], T._LocationL());
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[76] || CT.C76,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 104,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 99,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 98,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 113,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.constList([C[84] || CT.C84], T._LocationL());
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[83] || CT.C83,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 112,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 17,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 17,
+        [_Location_line]: 117,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.constList([C[87] || CT.C87, C[88] || CT.C88], T._LocationL());
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[86] || CT.C86,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 115,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 120,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.constList([C[91] || CT.C91], T._LocationL());
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[90] || CT.C90,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 119,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 25,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "maxLines",
+        [_Location_column]: 17,
+        [_Location_line]: 124,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "overflow",
+        [_Location_column]: 17,
+        [_Location_line]: 125,
+        [_Location_file]: null
+      });
+    },
+    get C93() {
+      return C[93] = dart.constList([C[94] || CT.C94, C[95] || CT.C95, C[96] || CT.C96], T._LocationL());
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[93] || CT.C93,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 122,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 128,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.constList([C[99] || CT.C99], T._LocationL());
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[98] || CT.C98,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 127,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "product",
+        [_Location_column]: 21,
+        [_Location_line]: 134,
+        [_Location_file]: null
+      });
+    },
+    get C101() {
+      return C[101] = dart.constList([C[102] || CT.C102], T._LocationL());
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[101] || CT.C101,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 133,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 132,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 133,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.constList([C[105] || CT.C105, C[106] || CT.C106], T._LocationL());
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[104] || CT.C104,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 131,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.constList([C[109] || CT.C109], T._LocationL());
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[108] || CT.C108,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 193,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 52,
+        [_Location_line]: 197,
+        [_Location_file]: null
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 17,
+        [_Location_line]: 198,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.constList([C[112] || CT.C112, C[113] || CT.C113], T._LocationL());
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[111] || CT.C111,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 196,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.constList([C[116] || CT.C116], T._LocationL());
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[115] || CT.C115,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.constList([], T._LocationL());
+    },
+    get C117() {
+      return C[117] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[118] || CT.C118,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 203,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 24,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 44,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.constList([C[121] || CT.C121, C[122] || CT.C122], T._LocationL());
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[120] || CT.C120,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 206,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[118] || CT.C118,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 207,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C126() {
+      return C[126] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 210,
+        [_Location_file]: null
+      });
+    },
+    get C125() {
+      return C[125] = dart.constList([C[126] || CT.C126, C[127] || CT.C127], T._LocationL());
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[125] || CT.C125,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 208,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.constList([C[130] || CT.C130], T._LocationL());
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[129] || CT.C129,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 215,
+        [_Location_file]: null
+      });
+    },
+    get C132() {
+      return C[132] = dart.constList([C[133] || CT.C133], T._LocationL());
+    },
+    get C131() {
+      return C[131] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[132] || CT.C132,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 214,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.prototype,
+        [SliverGridDelegateWithFixedCrossAxisCount_mainAxisExtent]: null,
+        [SliverGridDelegateWithFixedCrossAxisCount_childAspectRatio]: 1,
+        [SliverGridDelegateWithFixedCrossAxisCount_crossAxisSpacing]: 0,
+        [SliverGridDelegateWithFixedCrossAxisCount_mainAxisSpacing]: 30,
+        [SliverGridDelegateWithFixedCrossAxisCount_crossAxisCount]: 1
+      });
+    },
+    get C137() {
+      return C[137] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "product",
+        [_Location_column]: 76,
+        [_Location_line]: 235,
+        [_Location_file]: null
+      });
+    },
+    get C136() {
+      return C[136] = dart.constList([C[137] || CT.C137], T._LocationL());
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[136] || CT.C136,
+        [_Location_name]: null,
+        [_Location_column]: 42,
+        [_Location_line]: 235,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "gridDelegate",
+        [_Location_column]: 33,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scrollDirection",
+        [_Location_column]: 33,
+        [_Location_line]: 232,
+        [_Location_file]: null
+      });
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 33,
+        [_Location_line]: 233,
+        [_Location_file]: null
+      });
+    },
+    get C143() {
+      return C[143] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 33,
+        [_Location_line]: 234,
+        [_Location_file]: null
+      });
+    },
+    get C139() {
+      return C[139] = dart.constList([C[140] || CT.C140, C[141] || CT.C141, C[142] || CT.C142, C[143] || CT.C143], T._LocationL());
+    },
+    get C138() {
+      return C[138] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[139] || CT.C139,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 225,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "strokeWidth",
+        [_Location_column]: 33,
+        [_Location_line]: 239,
+        [_Location_file]: null
+      });
+    },
+    get C145() {
+      return C[145] = dart.constList([C[146] || CT.C146], T._LocationL());
+    },
+    get C144() {
+      return C[144] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[145] || CT.C145,
+        [_Location_name]: null,
+        [_Location_column]: 40,
+        [_Location_line]: 238,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 33,
+        [_Location_line]: 238,
+        [_Location_file]: null
+      });
+    },
+    get C148() {
+      return C[148] = dart.constList([C[149] || CT.C149], T._LocationL());
+    },
+    get C147() {
+      return C[147] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[148] || CT.C148,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 237,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C152() {
+      return C[152] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "init",
+        [_Location_column]: 23,
+        [_Location_line]: 221,
+        [_Location_file]: null
+      });
+    },
+    get C153() {
+      return C[153] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 23,
+        [_Location_line]: 222,
+        [_Location_file]: null
+      });
+    },
+    get C151() {
+      return C[151] = dart.constList([C[152] || CT.C152, C[153] || CT.C153], T._LocationL());
+    },
+    get C150() {
+      return C[150] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[151] || CT.C151,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 220,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C156() {
+      return C[156] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 218,
+        [_Location_file]: null
+      });
+    },
+    get C157() {
+      return C[157] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 219,
+        [_Location_file]: null
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 220,
+        [_Location_file]: null
+      });
+    },
+    get C155() {
+      return C[155] = dart.constList([C[156] || CT.C156, C[157] || CT.C157, C[158] || CT.C158], T._LocationL());
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[155] || CT.C155,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 217,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C161() {
+      return C[161] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C162() {
+      return C[162] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 36,
+        [_Location_file]: null
+      });
+    },
+    get C160() {
+      return C[160] = dart.constList([C[161] || CT.C161, C[162] || CT.C162], T._LocationL());
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[160] || CT.C160,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C165() {
+      return C[165] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 34,
+        [_Location_file]: null
+      });
+    },
+    get C164() {
+      return C[164] = dart.constList([C[165] || CT.C165], T._LocationL());
+    },
+    get C163() {
+      return C[163] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[164] || CT.C164,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 9,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C169() {
+      return C[169] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 33,
+        [_Location_file]: null
+      });
+    },
+    get C167() {
+      return C[167] = dart.constList([C[168] || CT.C168, C[169] || CT.C169], T._LocationL());
+    },
+    get C166() {
+      return C[166] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[167] || CT.C167,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 31,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C171() {
+      return C[171] = dart.constList([C[172] || CT.C172], T._LocationL());
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[171] || CT.C171,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 30,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C175() {
+      return C[175] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 9,
+        [_Location_line]: 30,
+        [_Location_file]: null
+      });
+    },
+    get C174() {
+      return C[174] = dart.constList([C[175] || CT.C175], T._LocationL());
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[174] || CT.C174,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 29,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/product_detail.dart"
+      });
+    },
+    get C178() {
+      return C[178] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "product",
+        [_Location_column]: 38,
+        [_Location_line]: 32,
+        [_Location_file]: null
+      });
+    },
+    get C177() {
+      return C[177] = dart.constList([C[178] || CT.C178], T._LocationL());
+    },
+    get C176() {
+      return C[176] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[177] || CT.C177,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 32,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C181() {
+      return C[181] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "src",
+        [_Location_column]: 29,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C182() {
+      return C[182] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 21,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C183() {
+      return C[183] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 21,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C180() {
+      return C[180] = dart.constList([C[181] || CT.C181, C[182] || CT.C182, C[183] || CT.C183], T._LocationL());
+    },
+    get C179() {
+      return C[179] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[180] || CT.C180,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C186() {
+      return C[186] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 43,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C187() {
+      return C[187] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 35,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C185() {
+      return C[185] = dart.constList([C[186] || CT.C186, C[187] || CT.C187], T._LocationL());
+    },
+    get C184() {
+      return C[184] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[185] || CT.C185,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 48,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C190() {
+      return C[190] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "radius",
+        [_Location_column]: 31,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C191() {
+      return C[191] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 31,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C192() {
+      return C[192] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 31,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C189() {
+      return C[189] = dart.constList([C[190] || CT.C190, C[191] || CT.C191, C[192] || CT.C192], T._LocationL());
+    },
+    get C188() {
+      return C[188] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[189] || CT.C189,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 45,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C195() {
+      return C[195] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 34,
+        [_Location_line]: 52,
+        [_Location_file]: null
+      });
+    },
+    get C194() {
+      return C[194] = dart.constList([C[195] || CT.C195], T._LocationL());
+    },
+    get C193() {
+      return C[193] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[194] || CT.C194,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 52,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C196() {
+      return C[196] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[118] || CT.C118,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 53,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C199() {
+      return C[199] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 60,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C200() {
+      return C[200] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 35,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C198() {
+      return C[198] = dart.constList([C[199] || CT.C199, C[200] || CT.C200], T._LocationL());
+    },
+    get C197() {
+      return C[197] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[198] || CT.C198,
+        [_Location_name]: null,
+        [_Location_column]: 38,
+        [_Location_line]: 58,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C203() {
+      return C[203] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "radius",
+        [_Location_column]: 31,
+        [_Location_line]: 56,
+        [_Location_file]: null
+      });
+    },
+    get C204() {
+      return C[204] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 31,
+        [_Location_line]: 57,
+        [_Location_file]: null
+      });
+    },
+    get C205() {
+      return C[205] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 31,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C202() {
+      return C[202] = dart.constList([C[203] || CT.C203, C[204] || CT.C204, C[205] || CT.C205], T._LocationL());
+    },
+    get C201() {
+      return C[201] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[202] || CT.C202,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 55,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C208() {
+      return C[208] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 34,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C207() {
+      return C[207] = dart.constList([C[208] || CT.C208], T._LocationL());
+    },
+    get C206() {
+      return C[206] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[207] || CT.C207,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 63,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C211() {
+      return C[211] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 43,
+        [_Location_file]: null
+      });
+    },
+    get C210() {
+      return C[210] = dart.constList([C[211] || CT.C211], T._LocationL());
+    },
+    get C209() {
+      return C[209] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[210] || CT.C210,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C214() {
+      return C[214] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 17,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C215() {
+      return C[215] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 36,
+        [_Location_file]: null
+      });
+    },
+    get C213() {
+      return C[213] = dart.constList([C[214] || CT.C214, C[215] || CT.C215], T._LocationL());
+    },
+    get C212() {
+      return C[212] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[213] || CT.C213,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 34,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C218() {
+      return C[218] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 15,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C219() {
+      return C[219] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 34,
+        [_Location_file]: null
+      });
+    },
+    get C217() {
+      return C[217] = dart.constList([C[218] || CT.C218, C[219] || CT.C219], T._LocationL());
+    },
+    get C216() {
+      return C[216] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[217] || CT.C217,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 30,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C222() {
+      return C[222] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C221() {
+      return C[221] = dart.constList([C[222] || CT.C222], T._LocationL());
+    },
+    get C220() {
+      return C[220] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[221] || CT.C221,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C225() {
+      return C[225] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 26,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C224() {
+      return C[224] = dart.constList([C[225] || CT.C225], T._LocationL());
+    },
+    get C223() {
+      return C[223] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[224] || CT.C224,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 70,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C228() {
+      return C[228] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C227() {
+      return C[227] = dart.constList([C[228] || CT.C228], T._LocationL());
+    },
+    get C226() {
+      return C[226] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[227] || CT.C227,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C231() {
+      return C[231] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 51,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C232() {
+      return C[232] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 17,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C230() {
+      return C[230] = dart.constList([C[231] || CT.C231, C[232] || CT.C232], T._LocationL());
+    },
+    get C229() {
+      return C[229] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[230] || CT.C230,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 72,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C235() {
+      return C[235] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C234() {
+      return C[234] = dart.constList([C[235] || CT.C235], T._LocationL());
+    },
+    get C233() {
+      return C[233] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[234] || CT.C234,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C238() {
+      return C[238] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 22,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C237() {
+      return C[237] = dart.constList([C[238] || CT.C238], T._LocationL());
+    },
+    get C236() {
+      return C[236] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[237] || CT.C237,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 75,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C241() {
+      return C[241] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "product",
+        [_Location_column]: 19,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C240() {
+      return C[240] = dart.constList([C[241] || CT.C241], T._LocationL());
+    },
+    get C239() {
+      return C[239] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[240] || CT.C240,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 79,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C244() {
+      return C[244] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C245() {
+      return C[245] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C243() {
+      return C[243] = dart.constList([C[244] || CT.C244, C[245] || CT.C245], T._LocationL());
+    },
+    get C242() {
+      return C[242] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[243] || CT.C243,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 77,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C248() {
+      return C[248] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 24,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C247() {
+      return C[247] = dart.constList([C[248] || CT.C248], T._LocationL());
+    },
+    get C246() {
+      return C[246] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[247] || CT.C247,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C251() {
+      return C[251] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 17,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C252() {
+      return C[252] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 62,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C250() {
+      return C[250] = dart.constList([C[251] || CT.C251, C[252] || CT.C252], T._LocationL());
+    },
+    get C249() {
+      return C[249] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[250] || CT.C250,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 76,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C255() {
+      return C[255] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 11,
+        [_Location_line]: 26,
+        [_Location_file]: null
+      });
+    },
+    get C256() {
+      return C[256] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 11,
+        [_Location_line]: 27,
+        [_Location_file]: null
+      });
+    },
+    get C257() {
+      return C[257] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 11,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C258() {
+      return C[258] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 11,
+        [_Location_line]: 29,
+        [_Location_file]: null
+      });
+    },
+    get C254() {
+      return C[254] = dart.constList([C[255] || CT.C255, C[256] || CT.C256, C[257] || CT.C257, C[258] || CT.C258], T._LocationL());
+    },
+    get C253() {
+      return C[253] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[254] || CT.C254,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 25,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C261() {
+      return C[261] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 25,
+        [_Location_file]: null
+      });
+    },
+    get C260() {
+      return C[260] = dart.constList([C[261] || CT.C261], T._LocationL());
+    },
+    get C259() {
+      return C[259] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[260] || CT.C260,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 21,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    },
+    get C264() {
+      return C[264] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 19,
+        [_Location_file]: null
+      });
+    },
+    get C265() {
+      return C[265] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 21,
+        [_Location_file]: null
+      });
+    },
+    get C263() {
+      return C[263] = dart.constList([C[264] || CT.C264, C[265] || CT.C265], T._LocationL());
+    },
+    get C262() {
+      return C[262] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[263] || CT.C263,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 18,
+        [_Location_file]: "file:///C:/Users/user.DESKTOP-HG8HHKK/Desktop/rasanmart/lib/views/widgets/productContent.dart"
+      });
+    }
+  }, false);
+  var C = Array(266).fill(void 0);
+  var I = [
+    "package:rasanmart/views/product_detail.dart",
+    "package:rasanmart/views/widgets/productContent.dart"
+  ];
+  var product$ = dart.privateName(product_detail, "ProductDetail.product");
+  var cartController$ = dart.privateName(product_detail, "ProductDetail.cartController");
+  var image$ = dart.privateName(product_detail, "ProductDetail.image");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var SliverGridDelegateWithFixedCrossAxisCount_mainAxisExtent = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.mainAxisExtent");
+  var SliverGridDelegateWithFixedCrossAxisCount_childAspectRatio = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.childAspectRatio");
+  var SliverGridDelegateWithFixedCrossAxisCount_crossAxisSpacing = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.crossAxisSpacing");
+  var SliverGridDelegateWithFixedCrossAxisCount_mainAxisSpacing = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.mainAxisSpacing");
+  var SliverGridDelegateWithFixedCrossAxisCount_crossAxisCount = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.crossAxisCount");
+  product_detail.ProductDetail = class ProductDetail extends get_view.GetWidget$(dart.legacy(changeImageController.ImageController)) {
+    get product() {
+      return this[product$];
+    }
+    set product(value) {
+      super.product = value;
+    }
+    get cartController() {
+      return this[cartController$];
+    }
+    set cartController(value) {
+      super.cartController = value;
+    }
+    get image() {
+      return this[image$];
+    }
+    set image(value) {
+      super.image = value;
+    }
+    build(context) {
+      core.print(convert.jsonEncode(product_detail.imagelist));
+      return new scaffold.Scaffold.new({body: new safe_area.SafeArea.new({child: new basic.Padding.new({padding: C[0] || CT.C0, child: new single_child_scroll_view.SingleChildScrollView.new({child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([new icon_button.IconButton.new({icon: new icon.Icon.new(icons.Icons.arrow_back_ios, {color: colors.Colors.grey, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1}), onPressed: dart.fn(() => {
+                          navigator.Navigator.pop(T.ObjectL(), context);
+                        }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[5] || CT.C5}), new basic.Center.new({child: new text.Text.new(this.product.productName, {style: new text_style.TextStyle.new({fontSize: 20.0, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13})]), $creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), new container.Container.new({alignment: alignment.Alignment.center, child: new rx_obx_widget.Obx.new(dart.fn(() => {
+                      switch (this.image.selectedIndex.value) {
+                        case 0:
+                        {
+                          return new image.Image.network(core.String.as(product_detail.imagelist[$_get](this.image.selectedIndex.value)), {$creationLocationd_0dea112b090073317d4: C[22] || CT.C22});
+                          break;
+                        }
+                        default:
+                        {
+                          return new image.Image.network(core.String.as(product_detail.imagelist[$_get](this.image.selectedIndex.value)), {$creationLocationd_0dea112b090073317d4: C[25] || CT.C25});
+                        }
+                      }
+                    }, T.VoidToImageL()), {$creationLocationd_0dea112b090073317d4: C[28] || CT.C28}), height: 180.0, $creationLocationd_0dea112b090073317d4: C[31] || CT.C31}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[36] || CT.C36}), new basic.Wrap.new({children: (() => {
+                      let t0 = T.ListOfWidgetL().of(product_detail.imagelist[$map](T.WidgetL(), dart.fn(p => new ink_well.InkWell.new({onTap: dart.fn(() => {
+                          this.image.selectedIndex.value = product_detail.imagelist[$indexOf](p);
+                        }, T.VoidToNull()), child: new container.Container.new({margin: C[39] || CT.C39, padding: C[40] || CT.C40, decoration: new box_decoration.BoxDecoration.new({border: box_border.Border.all({color: colors.Colors.grey._get(300)}), borderRadius: new border_radius.BorderRadius.circular(3.0)}), child: new image.Image.network(core.String.as(p), {height: 80.0, width: 80.0, $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[46] || CT.C46}), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), T.dynamicToInkWellL())));
+                      return t0;
+                    })(), $creationLocationd_0dea112b090073317d4: C[56] || CT.C56}), new container.Container.new({color: app_theme.AppTheme.lightBackgroundColor, height: 20.0, child: new text.Text.new(" 10% off  ", {style: app_theme.AppTheme.subheadingStyle.copyWith({color: colors.Colors.grey._get(350)}), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), $creationLocationd_0dea112b090073317d4: C[63] || CT.C63}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[68] || CT.C68}), new basic.Row.new({children: T.JSArrayOfWidgetL().of([new text.Text.new("NRs. " + dart.str(this.product.price), {style: app_theme.AppTheme.subheadingStyle, $creationLocationd_0dea112b090073317d4: C[71] || CT.C71}), new text.Text.new("(NRs. 50)", {style: app_theme.AppTheme.subtitle.copyWith({color: colors.Colors.grey, decoration: ui.TextDecoration.lineThrough}), $creationLocationd_0dea112b090073317d4: C[75] || CT.C75})]), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[82] || CT.C82}), new text.Text.new("Prodcut Description", {style: app_theme.AppTheme.subheadingStyle.copyWith({color: colors.Colors.black}), $creationLocationd_0dea112b090073317d4: C[85] || CT.C85}), new basic.SizedBox.new({height: 10.0, $creationLocationd_0dea112b090073317d4: C[89] || CT.C89}), new text.Text.new(this.product.description, {maxLines: 4, overflow: paragraph.TextOverflow.ellipsis, $creationLocationd_0dea112b090073317d4: C[92] || CT.C92}), new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[97] || CT.C97}), new container.Container.new({height: 20.0, child: new cartButton.CartButton.new({product: this.product, $creationLocationd_0dea112b090073317d4: C[100] || CT.C100}), $creationLocationd_0dea112b090073317d4: C[103] || CT.C103}), new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[107] || CT.C107}), new text.Text.new("Price (NRs.)     " + dart.str(this.product.price), {style: app_theme.AppTheme.headingStyle, $creationLocationd_0dea112b090073317d4: C[110] || CT.C110}), new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[114] || CT.C114}), new divider.Divider.new({$creationLocationd_0dea112b090073317d4: C[117] || CT.C117}), new basic.Row.new({children: T.JSArrayOfWidgetL().of([new text.Text.new("Similar Products", {style: app_theme.AppTheme.headingStyle, $creationLocationd_0dea112b090073317d4: C[119] || CT.C119}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[123] || CT.C123}), new text.Text.new("View All", {style: app_theme.AppTheme.subheadingStyle, $creationLocationd_0dea112b090073317d4: C[124] || CT.C124})]), $creationLocationd_0dea112b090073317d4: C[128] || CT.C128}), new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[131] || CT.C131}), new container.Container.new({height: dart.notNull(media_query.MediaQuery.of(context).size.height) * 0.4, width: media_query.MediaQuery.of(context).size.width, child: new (T.GetXOfProductControllerL()).new({init: new productController.ProductController.new(), builder: dart.fn(controller => {
+                        core.print(controller.products.length);
+                        return dart.test(controller.isloading.isFalse) ? new scroll_view.GridView.builder({gridDelegate: C[134] || CT.C134, scrollDirection: basic_types.Axis.horizontal, itemCount: controller.products.length, itemBuilder: dart.fn((_, i) => new productContent.ProductContent.new(controller.products._get(i), {$creationLocationd_0dea112b090073317d4: C[135] || CT.C135}), T.BuildContextLAndintLToProductContentL()), $creationLocationd_0dea112b090073317d4: C[138] || CT.C138}) : new basic.Center.new({child: new progress_indicator.CircularProgressIndicator.new({strokeWidth: 3.0, $creationLocationd_0dea112b090073317d4: C[144] || CT.C144}), $creationLocationd_0dea112b090073317d4: C[147] || CT.C147});
+                      }, T.ProductControllerLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[150] || CT.C150}), $creationLocationd_0dea112b090073317d4: C[154] || CT.C154})]), $creationLocationd_0dea112b090073317d4: C[159] || CT.C159}), $creationLocationd_0dea112b090073317d4: C[163] || CT.C163}), $creationLocationd_0dea112b090073317d4: C[166] || CT.C166}), $creationLocationd_0dea112b090073317d4: C[170] || CT.C170}), $creationLocationd_0dea112b090073317d4: C[173] || CT.C173});
+    }
+  };
+  (product_detail.ProductDetail.new = function(product, opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[cartController$] = extension_instance['Inst|find'](T.CartControllerL(), get_main.Get);
+    this[image$] = extension_instance['Inst|put'](T.ImageControllerL(), get_main.Get, new changeImageController.ImageController.new());
+    this[product$] = product;
+    product_detail.ProductDetail.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = product_detail.ProductDetail.prototype;
+  dart.addTypeTests(product_detail.ProductDetail);
+  dart.addTypeCaches(product_detail.ProductDetail);
+  dart.setMethodSignature(product_detail.ProductDetail, () => ({
+    __proto__: dart.getMethods(product_detail.ProductDetail.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(product_detail.ProductDetail, I[0]);
+  dart.setFieldSignature(product_detail.ProductDetail, () => ({
+    __proto__: dart.getFields(product_detail.ProductDetail.__proto__),
+    product: dart.finalFieldType(dart.legacy(productModel.Product)),
+    cartController: dart.finalFieldType(dart.legacy(cartController.CartController)),
+    image: dart.finalFieldType(dart.legacy(changeImageController.ImageController))
+  }));
+  dart.defineLazy(product_detail, {
+    /*product_detail.imagelist*/get imagelist() {
+      return ["https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg", "https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg", "https://www.rasanmart.com/wp-content/uploads/2020/10/rasan-mart-dahivada-1-300x300.jpg", "https://www.rasanmart.com/wp-content/uploads/2020/07/rasan-mart-2pmakbare.jpg"];
+    }
+  }, true);
+  var product$0 = dart.privateName(productContent, "ProductContent.product");
+  productContent.ProductContent = class ProductContent extends framework.StatelessWidget {
+    get product() {
+      return this[product$0];
+    }
+    set product(value) {
+      super.product = value;
+    }
+    build(context) {
+      return new container.Container.new({padding: new edge_insets.EdgeInsets.only({left: 10.0}), child: new card.Card.new({child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, mainAxisAlignment: flex.MainAxisAlignment.center, crossAxisAlignment: flex.CrossAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new gesture_detector.GestureDetector.new({onTap: dart.fn(() => {
+                  extension_navigation['GetNavigation|to'](dart.dynamic, get_main.Get, new product_detail.ProductDetail.new(this.product, {$creationLocationd_0dea112b090073317d4: C[176] || CT.C176}));
+                }, T.VoidToNull()), child: new basic.Stack.new({alignment: alignment.Alignment.topCenter, children: T.JSArrayOfWidgetL().of([new image.Image.network(this.product.productImage, {height: 90.0, width: 120.0, $creationLocationd_0dea112b090073317d4: C[179] || CT.C179}), new basic.Row.new({children: T.JSArrayOfWidgetL().of([dart.test(this.product.isSale) ? new circle_avatar.CircleAvatar.new({radius: 15.0, backgroundColor: colors.Colors.greenAccent._get(400), child: new text.Text.new("Sale", {style: app_theme.AppTheme.subtitle.copyWith({color: colors.Colors.white}), $creationLocationd_0dea112b090073317d4: C[184] || CT.C184}), $creationLocationd_0dea112b090073317d4: C[188] || CT.C188}) : new text.Text.new("", {$creationLocationd_0dea112b090073317d4: C[193] || CT.C193}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[196] || CT.C196}), this.product.discount !== 0 || this.product.discount == null ? new circle_avatar.CircleAvatar.new({radius: 15.0, backgroundColor: colors.Colors.redAccent._get(400), child: new text.Text.new(dart.toString(this.product.discount), {style: app_theme.AppTheme.subtitle.copyWith({color: colors.Colors.white, fontStyle: ui.FontStyle.italic}), $creationLocationd_0dea112b090073317d4: C[197] || CT.C197}), $creationLocationd_0dea112b090073317d4: C[201] || CT.C201}) : new text.Text.new("", {$creationLocationd_0dea112b090073317d4: C[206] || CT.C206})]), $creationLocationd_0dea112b090073317d4: C[209] || CT.C209})]), $creationLocationd_0dea112b090073317d4: C[212] || CT.C212}), $creationLocationd_0dea112b090073317d4: C[216] || CT.C216}), new basic.SizedBox.new({height: 5.0, $creationLocationd_0dea112b090073317d4: C[220] || CT.C220}), new text.Text.new(this.product.productName, {$creationLocationd_0dea112b090073317d4: C[223] || CT.C223}), new basic.SizedBox.new({height: 5.0, $creationLocationd_0dea112b090073317d4: C[226] || CT.C226}), new text.Text.new("Rs. " + dart.toString(this.product.price), {style: new text_style.TextStyle.new({color: colors.Colors.red}), $creationLocationd_0dea112b090073317d4: C[229] || CT.C229}), new basic.SizedBox.new({height: 5.0, $creationLocationd_0dea112b090073317d4: C[233] || CT.C233}), new basic.SizedBox.new({height: 5.0, $creationLocationd_0dea112b090073317d4: C[236] || CT.C236}), new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new container.Container.new({height: 20.0, child: new cartButton.CartButton.new({product: this.product, $creationLocationd_0dea112b090073317d4: C[239] || CT.C239}), $creationLocationd_0dea112b090073317d4: C[242] || CT.C242}), new basic.SizedBox.new({width: 5.0, $creationLocationd_0dea112b090073317d4: C[246] || CT.C246})]), $creationLocationd_0dea112b090073317d4: C[249] || CT.C249})]), $creationLocationd_0dea112b090073317d4: C[253] || CT.C253}), $creationLocationd_0dea112b090073317d4: C[259] || CT.C259}), $creationLocationd_0dea112b090073317d4: C[262] || CT.C262});
+    }
+  };
+  (productContent.ProductContent.new = function(product, opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[product$0] = product;
+    productContent.ProductContent.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = productContent.ProductContent.prototype;
+  dart.addTypeTests(productContent.ProductContent);
+  dart.addTypeCaches(productContent.ProductContent);
+  dart.setMethodSignature(productContent.ProductContent, () => ({
+    __proto__: dart.getMethods(productContent.ProductContent.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(productContent.ProductContent, I[1]);
+  dart.setFieldSignature(productContent.ProductContent, () => ({
+    __proto__: dart.getFields(productContent.ProductContent.__proto__),
+    product: dart.finalFieldType(dart.legacy(productModel.Product))
+  }));
+  dart.defineLazy(productContent, {
+    /*productContent.fontSize*/get fontSize() {
+      return 12.0;
+    },
+    set fontSize(_) {}
+  }, true);
+  dart.trackLibraries("packages/rasanmart/views/product_detail.dart", {
+    "package:rasanmart/views/product_detail.dart": product_detail,
+    "package:rasanmart/views/widgets/productContent.dart": productContent
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["product_detail.dart","widgets/productContent.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAqBgB;;;;;;IACR;;;;;;IACA;;;;;;UAGoB;AACI,MAA5B,WAAM,mBAAW;AACjB,YAAO,kCACG,mCACD,sDAEE,+DACE,0CACkC,yCAC7B,yBACR,6BACY,yBACR,sCACQ,kBAAW,oCAA8B,wFACpC;AACa,0BAAZ,qCAAI,OAAO;qGAGzB,6BACS,kBACL,AAAQ,kCAEJ,wCAAoB,kBAA2B,uMAK3D,gCACU,iEAEV,wCACyB,mCACd,0BAAI;AACT,8BAAQ,AAAM,AAAc;;;AAExB,gCAAa,wCACT,AAAS,gCAAC,AAAM,AAAc;AAClC;;;;AAEA,gCAAa,wCACT,AAAS,gCAAC,AAAM,AAAc;;;8GAGhC,kEACZ,gCAAiB,iEACjB,8BAAe;oDACV,AAAU,4CAAI,QAAC,KAAM,iCACb;AAC2C,0BAAhD,AAAM,AAAc,iCAAQ,AAAU,mCAAQ,CAAC;mDAE1C,4FAGS,8CACK,8BAAkB,AAAI,wBAAC,sBACX,wCAAS,eAEzB,uCAAQ,CAAC,YAAU,aAAW;;qFAErD,oCACkB,iDACR,aACD,kBACL,sBACgB,AACX,oDAAuB,AAAI,wBAAC,8HAGrC,gCACU,iEAEV,6BACY,yBACR,kBACE,AAAuB,mBAAf,AAAQ,6BACA,+FAElB,kBACE,qBACgB,AAAS,6CACP,gCACa,yJAIrC,gCACU,iEAEV,kBACE,+BACgB,AAAgB,oDAAuB,kFAEzD,gCACU,iEAEV,kBACE,AAAQ,qCACE,aACa,4FAEzB,gCACU,iEAGV,qCACY,aACD,wCACI,wIA2Df,gCACU,mEAEV,kBACE,AAAmC,+BAAf,AAAQ,6BACZ,8FAElB,gCACU,mEAEV,sFACA,6BACY,yBACR,kBAAK,4BAAoC,8FACzC,oFACA,kBACE,oBACgB,gKAItB,gCACU,mEAEV,qCAC+C,aAAxB,AAAY,AAAK,0BAAd,OAAO,iBAAgB,YAC3B,AAAY,AAAK,0BAAd,OAAO,qBACrB,8CACG,wDACG,QAAC;AACyB,wBAAjC,WAAM,AAAW,AAAS,UAAV;AAChB,yCAAO,AAAW,AAAU,UAAX,sBACF,oFAOe,wCACX,AAAW,AAAS,UAAV,+BACR,SAAC,GAAO,MACZ,sCAAe,AAAW,AAAQ,UAAT,eAAU,CAAC,2KAE/C,6BACS,mEACM;;IAQ3C;;+CA9NmB;;IAFb,wBAAqB,qDAAJ;IACjB,eAAY,qDAAJ,cAAQ;IACH;AAAnB;;EAA2B;;;;;;;;;;;;;;;MAXlB,wBAAS;YAAG,EACrB,0FACA,0FACA,0FACA;;;;;ICNc;;;;;;UAKY;AACxB,YAAO,uCACe,uCAAU,eAEvB,0BAIE,oCACsB,0CACU,mDACE,0CAC7B,yBACR,iDACS;AACyB,kBAA1B,uDAAJ,cAAO,qCAAc;2CAEhB,gCACgB,yCACX,yBACF,wBACJ,AAAQ,oCACA,aACD,oEAET,6BACY,mCACR,AAAQ,uBACF,4CACU,uBACgB,AAAW,+BAAC,aAC7B,kBAAK,gBACQ,AACX,6CAAuB,kJAElC,kBAAK,kEACX,oFACA,AAAQ,AAAS,AAAK,0BAAF,KAAK,AAAQ,AAAS,gCACpC,4CACU,uBACgB,AAAS,6BAAC,aAC3B,kBAAsB,cAAjB,AAAQ,gCACA,AAAS,6CACP,gCACO,kJAE/B,kBAAK,6PAMrB,gCAAiB,kEACjB,kBAAK,AAAQ,wFACb,gCAAiB,kEACjB,kBAAK,AAAiC,SAAZ,cAAd,AAAQ,6BACT,qCAAwB,kFACnC,gCAAiB,kEACjB,gCAAiB,kEACjB,sCAAyC,yCAAkB,yBACzD,qCACU,aACD,wCACI,wIAGb,+BAAgB;IAsD5B;;gDA3HoB;;;AAApB;;EAA4B;;;;;;;;;;;;;MALvB,uBAAQ;YAAG","file":"../../../../../../packages/rasanmart/views/product_detail.dart.lib.js"}');
+  // Exports:
+  return {
+    views__product_detail: product_detail,
+    views__widgets__productContent: productContent
+  };
+}));
+
+//# sourceMappingURL=product_detail.dart.lib.js.map

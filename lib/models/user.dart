@@ -4,7 +4,7 @@ class UserModel {
   String id;
   String name;
   String email;
-  String address;
+  String street;
   String phone;
   String city;
   UserModel({this.id, this.name, this.email});
@@ -13,5 +13,8 @@ class UserModel {
     id = doc.id;
     name = doc["name"];
     email = doc["email"];
+    city = doc["city"];
+    phone = doc["phone"];
+    street = doc["street"];
   }
 }

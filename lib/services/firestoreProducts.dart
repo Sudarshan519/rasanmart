@@ -7,6 +7,8 @@ import 'package:rasanmart/models/category_model.dart';
 import 'package:rasanmart/models/orderModel.dart';
 import 'package:rasanmart/models/productModel.dart';
 
+import 'authService.dart';
+
 class ProductFromFirebase extends GetxService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference referencelike =
@@ -50,20 +52,30 @@ class ProductFromFirebase extends GetxService {
   // }
 
   addOrder(OrderModelModel order) async {
-    // print(order.products);
-    // print(order);
-    // jsonEncode(order.products);
-    // print(jsonEncode(order.products));
     orderReference
         .add({
           'id': order.id,
           'address': order.address,
           'contact': order.contact,
           'city': order.city,
-          'cart': jsonEncode(order.products)
+          'cart': jsonEncode(order.products),
+          'phone': order.phone,
         })
-        .whenComplete(() => Get.snackbar('Completed', 'message'))
-        .catchError((error) => print("Failed to add user: $error"));
+        .whenComplete(
+            () => Get.snackbar('Completed', 'Order has been succesfully added'))
+        .catchError((error) => Get.snackbar('Error', error.toString()));
+  }
+
+  getOrder() async {
+    List<OrderModelModel> orders = [];
+    var data = await orderReference
+        .where('id', isEqualTo: authService.auth.currentUser.uid)
+        .get();
+    data.docs.forEach((element) {
+      print(jsonDecode(element.data()['cart']));
+      orders.add(OrderModelModel.fromJson(element.data()));
+    });
+    return orders;
   }
 
   CollectionReference orderReference =

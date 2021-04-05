@@ -7,21 +7,24 @@ class CustomTextField extends StatelessWidget {
   final Function validator;
   final IconData icon;
   final TextEditingController controller;
-
+  final TextInputType textInputType;
   const CustomTextField(
       {Key key,
       this.label,
       this.hintText,
       this.validator,
       this.controller,
-      this.icon})
+      this.icon,
+      this.textInputType})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-     // cursorColor: Colors.red,
-     // cursorHeight: 15,
+      // cursorColor: Colors.red,
+      // cursorHeight: 15,
+      keyboardType: textInputType,
       decoration: InputDecoration(
+        
           labelText: label,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(4)),
@@ -49,8 +52,10 @@ class CustomTextField extends StatelessWidget {
           )),
       controller: controller,
       validator: (v) {
-        if (v.isEmpty) return 'Enter valid value';
-        else return '';
+        if (v.isEmpty)
+          return 'Enter valid value';
+        else
+          return null;
       },
     );
   }

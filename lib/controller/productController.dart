@@ -14,10 +14,9 @@ class ProductController extends GetxController {
   cagegoryItems(String category) {
     List<Product> prod = [];
     products.forEach((element) {
-      //print(element.category);
       products.forEach((element) {
         if (element.category.toLowerCase().contains(category.toLowerCase())) {
-        //  prod.add(element);
+     
           print(element.productName);
         }
       });

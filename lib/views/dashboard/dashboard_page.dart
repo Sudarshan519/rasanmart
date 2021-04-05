@@ -4,7 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/dashBoardController.dart';
+import 'package:rasanmart/controller/orderController.dart';
+import 'package:rasanmart/models/orderModel.dart';
 import 'package:rasanmart/services/authService.dart';
+import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/services/getStorage.dart';
 import 'package:rasanmart/utils/localization.dart';
 import 'package:rasanmart/views/account/account.dart';
@@ -18,11 +21,10 @@ class DashboardPage extends GetWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Widget _createHeader() {
     return DrawerHeader(
-      
         margin: EdgeInsets.zero,
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
-          color:Colors.black,
+            color: Colors.black,
             image: DecorationImage(
                 fit: BoxFit.fill,
                 image: NetworkImage(
@@ -48,66 +50,44 @@ class DashboardPage extends GetWidget {
           padding: EdgeInsets.zero,
           children: [
             Obx(() => authController.user != null
-                    ? UserAccountsDrawerHeader(
-                        decoration: BoxDecoration(
-                          // color: Theme.of(context).backgroundColor,
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
-                            // 'https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjJ8fHByb2ZpbGV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
-                            fit: BoxFit.cover,
-                            colorFilter: new ColorFilter.mode(
-                                Colors.black.withOpacity(0.8),
-                                BlendMode.colorBurn),
-                          ),
-                        ),
-                        accountName: Obx(() =>
-                            Text(
-                              authController.user.displayName ?? '',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor),
-                            ) ??
-                            Text('')),
-                        accountEmail: Obx(() => Text(
-                              authController.user.email ?? '',
-                              style: TextStyle(
-                                      color: Theme.of(context).primaryColor) ??
-                                  Text(''),
-                            )),
-                        currentAccountPicture: CircleAvatar(
-                          radius: 30,
-                          backgroundColor: Colors.teal,
-                          child: CircleAvatar(
-                              radius: 34,
-                              backgroundImage:
-                                  authController.user.photoURL ??
+                ? UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).backgroundColor,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            'https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'),
+                        // 'https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjJ8fHByb2ZpbGV8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.8), BlendMode.colorBurn),
+                      ),
+                    ),
+                    accountName: Obx(() =>
+                        Text(
+                          authController.user.displayName ?? '',
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                        ) ??
+                        Text('')),
+                    accountEmail: Obx(() => Text(
+                          authController.user.email ?? '',
+                          style: TextStyle(
+                                  color: Theme.of(context).primaryColor) ??
+                              Text(''),
+                        )),
+                    currentAccountPicture: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.teal,
+                      child: CircleAvatar(
+                          radius: 34,
+                          backgroundImage:
+                              NetworkImage(authController.user.photoURL) ??
                                   NetworkImage(
                                     "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
                                   )),
-                        ),
-
-                        // currentAccountPicture: CircleAvatar(
-                        //   radius: 30,
-
-                        //   backgroundImage: NetworkImage(
-                        //     authController.user.photoURL ??
-                        //         "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60",
-                        //   ),
-
-                        // backgroundImage: NetworkImage(authController.user.photoURL ??
-                        //         "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1511367461989-f85a21fda167%3Fixid%3DMXwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfA%253D%253D%26ixlib%3Drb-1.2.1%26w%3D1000%26q%3D80&imgrefurl=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fprofile&tbnid=c4DKZX1IkCpVhM&vet=12ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ..i&docid=b5C9ViMmmhpq-M&w=1000&h=563&q=profile%20image&safe=active&ved=2ahUKEwipmvzludrvAhUCCisKHWUNCbIQMygAegUIARDRAQ") ??
-                        //     Icon(Icons.person)
-                      )
-                    : _createHeader()
-
-                //  UserAccountsDrawerHeader(
-                //     accountName: InkWell(
-                //         onTap: () {
-                //           Get.to(Login(), transition: Transition.leftToRight);
-                //         },
-                //         child: Text('Sign In')),
-                //     accountEmail: Text('')),
-                ),
+                    ),
+                  )
+                : _createHeader()),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('home'.tr),
@@ -115,9 +95,11 @@ class DashboardPage extends GetWidget {
             ),
             ListTile(
               leading: Icon(Icons.language),
-              title: Text('LocaliZation'),
+              title: Text('MyOrdes'),
               onTap: () {
-                Get.to(Internationaliztion(),);
+                Get.to(
+                  () => OrderPage(),
+                );
               },
             ),
             ListTile(
@@ -230,5 +212,35 @@ class DashboardPage extends GetWidget {
         );
       }),
     );
+  }
+}
+
+class OrderPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    if (orderController.orders.length != null)
+      return Scaffold(
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: Colors.white,
+            ),
+            backgroundColor: Theme.of(context).backgroundColor,
+            title: Text(
+              'My Orders',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
+          ),
+          body: Obx(() => ListView.builder(
+              itemCount: orderController.orders.length,
+              itemBuilder: (_, int i) {
+                return ListTile(
+                  onTap: () {},
+                  title: Text(
+                    orderController.orders[i].email,
+                  ),
+                  subtitle: Text(orderController.orders[i].address),
+                  trailing: Text(orderController.orders[i].status),
+                );
+              })));
   }
 }

@@ -13,6 +13,9 @@ import 'package:rasanmart/views/categories/categories_page.dart';
 import 'package:rasanmart/views/search/search_field.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import 'package:rasanmart/views/widgets/productContent.dart';
+import '../../utils/size_util.dart';
+
+ScrollController _scrollBottomBarController = new ScrollController();
 
 class Home extends StatefulWidget {
   final scaffoldKey;
@@ -27,8 +30,9 @@ class _HomeState extends State<Home> {
 
   final productController = Get.put(ProductController());
   final searchController = TextEditingController();
-  final networkController=Get.find<NetworkController>();
-  ScrollController _scrollBottomBarController = new ScrollController();
+  final networkController =
+      Get.find<NetworkController>() ?? Get.put(NetworkController());
+
   bool _show;
   bool upDirection = true;
   @override
@@ -74,7 +78,6 @@ class _HomeState extends State<Home> {
 
   Widget buildAppBar() {
     return AppBar(
-      // centerTitle: true,
       backgroundColor: Colors.red.shade900,
       leading: IconButton(
         icon: Icon(
@@ -124,10 +127,10 @@ class _HomeState extends State<Home> {
                             SearchResult(
                                 searchController: searchController,
                                 search: search),
-                            transition: Transition.leftToRight);
+                            transition: Transition.rightToLeft,
+                            duration: Duration(seconds: 10));
                       },
                       child: Icon(Icons.search, color: Colors.white)))),
-
       actions: [
         IconButton(
           icon: Icon(
@@ -163,7 +166,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             onPressed: () {
-              Get.to(CartPage(),transition: Transition.rightToLeft);
+              Get.to(CartPage(), transition: Transition.rightToLeft);
             }),
       ],
     );
@@ -178,7 +181,7 @@ class _HomeState extends State<Home> {
         physics: BouncingScrollPhysics(),
         controller: _scrollBottomBarController,
         child: Obx(
-                    ()=> Column(children: [
+          () => Column(children: [
             networkController.connectionStatus.value == 0
                 ? Text('Connect to Internet')
                 : Container(),
@@ -255,6 +258,8 @@ class CategoriesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = sizeUtil.getWidth(context);
+    double height = sizeUtil.getheight(context);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         'Categories',
@@ -263,26 +268,30 @@ class CategoriesContainer extends StatelessWidget {
       SizedBox(height: 10),
       Container(
         color: Colors.white,
-        height: MediaQuery.of(context).size.height * .34,
+        height: height < width
+            ? width / 3
+            : MediaQuery.of(context).size.height * .34,
         child: GridView.builder(
+          //controller: _scrollBottomBarController,
           padding: EdgeInsets.only(left: 10),
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 6, crossAxisSpacing: 5),
+              crossAxisCount: 4, mainAxisSpacing: 6, crossAxisSpacing: 5),
           itemBuilder: (context, int i) {
             return InkWell(
               onTap: () {
-                Get.to(CategoriesPage(
-                  category[i].categoryName,
-                
-                ),transition: Transition.leftToRight);
+                Get.to(
+                    CategoriesPage(
+                      category[i].categoryName,
+                    ),
+                    transition: Transition.leftToRight);
               },
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.network(category[i].categoryImage,
-                        fit: BoxFit.fill, height: 50, width: 50),
+                        fit: BoxFit.fill, height: 45, width: 45),
                     SizedBox(height: 10),
                     Text(
                       category[i].categoryName.toUpperCase(),
@@ -336,8 +345,11 @@ class TopProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
-      height: MediaQuery.of(context).size.height * .3,
+      height:
+          height < width ? width / 3 : MediaQuery.of(context).size.height * .3,
       child: Obx(() {
         List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
@@ -376,16 +388,18 @@ class LatestProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
-        height: MediaQuery.of(context).size.height * .34,
-
+        height: height < width
+            ? width / 3
+            : MediaQuery.of(context).size.height * .3,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
               return controller.isloading.isFalse
                   ? GridView.builder(
-                    
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
@@ -401,11 +415,11 @@ class LatestProductContainer extends StatelessWidget {
                       },
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                          mainAxisSpacing: 0,
-                          crossAxisSpacing: 1
-                        //  mainAxisExtent: 150.0,
-                      ),
+                              crossAxisCount: 1,
+                              mainAxisSpacing: 0,
+                              crossAxisSpacing: 1
+                              //  mainAxisExtent: 150.0,
+                              ),
                     )
                   : Center(
                       child: CircularProgressIndicator(

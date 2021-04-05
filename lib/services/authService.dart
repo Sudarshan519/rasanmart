@@ -11,12 +11,10 @@ class AuthService extends GetxService {
     try {
       UserCredential _authResult = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-     if(_authResult.isNull){
-
-       Get.snackbar("Error creating user", "message");
-     }
-     else 
-     Get.to(DashboardPage(),transition: Transition.downToUp);
+      if (_authResult.isNull) {
+        Get.snackbar("Error creating user", "message");
+      } else
+        Get.to(DashboardPage(), transition: Transition.downToUp);
       //create user in firestore
       // UserModel _user =
       //     UserModel(id: _authResult.user.uid, name: name, email: email);
@@ -27,8 +25,17 @@ class AuthService extends GetxService {
     } on FirebaseAuthException catch (e) {
       showSnackbar(e.code, e.message);
     } on PlatformException catch (e) {
-      Get.snackbar("Error creating user", "${e.message}",);
+      Get.snackbar(
+        "Error creating user",
+        "${e.message}",
+      );
     }
+  }
+
+  signInAnonymously() async {
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInAnonymously();
+    return userCredential.user.uid;
   }
 
   Future<void> login(String email, String password) async {
@@ -61,5 +68,6 @@ class AuthService extends GetxService {
 final authService = AuthService();
 
 showSnackbar(String title, String message) {
-  Get.snackbar(title, message,backgroundColor: Colors.green,colorText: Colors.white);
+  Get.snackbar(title, message,
+      backgroundColor: Colors.green, colorText: Colors.white);
 }

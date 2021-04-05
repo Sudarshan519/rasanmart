@@ -1,39 +1,32 @@
-
 import 'package:get/get.dart';
+import 'package:rasanmart/models/orderModel.dart';
+import '../services/firestoreProducts.dart';
 
 class OrderController extends GetxController {
   var isloading = false.obs;
-var pay='p'.obs;
-  setloading(value) {
-    isloading.value = false;
-  }
+  var orders = List<OrderModelModel>.empty(growable: true).obs;
+
+  var terms = false.obs;
+  var id = ''.obs;
+  var pay = 'p'.obs;
 
   @override
   void onInit() {
     super.onInit();
-    // isloading.value = false;
   }
 
-  // void changeValue() {
-  //   isloading = isloading.toggle();
-  // }
+  getOrder() async {
+    isloading.toggle();
+
+    List<OrderModelModel> order = await firebaseProduct.getOrder();
+    orders = order.obs;
+    isloading.toggle();
+    //return order;
+  }
 
   void placeOrder(String prod) {
     print('jsonDecode(prod)');
-    //orderService.placeOrder(prod);
   }
 }
 
-// import 'package:get/get.dart';
-
-// class MyController extends GetxController {
-
-// final MyRepository repository;
-// MyController({@required this.repository}) : assert(repository != null);
-
-//   final _obj = ''.obs;
-//   set obj(value) => this._obj.value = value;
-//   get obj => this._obj.value;
-// }
-
-final orderController=Get.put(OrderController());
+final orderController = Get.find<OrderController>();

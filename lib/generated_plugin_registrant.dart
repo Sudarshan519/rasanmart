@@ -19,7 +19,5 @@ void registerPlugins(Registrar registrar) {
   FirebaseAuthWeb.registerWith(registrar);
   FirebaseCoreWeb.registerWith(registrar);
   FirebaseStorageWeb.registerWith(registrar);
-  ImagePickerPlugin.registerWith(registrar);
-  SharedPreferencesPlugin.registerWith(registrar);
   registrar.registerMessageHandler();
 }

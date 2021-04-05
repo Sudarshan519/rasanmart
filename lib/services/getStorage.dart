@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 class LocalGetStorage {
   final box = GetStorage();
 
-  onboard(){
-    bool onboard =  box.read('onboard') ?? true;
-    if(onboard)
-   { 
-     print(onboard);
-     box.write('onboard', false);}
+  onboard() {
+    bool onboard = box.read('onboard') ?? true;
+    if (onboard) {
+      print(onboard);
+      box.write('onboard', false);
+    }
     return onboard;
   }
+
   read(String cart) async {
     // List<Product>
     var prod = box.read(cart);
@@ -29,6 +29,16 @@ class LocalGetStorage {
   //     print('box changed');
   //   });
   //   // box.removeListen(listen);
+  // }
+
+  sotreuser() {
+    var prod = box.read('user') ?? [];
+    if (prod != null) return prod;
+  }
+  // getuser(){
+  //   var prod = box.read('user');
+
+  //   return prod;
   // }
 
   clear() {
