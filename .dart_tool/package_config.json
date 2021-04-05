@@ -123,7 +123,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/a/Documents/flutterstable/packages/flutter",
+      "rootUri": "file:///home/a/Videos/3.sdkflutter/flutterstable/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -135,13 +135,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/a/Documents/flutterstable/packages/flutter_test",
+      "rootUri": "file:///home/a/Videos/3.sdkflutter/flutterstable/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///home/a/Documents/flutterstable/packages/flutter_web_plugins",
+      "rootUri": "file:///home/a/Videos/3.sdkflutter/flutterstable/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -225,7 +225,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/a/Documents/flutterstable/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/a/Videos/3.sdkflutter/flutterstable/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -296,7 +296,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-03-26T16:29:43.829411Z",
+  "generated": "2021-04-05T16:37:59.674070Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }
