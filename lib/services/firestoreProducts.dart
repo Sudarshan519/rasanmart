@@ -70,6 +70,7 @@ class ProductFromFirebase extends GetxService {
     List<OrderModelModel> orders = [];
     var data = await orderReference
         .where('id', isEqualTo: authService.auth.currentUser.uid)
+        .orderBy('timestamp').limitToLast(10)
         .get();
     data.docs.forEach((element) {
       print(jsonDecode(element.data()['cart']));
