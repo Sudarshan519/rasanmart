@@ -16,12 +16,10 @@ class ProductContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left:10),
-      //width: 200,
+      padding: EdgeInsets.only(left: 10),
       child: Card(
-      
         //color: Colors.grey[300],
-       // margin: EdgeInsets.only(left: 30, right: 10, top: 20, bottom: 20),
+        // margin: EdgeInsets.only(left: 30, right: 10, top: 20, bottom: 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,

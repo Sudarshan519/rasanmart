@@ -5,11 +5,9 @@ import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/dashBoardController.dart';
 import 'package:rasanmart/controller/orderController.dart';
-import 'package:rasanmart/models/orderModel.dart';
+import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/services/authService.dart';
-import 'package:rasanmart/services/firestoreProducts.dart';
 import 'package:rasanmart/services/getStorage.dart';
-import 'package:rasanmart/utils/localization.dart';
 import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/home/home.dart';
 import 'package:rasanmart/views/login/login.dart';
@@ -17,6 +15,7 @@ import '../settings/settings.dart';
 
 class DashboardPage extends GetWidget {
   final authController = Get.find<AuthController>();
+  final userControlelr = Get.find<UserController>();
   final DashboardController c = Get.put(DashboardController());
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Widget _createHeader() {
@@ -125,7 +124,7 @@ class DashboardPage extends GetWidget {
             Obx(() => authController.user != null
                 ? ListTile(
                     onTap: () {
-                      cartStorage.clear();
+                      allStorage.clear();
                       authService.signOut();
                     },
                     leading: Icon(Icons.logout),
@@ -219,30 +218,45 @@ class OrderPage extends StatelessWidget {
   final orderController = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
+    orderController.getOrder();
     return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ),
-          backgroundColor: Theme.of(context).backgroundColor,
-          title: Text(
-            'My Orders',
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white,
         ),
-        body: Obx(() => orderController.orders.length != null
-            ? ListView.builder(
-                itemCount: orderController.orders.length,
-                itemBuilder: (_, int i) {
-                  return ListTile(
-                    onTap: () {},
-                    title: Text(
-                      orderController.orders[i].email,
-                    ),
-                    subtitle: Text(orderController.orders[i].address),
-                    trailing: Text(orderController.orders[i].status),
-                  );
-                })
-            : CircularProgressIndicator()));
+        backgroundColor: Theme.of(context).backgroundColor,
+        title: Text(
+          'My Orders',
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
+      ),
+      body: Obx(() => orderController.isloading.value
+          ? CircularProgressIndicator(
+              backgroundColor: Theme.of(context).primaryColor)
+          : ListView.builder(
+              itemCount: orderController.orders.length,
+              reverse: true,
+              itemBuilder: (_, int i) {
+                return ListTile(
+                  title: Text(
+                    orderController.orders[i].email,
+                  ),
+                  subtitle: Text(
+                      orderController.orders[i].timeStamp.toDate().toString()),
+                  trailing: Container(
+                      height: 20,
+                      width: 70,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: orderController.orders[i].status == 'sent'
+                              ? Colors.yellow
+                              : Colors.green,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: orderController.orders[i].status != 'sent'
+                          ? Text(orderController.orders[i].status)
+                          : Text('Cancel')),
+                );
+              })),
+    );
   }
 }

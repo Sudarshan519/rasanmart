@@ -5,10 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/bindings/allControllerBinding.dart';
-import 'package:rasanmart/controller/bindings/authBindings.dart';
 import 'package:rasanmart/utils/app_theme.dart';
-import 'package:rasanmart/views/onboarding/onboarding.dart';
-import 'services/getStorage.dart';
 import 'utils/app_theme.dart';
 import 'utils/localization.dart';
 import 'views/dashboard/dashboard_page.dart';
@@ -48,7 +45,7 @@ class Root extends StatelessWidget {
           return CircularProgressIndicator();
         }
 
-        return cartStorage.onboard() ? OnboardingPage() : DashboardPage();
+        return  DashboardPage();
       },
     );
   }

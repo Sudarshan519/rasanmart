@@ -32,39 +32,39 @@ class Messages extends Translations {
       };
 }
 
-class Internationaliztion extends GetWidget {
-  final myController = Get.put(MyController());
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'hello'.tr,
-            style: TextStyle(fontSize: 24, color: Colors.grey),
-          ),
-          RaisedButton(
-              onPressed: () {
-                myController.changeLanguage('en', 'US');
-              },
-              child: Text('Nepali')),
-          RaisedButton(
-              onPressed: () {
-                myController.changeLanguage('hi', 'IN');
-              },
-              child: Text('Nepali')),
-          RaisedButton(
-              onPressed: () {
-                myController.changeLanguage('fr', 'Fr');
-              },
-              child: Text('Nepali'))
-        ],
-      ),
-    ));
-  }
-}
+// class Internationaliztion extends GetWidget {
+//   final myController = Get.put(MyController());
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Center(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Text(
+//             'hello'.tr,
+//             style: TextStyle(fontSize: 24, color: Colors.grey),
+//           ),
+//           TextButton(
+//               onPressed: () {
+//                 myController.changeLanguage('en', 'US');
+//               },
+//               child: Text('Nepali')),
+//           TextButton(
+//               onPressed: () {
+//                 myController.changeLanguage('hi', 'IN');
+//               },
+//               child: Text('Nepali')),
+//           TextButton(
+//               onPressed: () {
+//                 myController.changeLanguage('fr', 'Fr');
+//               },
+//               child: Text('Nepali'))
+//         ],
+//       ),
+//     ));
+//   }
+// }
 
 class MyController extends GetxController {
   void changeLanguage(String s, String ss) {

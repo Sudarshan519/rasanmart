@@ -32,13 +32,13 @@ class CartController extends GetxController {
     var resJson = cartItems.toJson();
     // print(resJson);
     if (resJson != [])
-      await cartStorage.write('cart', resJson);
+      await allStorage.write('cart', resJson);
     else
       print('Put some value');
   }
 
   readStorage() async {
-    List<dynamic> prod = await cartStorage.read('cart');
+    List<dynamic> prod = await allStorage.read('cart');
     if (prod != null)
       prod.forEach((element) {
         //print(element);
@@ -98,9 +98,11 @@ class CartController extends GetxController {
   }
 
   clearCart() {
-    cartItems.forEach((element) {
-      removefromCart(element);
-    });
+    // cartItems.forEach((element) {
+    //   removefromCart(element);
+    // });
+    cartItems.clear();
+    readStorage();
     print('cart cleared');
     // cartItems.clear();
 

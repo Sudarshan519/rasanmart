@@ -13,14 +13,13 @@ class OrderController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getOrder();
   }
 
   getOrder() async {
     isloading.toggle();
 
     List<OrderModelModel> order = await firebaseProduct.getOrder();
-    print(order.length);
+
     orders = order.obs;
     isloading.toggle();
    

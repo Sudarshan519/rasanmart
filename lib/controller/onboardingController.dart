@@ -23,5 +23,3 @@ class OnboardingController extends GetxController {
     'Order your items\n Now you can order any items any time\n right from your mobile'
   ];
 }
-
-final _controller = OnboardingController();

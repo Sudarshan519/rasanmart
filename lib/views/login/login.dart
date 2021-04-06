@@ -141,8 +141,9 @@ class Login extends GetWidget<AuthController> {
                                 onPrimary: Colors.white),
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                Get.snackbar('Validating data', 'loading ...');
                                 authService.login(email.text, password.text);
+                                Get.snackbar('Validating data', 'loading ...');
+                                
                               }
                             },
                             child: Text("Log In")),

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 showAlertDialog(BuildContext context, String message, String heading,
       String buttonAcceptTitle, String buttonCancelTitle) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = TextButton(
       child: Text(buttonCancelTitle),
       onPressed: () {},
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = TextButton(
       child: Text(buttonAcceptTitle),
       onPressed: () {
 

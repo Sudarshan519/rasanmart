@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/orderController.dart';
+import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/models/orderModel.dart';
 import 'package:rasanmart/services/authService.dart';
 import 'package:rasanmart/services/firestoreProducts.dart';
@@ -16,6 +17,7 @@ class CheckoutPage extends GetWidget {
   final cartController = Get.find<CartController>();
   final authController = Get.find<AuthController>();
   final orderController = Get.put(OrderController());
+  final userController = Get.find<UserController>();
   final address = TextEditingController();
   final contact = TextEditingController();
   final city = TextEditingController();
@@ -316,7 +318,7 @@ class OrderForm extends StatelessWidget {
   const OrderForm({
     Key key,
     @required GlobalKey<FormState> formKey,
-    // @required this.contact,
+   
     @required this.orderController,
     @required this.authController,
     @required this.cartController,
@@ -331,14 +333,19 @@ class OrderForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   // allStorage.clearuser();
 //    print(authController.user.email);
-    final address = TextEditingController();
     final email = TextEditingController();
     final city = TextEditingController();
     final zip = TextEditingController();
     final street = TextEditingController();
     final phone = TextEditingController();
     email.text = authController.user.email;
+    city.text = userController.user.value.city;
+    zip.text = userController.user.value.zip;
+    street.text = userController.user.value.street;
+    phone.text = userController.user.value.phone;
+    print(userController.user.value.city);
     return Form(
       key: _formKey,
       child: SingleChildScrollView(

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/models/category_model.dart';
 import 'package:rasanmart/models/orderModel.dart';
@@ -63,21 +62,34 @@ class ProductFromFirebase extends GetxService {
         })
         .whenComplete(
             () => Get.snackbar('Completed', 'Order has been succesfully added'))
-        .catchError((error) => Get.snackbar('Error', error.toString()));
+        .catchError((error) {
+          print(error.toString());
+        });
   }
 
   getOrder() async {
     List<OrderModelModel> orders = [];
     var data = await orderReference
+
+        /// .orderBy('timestamp', descending: true)
         .where('id', isEqualTo: authService.auth.currentUser.uid)
-        //.orderBy('timestamp').limitToLast(10)
         .get();
+    // print(data.docs.length);
+    // for (int i = data.docs.length - 1; i != 0; i--) {
+    //   print(jsonDecode(data.docs[i].data()['cart']));
+    //   orders.add(OrderModelModel.fromJson(data.docs[i].data()));
+    // }
+    // orders.sort();
     data.docs.forEach((element) {
       print(jsonDecode(element.data()['cart']));
       orders.add(OrderModelModel.fromJson(element.data()));
     });
+    orders.sort((a,b)=>a.timeStamp.compareTo(b.timeStamp));
+    
     return orders;
   }
+
+  sortlist() {}
 
   CollectionReference orderReference =
       FirebaseFirestore.instance.collection("productorders");

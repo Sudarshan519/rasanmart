@@ -15,7 +15,8 @@ import 'package:rasanmart/views/widgets/const.dart';
 import 'package:rasanmart/views/widgets/productContent.dart';
 import '../../utils/size_util.dart';
 
-ScrollController _scrollBottomBarController = new ScrollController();
+ScrollController _scrollBottomBarController = Get.put(ScrollController());
+final productController = Get.put(ProductController());
 
 class Home extends StatefulWidget {
   final scaffoldKey;
@@ -28,7 +29,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final cartController = Get.put(CartController());
 
-  final productController = Get.put(ProductController());
   final searchController = TextEditingController();
   final networkController =
       Get.find<NetworkController>() ?? Get.put(NetworkController());
@@ -188,7 +188,21 @@ class _HomeState extends State<Home> {
             SearchField(),
             CarouselPro(),
             SizedBox(height: 10),
-            CategoriesContainer(productController: productController),
+            Row(
+              
+              children: [
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Categories',
+                textAlign: TextAlign.start,
+                style: headingStyle.copyWith(fontWeight: FontWeight.w600),
+              ),
+            ]),
+            SizedBox(height: 20),
+            Categories(),
+            //CategoriesContainer(productController: productController),
             SizedBox(height: 15),
             Row(
               children: [
@@ -196,14 +210,10 @@ class _HomeState extends State<Home> {
                   'Top Products',
                   style: AppTheme.headingStyle,
                 ),
+                SizedBox(height:20),
                 Spacer(),
                 InkWell(
-                  onTap: () {
-                    String item = 'topProducts';
-                    // Get.to(
-                    //   Categories(item: item),
-                    // );
-                  },
+                  onTap: () {},
                   child: Text(
                     'View All',
                     style: AppTheme.subheadingStyle,
@@ -277,7 +287,8 @@ class CategoriesContainer extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, ),
+            crossAxisCount: 2,
+          ),
           itemBuilder: (context, int i) {
             return InkWell(
               onTap: () {
@@ -393,7 +404,7 @@ class LatestProductContainer extends StatelessWidget {
     return Container(
         height: height < width
             ? width / 3
-            : MediaQuery.of(context).size.height * .3,
+            : MediaQuery.of(context).size.height * .2,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
@@ -426,5 +437,46 @@ class LatestProductContainer extends StatelessWidget {
                       strokeWidth: 3,
                     ));
             }));
+  }
+}
+
+class Categories extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(spacing: 30, runSpacing: 20, children: [
+      ...category
+          .map((p) => InkWell(
+            onTap: (){
+             
+                Get.to(
+                    CategoriesPage(
+                      p.categoryName,
+                    ),
+                    transition: Transition.leftToRight);
+              
+            },
+                      child: Container(
+                  height: 110,
+                  width: 90,
+                  child: Column(
+                    children: [
+                      Container(
+                        color: Colors.white,
+                        child: Image.network(p.categoryImage),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        p.categoryName,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+          ))
+          .toList()
+    ]);
   }
 }

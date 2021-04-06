@@ -11,7 +11,7 @@ class AuthService extends GetxService {
     try {
       UserCredential _authResult = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      if (_authResult.isNull) {
+      if (_authResult == null) {
         Get.snackbar("Error creating user", "message");
       } else
         Get.to(DashboardPage(), transition: Transition.downToUp);
@@ -40,10 +40,15 @@ class AuthService extends GetxService {
 
   Future<void> login(String email, String password) async {
     try {
-      UserCredential _authResult = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
       // Get.find<UserController>().user =
       //     await Database().getUser(_authResult.user.uid);
+      UserCredential authResult = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      if (authResult != null) {
+        Get.to(DashboardPage());
+      } else {
+        
+      }
     } on FirebaseAuthException catch (e) {
       showSnackbar(e.code, e.message);
     } on PlatformException catch (e) {

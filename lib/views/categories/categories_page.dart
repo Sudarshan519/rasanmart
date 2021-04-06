@@ -30,7 +30,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   @override
   void initState() {
     fetchProd();
-    // TODO: implement initState
+   
     super.initState();
   }
 

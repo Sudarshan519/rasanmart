@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'productModel.dart';
 
 class OrderModelModel {
@@ -10,7 +12,7 @@ class OrderModelModel {
   String contact;
   String email;
   String status;
-
+  Timestamp timeStamp;
   List<Product> products;
 
   OrderModelModel(
@@ -21,7 +23,8 @@ class OrderModelModel {
       this.address,
       this.contact,
       this.email,
-      this.status});
+      this.status,
+      this.timeStamp});
 
   OrderModelModel.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
@@ -35,7 +38,8 @@ class OrderModelModel {
     this.address = json['address'] ?? 'no value';
     this.city = json['city'] ?? 'novalue';
     this.phone = json['phone'] ?? 212313;
-    this.status = json['status'];
+    this.status = json['status']??'sent';
+    this.timeStamp = json['timestamp']??Timestamp.now();
   }
 
   Map<String, dynamic> toJson() {
@@ -43,8 +47,10 @@ class OrderModelModel {
     data['id'] = this.id;
     data['products'] = this.products;
     data['address'] = this.address;
+    data['contact'] = this.contact;
     data['city'] = this.city;
     data['phone'] = this.phone;
+    data['timestamp'] = Timestamp.now();
     return data;
   }
 }
