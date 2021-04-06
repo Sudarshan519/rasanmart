@@ -1,23 +1,24 @@
-define(['dart_sdk'], (function load__packages__intl__src__plural_rules_dart(dart_sdk) {
+define(['dart_sdk'], (function load__packages__intl__date_symbols_dart(dart_sdk) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
+  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  var plural_rules = Object.create(dart.library);
+  var date_symbols = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $_set = dartx._set;
   var $toString = dartx.toString;
-  var $round = dartx.round;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $indexOf = dartx.indexOf;
-  var $modulo = dartx['%'];
-  var $floor = dartx.floor;
-  var $containsKey = dartx.containsKey;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    PluralCaseL: () => (T.PluralCaseL = dart.constFn(dart.legacy(plural_rules.PluralCase)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    ListOfStringL: () => (T.ListOfStringL = dart.constFn(core.List$(T.StringL())))(),
+    ListLOfStringL: () => (T.ListLOfStringL = dart.constFn(dart.legacy(T.ListOfStringL())))(),
+    StringLToListLOfStringL: () => (T.StringLToListLOfStringL = dart.constFn(dart.fnType(T.ListLOfStringL(), [T.StringL()])))(),
+    LinkedHashMapOfStringL$StringL: () => (T.LinkedHashMapOfStringL$StringL = dart.constFn(collection.LinkedHashMap$(T.StringL(), T.StringL())))(),
     intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
-    VoidToPluralCaseL: () => (T.VoidToPluralCaseL = dart.constFn(dart.fnType(T.PluralCaseL(), [])))()
+    ListOfintL: () => (T.ListOfintL = dart.constFn(core.List$(T.intL())))(),
+    IdentityMapOfStringL$dynamic: () => (T.IdentityMapOfStringL$dynamic = dart.constFn(_js_helper.IdentityMap$(T.StringL(), dart.dynamic)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -33,523 +34,426 @@ define(['dart_sdk'], (function load__packages__intl__src__plural_rules_dart(dart
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.ZERO",
-        index: 0
-      });
+      return C[0] = dart.constList(["BC", "AD"], T.StringL());
     },
     get C1() {
-      return C[1] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.ONE",
-        index: 1
-      });
+      return C[1] = dart.constList(["Before Christ", "Anno Domini"], T.StringL());
     },
     get C2() {
-      return C[2] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.TWO",
-        index: 2
-      });
+      return C[2] = dart.constList(["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], T.StringL());
     },
     get C3() {
-      return C[3] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.FEW",
-        index: 3
-      });
+      return C[3] = dart.constList(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], T.StringL());
     },
     get C4() {
-      return C[4] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.MANY",
-        index: 4
-      });
+      return C[4] = dart.constList(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], T.StringL());
     },
     get C5() {
-      return C[5] = dart.const({
-        __proto__: plural_rules.PluralCase.prototype,
-        [_name$]: "PluralCase.OTHER",
-        index: 5
-      });
+      return C[5] = dart.constList(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], T.StringL());
     },
     get C6() {
-      return C[6] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T.PluralCaseL());
+      return C[6] = dart.constList(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], T.StringL());
     },
     get C7() {
-      return C[7] = dart.fn(plural_rules._es_rule, T.VoidToPluralCaseL());
+      return C[7] = dart.constList(["S", "M", "T", "W", "T", "F", "S"], T.StringL());
     },
     get C8() {
-      return C[8] = dart.fn(plural_rules._hi_rule, T.VoidToPluralCaseL());
+      return C[8] = dart.constList(["Q1", "Q2", "Q3", "Q4"], T.StringL());
     },
     get C9() {
-      return C[9] = dart.fn(plural_rules._ar_rule, T.VoidToPluralCaseL());
+      return C[9] = dart.constList(["1st quarter", "2nd quarter", "3rd quarter", "4th quarter"], T.StringL());
     },
     get C10() {
-      return C[10] = dart.fn(plural_rules._be_rule, T.VoidToPluralCaseL());
+      return C[10] = dart.constList(["AM", "PM"], T.StringL());
     },
     get C11() {
-      return C[11] = dart.fn(plural_rules._br_rule, T.VoidToPluralCaseL());
+      return C[11] = dart.constList(["EEEE, MMMM d, y", "MMMM d, y", "MMM d, y", "M/d/yy"], T.StringL());
     },
     get C12() {
-      return C[12] = dart.fn(plural_rules._sr_rule, T.VoidToPluralCaseL());
+      return C[12] = dart.constList(["h:mm:ss a zzzz", "h:mm:ss a z", "h:mm:ss a", "h:mm a"], T.StringL());
     },
     get C13() {
-      return C[13] = dart.fn(plural_rules._en_rule, T.VoidToPluralCaseL());
+      return C[13] = dart.constList([5, 6], T.intL());
     },
     get C14() {
-      return C[14] = dart.fn(plural_rules._cs_rule, T.VoidToPluralCaseL());
+      return C[14] = dart.constList(["{1} 'at' {0}", "{1} 'at' {0}", "{1}, {0}", "{1}, {0}"], T.StringL());
     },
     get C15() {
-      return C[15] = dart.fn(plural_rules._cy_rule, T.VoidToPluralCaseL());
-    },
-    get C16() {
-      return C[16] = dart.fn(plural_rules._da_rule, T.VoidToPluralCaseL());
-    },
-    get C17() {
-      return C[17] = dart.fn(plural_rules._fil_rule, T.VoidToPluralCaseL());
-    },
-    get C18() {
-      return C[18] = dart.fn(plural_rules._fr_rule, T.VoidToPluralCaseL());
-    },
-    get C19() {
-      return C[19] = dart.fn(plural_rules._ga_rule, T.VoidToPluralCaseL());
-    },
-    get C20() {
-      return C[20] = dart.fn(plural_rules._he_rule, T.VoidToPluralCaseL());
-    },
-    get C21() {
-      return C[21] = dart.fn(plural_rules._default_rule, T.VoidToPluralCaseL());
-    },
-    get C22() {
-      return C[22] = dart.fn(plural_rules._is_rule, T.VoidToPluralCaseL());
-    },
-    get C23() {
-      return C[23] = dart.fn(plural_rules._ak_rule, T.VoidToPluralCaseL());
-    },
-    get C24() {
-      return C[24] = dart.fn(plural_rules._lt_rule, T.VoidToPluralCaseL());
-    },
-    get C25() {
-      return C[25] = dart.fn(plural_rules._lv_rule, T.VoidToPluralCaseL());
-    },
-    get C26() {
-      return C[26] = dart.fn(plural_rules._mk_rule, T.VoidToPluralCaseL());
-    },
-    get C27() {
-      return C[27] = dart.fn(plural_rules._ro_rule, T.VoidToPluralCaseL());
-    },
-    get C28() {
-      return C[28] = dart.fn(plural_rules._mt_rule, T.VoidToPluralCaseL());
-    },
-    get C29() {
-      return C[29] = dart.fn(plural_rules._pl_rule, T.VoidToPluralCaseL());
-    },
-    get C30() {
-      return C[30] = dart.fn(plural_rules._pt_rule, T.VoidToPluralCaseL());
-    },
-    get C31() {
-      return C[31] = dart.fn(plural_rules._pt_PT_rule, T.VoidToPluralCaseL());
-    },
-    get C32() {
-      return C[32] = dart.fn(plural_rules._ru_rule, T.VoidToPluralCaseL());
-    },
-    get C33() {
-      return C[33] = dart.fn(plural_rules._si_rule, T.VoidToPluralCaseL());
-    },
-    get C34() {
-      return C[34] = dart.fn(plural_rules._sl_rule, T.VoidToPluralCaseL());
+      return C[15] = dart.constMap(T.StringL(), T.StringL(), ["d", "d", "E", "EEE", "EEEE", "EEEE", "LLL", "LLL", "LLLL", "LLLL", "M", "L", "Md", "M/d", "MEd", "EEE, M/d", "MMM", "LLL", "MMMd", "MMM d", "MMMEd", "EEE, MMM d", "MMMM", "LLLL", "MMMMd", "MMMM d", "MMMMEEEEd", "EEEE, MMMM d", "QQQ", "QQQ", "QQQQ", "QQQQ", "y", "y", "yM", "M/y", "yMd", "M/d/y", "yMEd", "EEE, M/d/y", "yMMM", "MMM y", "yMMMd", "MMM d, y", "yMMMEd", "EEE, MMM d, y", "yMMMM", "MMMM y", "yMMMMd", "MMMM d, y", "yMMMMEEEEd", "EEEE, MMMM d, y", "yQQQ", "QQQ y", "yQQQQ", "QQQQ y", "H", "HH", "Hm", "HH:mm", "Hms", "HH:mm:ss", "j", "h a", "jm", "h:mm a", "jms", "h:mm:ss a", "jmv", "h:mm a v", "jmz", "h:mm a z", "jz", "h a z", "m", "m", "ms", "mm:ss", "s", "s", "v", "v", "z", "z", "zzzz", "zzzz", "ZZZZ", "ZZZZ"]);
     }
   }, false);
-  var C = Array(35).fill(void 0);
-  var I = ["package:intl/src/plural_rules.dart"];
-  var _name$ = dart.privateName(plural_rules, "_name");
-  plural_rules.PluralCase = class PluralCase extends core.Object {
+  var C = Array(16).fill(void 0);
+  var I = ["package:intl/date_symbols.dart"];
+  var NAME$ = dart.privateName(date_symbols, "DateSymbols.NAME");
+  var ERAS$ = dart.privateName(date_symbols, "DateSymbols.ERAS");
+  var ERANAMES$ = dart.privateName(date_symbols, "DateSymbols.ERANAMES");
+  var NARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.NARROWMONTHS");
+  var STANDALONENARROWMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWMONTHS");
+  var MONTHS$ = dart.privateName(date_symbols, "DateSymbols.MONTHS");
+  var STANDALONEMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEMONTHS");
+  var SHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.SHORTMONTHS");
+  var STANDALONESHORTMONTHS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTMONTHS");
+  var WEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.WEEKDAYS");
+  var STANDALONEWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONEWEEKDAYS");
+  var SHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.SHORTWEEKDAYS");
+  var STANDALONESHORTWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONESHORTWEEKDAYS");
+  var NARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.NARROWWEEKDAYS");
+  var STANDALONENARROWWEEKDAYS$ = dart.privateName(date_symbols, "DateSymbols.STANDALONENARROWWEEKDAYS");
+  var SHORTQUARTERS$ = dart.privateName(date_symbols, "DateSymbols.SHORTQUARTERS");
+  var QUARTERS$ = dart.privateName(date_symbols, "DateSymbols.QUARTERS");
+  var AMPMS$ = dart.privateName(date_symbols, "DateSymbols.AMPMS");
+  var DATEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATEFORMATS");
+  var TIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.TIMEFORMATS");
+  var DATETIMEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.DATETIMEFORMATS");
+  var AVAILABLEFORMATS$ = dart.privateName(date_symbols, "DateSymbols.AVAILABLEFORMATS");
+  var FIRSTDAYOFWEEK$ = dart.privateName(date_symbols, "DateSymbols.FIRSTDAYOFWEEK");
+  var WEEKENDRANGE$ = dart.privateName(date_symbols, "DateSymbols.WEEKENDRANGE");
+  var FIRSTWEEKCUTOFFDAY$ = dart.privateName(date_symbols, "DateSymbols.FIRSTWEEKCUTOFFDAY");
+  var ZERODIGIT$ = dart.privateName(date_symbols, "DateSymbols.ZERODIGIT");
+  var _serializeToMap = dart.privateName(date_symbols, "_serializeToMap");
+  date_symbols.DateSymbols = class DateSymbols extends core.Object {
+    get NAME() {
+      return this[NAME$];
+    }
+    set NAME(value) {
+      this[NAME$] = value;
+    }
+    get ERAS() {
+      return this[ERAS$];
+    }
+    set ERAS(value) {
+      this[ERAS$] = value;
+    }
+    get ERANAMES() {
+      return this[ERANAMES$];
+    }
+    set ERANAMES(value) {
+      this[ERANAMES$] = value;
+    }
+    get NARROWMONTHS() {
+      return this[NARROWMONTHS$];
+    }
+    set NARROWMONTHS(value) {
+      this[NARROWMONTHS$] = value;
+    }
+    get STANDALONENARROWMONTHS() {
+      return this[STANDALONENARROWMONTHS$];
+    }
+    set STANDALONENARROWMONTHS(value) {
+      this[STANDALONENARROWMONTHS$] = value;
+    }
+    get MONTHS() {
+      return this[MONTHS$];
+    }
+    set MONTHS(value) {
+      this[MONTHS$] = value;
+    }
+    get STANDALONEMONTHS() {
+      return this[STANDALONEMONTHS$];
+    }
+    set STANDALONEMONTHS(value) {
+      this[STANDALONEMONTHS$] = value;
+    }
+    get SHORTMONTHS() {
+      return this[SHORTMONTHS$];
+    }
+    set SHORTMONTHS(value) {
+      this[SHORTMONTHS$] = value;
+    }
+    get STANDALONESHORTMONTHS() {
+      return this[STANDALONESHORTMONTHS$];
+    }
+    set STANDALONESHORTMONTHS(value) {
+      this[STANDALONESHORTMONTHS$] = value;
+    }
+    get WEEKDAYS() {
+      return this[WEEKDAYS$];
+    }
+    set WEEKDAYS(value) {
+      this[WEEKDAYS$] = value;
+    }
+    get STANDALONEWEEKDAYS() {
+      return this[STANDALONEWEEKDAYS$];
+    }
+    set STANDALONEWEEKDAYS(value) {
+      this[STANDALONEWEEKDAYS$] = value;
+    }
+    get SHORTWEEKDAYS() {
+      return this[SHORTWEEKDAYS$];
+    }
+    set SHORTWEEKDAYS(value) {
+      this[SHORTWEEKDAYS$] = value;
+    }
+    get STANDALONESHORTWEEKDAYS() {
+      return this[STANDALONESHORTWEEKDAYS$];
+    }
+    set STANDALONESHORTWEEKDAYS(value) {
+      this[STANDALONESHORTWEEKDAYS$] = value;
+    }
+    get NARROWWEEKDAYS() {
+      return this[NARROWWEEKDAYS$];
+    }
+    set NARROWWEEKDAYS(value) {
+      this[NARROWWEEKDAYS$] = value;
+    }
+    get STANDALONENARROWWEEKDAYS() {
+      return this[STANDALONENARROWWEEKDAYS$];
+    }
+    set STANDALONENARROWWEEKDAYS(value) {
+      this[STANDALONENARROWWEEKDAYS$] = value;
+    }
+    get SHORTQUARTERS() {
+      return this[SHORTQUARTERS$];
+    }
+    set SHORTQUARTERS(value) {
+      this[SHORTQUARTERS$] = value;
+    }
+    get QUARTERS() {
+      return this[QUARTERS$];
+    }
+    set QUARTERS(value) {
+      this[QUARTERS$] = value;
+    }
+    get AMPMS() {
+      return this[AMPMS$];
+    }
+    set AMPMS(value) {
+      this[AMPMS$] = value;
+    }
+    get DATEFORMATS() {
+      return this[DATEFORMATS$];
+    }
+    set DATEFORMATS(value) {
+      this[DATEFORMATS$] = value;
+    }
+    get TIMEFORMATS() {
+      return this[TIMEFORMATS$];
+    }
+    set TIMEFORMATS(value) {
+      this[TIMEFORMATS$] = value;
+    }
+    get DATETIMEFORMATS() {
+      return this[DATETIMEFORMATS$];
+    }
+    set DATETIMEFORMATS(value) {
+      this[DATETIMEFORMATS$] = value;
+    }
+    get AVAILABLEFORMATS() {
+      return this[AVAILABLEFORMATS$];
+    }
+    set AVAILABLEFORMATS(value) {
+      this[AVAILABLEFORMATS$] = value;
+    }
+    get FIRSTDAYOFWEEK() {
+      return this[FIRSTDAYOFWEEK$];
+    }
+    set FIRSTDAYOFWEEK(value) {
+      this[FIRSTDAYOFWEEK$] = value;
+    }
+    get WEEKENDRANGE() {
+      return this[WEEKENDRANGE$];
+    }
+    set WEEKENDRANGE(value) {
+      this[WEEKENDRANGE$] = value;
+    }
+    get FIRSTWEEKCUTOFFDAY() {
+      return this[FIRSTWEEKCUTOFFDAY$];
+    }
+    set FIRSTWEEKCUTOFFDAY(value) {
+      this[FIRSTWEEKCUTOFFDAY$] = value;
+    }
+    get ZERODIGIT() {
+      return this[ZERODIGIT$];
+    }
+    set ZERODIGIT(value) {
+      this[ZERODIGIT$] = value;
+    }
+    serializeToMap() {
+      let basicMap = this[_serializeToMap]();
+      if (this.ZERODIGIT != null && this.ZERODIGIT !== "") {
+        basicMap[$_set]("ZERODIGIT", this.ZERODIGIT);
+      }
+      return basicMap;
+    }
+    [_serializeToMap]() {
+      return new (T.IdentityMapOfStringL$dynamic()).from(["NAME", this.NAME, "ERAS", this.ERAS, "ERANAMES", this.ERANAMES, "NARROWMONTHS", this.NARROWMONTHS, "STANDALONENARROWMONTHS", this.STANDALONENARROWMONTHS, "MONTHS", this.MONTHS, "STANDALONEMONTHS", this.STANDALONEMONTHS, "SHORTMONTHS", this.SHORTMONTHS, "STANDALONESHORTMONTHS", this.STANDALONESHORTMONTHS, "WEEKDAYS", this.WEEKDAYS, "STANDALONEWEEKDAYS", this.STANDALONEWEEKDAYS, "SHORTWEEKDAYS", this.SHORTWEEKDAYS, "STANDALONESHORTWEEKDAYS", this.STANDALONESHORTWEEKDAYS, "NARROWWEEKDAYS", this.NARROWWEEKDAYS, "STANDALONENARROWWEEKDAYS", this.STANDALONENARROWWEEKDAYS, "SHORTQUARTERS", this.SHORTQUARTERS, "QUARTERS", this.QUARTERS, "AMPMS", this.AMPMS, "DATEFORMATS", this.DATEFORMATS, "TIMEFORMATS", this.TIMEFORMATS, "AVAILABLEFORMATS", this.AVAILABLEFORMATS, "FIRSTDAYOFWEEK", this.FIRSTDAYOFWEEK, "WEEKENDRANGE", this.WEEKENDRANGE, "FIRSTWEEKCUTOFFDAY", this.FIRSTWEEKCUTOFFDAY, "DATETIMEFORMATS", this.DATETIMEFORMATS]);
+    }
     toString() {
-      return this[_name$];
+      return this.NAME;
     }
   };
-  (plural_rules.PluralCase.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (date_symbols.DateSymbols.new = function(opts) {
+    let NAME = opts && 'NAME' in opts ? opts.NAME : null;
+    let ERAS = opts && 'ERAS' in opts ? opts.ERAS : null;
+    let ERANAMES = opts && 'ERANAMES' in opts ? opts.ERANAMES : null;
+    let NARROWMONTHS = opts && 'NARROWMONTHS' in opts ? opts.NARROWMONTHS : null;
+    let STANDALONENARROWMONTHS = opts && 'STANDALONENARROWMONTHS' in opts ? opts.STANDALONENARROWMONTHS : null;
+    let MONTHS = opts && 'MONTHS' in opts ? opts.MONTHS : null;
+    let STANDALONEMONTHS = opts && 'STANDALONEMONTHS' in opts ? opts.STANDALONEMONTHS : null;
+    let SHORTMONTHS = opts && 'SHORTMONTHS' in opts ? opts.SHORTMONTHS : null;
+    let STANDALONESHORTMONTHS = opts && 'STANDALONESHORTMONTHS' in opts ? opts.STANDALONESHORTMONTHS : null;
+    let WEEKDAYS = opts && 'WEEKDAYS' in opts ? opts.WEEKDAYS : null;
+    let STANDALONEWEEKDAYS = opts && 'STANDALONEWEEKDAYS' in opts ? opts.STANDALONEWEEKDAYS : null;
+    let SHORTWEEKDAYS = opts && 'SHORTWEEKDAYS' in opts ? opts.SHORTWEEKDAYS : null;
+    let STANDALONESHORTWEEKDAYS = opts && 'STANDALONESHORTWEEKDAYS' in opts ? opts.STANDALONESHORTWEEKDAYS : null;
+    let NARROWWEEKDAYS = opts && 'NARROWWEEKDAYS' in opts ? opts.NARROWWEEKDAYS : null;
+    let STANDALONENARROWWEEKDAYS = opts && 'STANDALONENARROWWEEKDAYS' in opts ? opts.STANDALONENARROWWEEKDAYS : null;
+    let SHORTQUARTERS = opts && 'SHORTQUARTERS' in opts ? opts.SHORTQUARTERS : null;
+    let QUARTERS = opts && 'QUARTERS' in opts ? opts.QUARTERS : null;
+    let AMPMS = opts && 'AMPMS' in opts ? opts.AMPMS : null;
+    let ZERODIGIT = opts && 'ZERODIGIT' in opts ? opts.ZERODIGIT : null;
+    let DATEFORMATS = opts && 'DATEFORMATS' in opts ? opts.DATEFORMATS : null;
+    let TIMEFORMATS = opts && 'TIMEFORMATS' in opts ? opts.TIMEFORMATS : null;
+    let AVAILABLEFORMATS = opts && 'AVAILABLEFORMATS' in opts ? opts.AVAILABLEFORMATS : null;
+    let FIRSTDAYOFWEEK = opts && 'FIRSTDAYOFWEEK' in opts ? opts.FIRSTDAYOFWEEK : null;
+    let WEEKENDRANGE = opts && 'WEEKENDRANGE' in opts ? opts.WEEKENDRANGE : null;
+    let FIRSTWEEKCUTOFFDAY = opts && 'FIRSTWEEKCUTOFFDAY' in opts ? opts.FIRSTWEEKCUTOFFDAY : null;
+    let DATETIMEFORMATS = opts && 'DATETIMEFORMATS' in opts ? opts.DATETIMEFORMATS : null;
+    this[NAME$] = NAME;
+    this[ERAS$] = ERAS;
+    this[ERANAMES$] = ERANAMES;
+    this[NARROWMONTHS$] = NARROWMONTHS;
+    this[STANDALONENARROWMONTHS$] = STANDALONENARROWMONTHS;
+    this[MONTHS$] = MONTHS;
+    this[STANDALONEMONTHS$] = STANDALONEMONTHS;
+    this[SHORTMONTHS$] = SHORTMONTHS;
+    this[STANDALONESHORTMONTHS$] = STANDALONESHORTMONTHS;
+    this[WEEKDAYS$] = WEEKDAYS;
+    this[STANDALONEWEEKDAYS$] = STANDALONEWEEKDAYS;
+    this[SHORTWEEKDAYS$] = SHORTWEEKDAYS;
+    this[STANDALONESHORTWEEKDAYS$] = STANDALONESHORTWEEKDAYS;
+    this[NARROWWEEKDAYS$] = NARROWWEEKDAYS;
+    this[STANDALONENARROWWEEKDAYS$] = STANDALONENARROWWEEKDAYS;
+    this[SHORTQUARTERS$] = SHORTQUARTERS;
+    this[QUARTERS$] = QUARTERS;
+    this[AMPMS$] = AMPMS;
+    this[ZERODIGIT$] = ZERODIGIT;
+    this[DATEFORMATS$] = DATEFORMATS;
+    this[TIMEFORMATS$] = TIMEFORMATS;
+    this[AVAILABLEFORMATS$] = AVAILABLEFORMATS;
+    this[FIRSTDAYOFWEEK$] = FIRSTDAYOFWEEK;
+    this[WEEKENDRANGE$] = WEEKENDRANGE;
+    this[FIRSTWEEKCUTOFFDAY$] = FIRSTWEEKCUTOFFDAY;
+    this[DATETIMEFORMATS$] = DATETIMEFORMATS;
     ;
-  }).prototype = plural_rules.PluralCase.prototype;
-  dart.addTypeTests(plural_rules.PluralCase);
-  dart.addTypeCaches(plural_rules.PluralCase);
-  dart.setMethodSignature(plural_rules.PluralCase, () => ({
-    __proto__: dart.getMethods(plural_rules.PluralCase.__proto__),
+  }).prototype = date_symbols.DateSymbols.prototype;
+  (date_symbols.DateSymbols.deserializeFromMap = function(map) {
+    let t0;
+    this[DATETIMEFORMATS$] = null;
+    this[FIRSTWEEKCUTOFFDAY$] = null;
+    this[WEEKENDRANGE$] = null;
+    this[FIRSTDAYOFWEEK$] = null;
+    this[AVAILABLEFORMATS$] = null;
+    this[TIMEFORMATS$] = null;
+    this[DATEFORMATS$] = null;
+    this[ZERODIGIT$] = null;
+    this[AMPMS$] = null;
+    this[QUARTERS$] = null;
+    this[SHORTQUARTERS$] = null;
+    this[STANDALONENARROWWEEKDAYS$] = null;
+    this[NARROWWEEKDAYS$] = null;
+    this[STANDALONESHORTWEEKDAYS$] = null;
+    this[SHORTWEEKDAYS$] = null;
+    this[STANDALONEWEEKDAYS$] = null;
+    this[WEEKDAYS$] = null;
+    this[STANDALONESHORTMONTHS$] = null;
+    this[SHORTMONTHS$] = null;
+    this[STANDALONEMONTHS$] = null;
+    this[MONTHS$] = null;
+    this[STANDALONENARROWMONTHS$] = null;
+    this[NARROWMONTHS$] = null;
+    this[ERANAMES$] = null;
+    this[ERAS$] = null;
+    this[NAME$] = null;
+    function _getStringList(name) {
+      return T.ListOfStringL().from(core.Iterable.as(map[$_get](name)));
+    }
+    dart.fn(_getStringList, T.StringLToListLOfStringL());
+    this.NAME = T.StringL().as(map[$_get]("NAME"));
+    this.ERAS = _getStringList("ERAS");
+    this.ERANAMES = _getStringList("ERANAMES");
+    this.NARROWMONTHS = _getStringList("NARROWMONTHS");
+    this.STANDALONENARROWMONTHS = _getStringList("STANDALONENARROWMONTHS");
+    this.MONTHS = _getStringList("MONTHS");
+    this.STANDALONEMONTHS = _getStringList("STANDALONEMONTHS");
+    this.SHORTMONTHS = _getStringList("SHORTMONTHS");
+    this.STANDALONESHORTMONTHS = _getStringList("STANDALONESHORTMONTHS");
+    this.WEEKDAYS = _getStringList("WEEKDAYS");
+    this.STANDALONEWEEKDAYS = _getStringList("STANDALONEWEEKDAYS");
+    this.SHORTWEEKDAYS = _getStringList("SHORTWEEKDAYS");
+    this.STANDALONESHORTWEEKDAYS = _getStringList("STANDALONESHORTWEEKDAYS");
+    this.NARROWWEEKDAYS = _getStringList("NARROWWEEKDAYS");
+    this.STANDALONENARROWWEEKDAYS = _getStringList("STANDALONENARROWWEEKDAYS");
+    this.SHORTQUARTERS = _getStringList("SHORTQUARTERS");
+    this.QUARTERS = _getStringList("QUARTERS");
+    this.AMPMS = _getStringList("AMPMS");
+    this.ZERODIGIT = T.StringL().as(map[$_get]("ZERODIGIT"));
+    this.DATEFORMATS = _getStringList("DATEFORMATS");
+    this.TIMEFORMATS = _getStringList("TIMEFORMATS");
+    this.AVAILABLEFORMATS = T.LinkedHashMapOfStringL$StringL().from(core.Map.as((t0 = map[$_get]("AVAILABLEFORMATS"), t0 == null ? new _js_helper.LinkedMap.new() : t0)));
+    this.FIRSTDAYOFWEEK = T.intL().as(map[$_get]("FIRSTDAYOFWEEK"));
+    this.WEEKENDRANGE = T.ListOfintL().from(core.Iterable.as(map[$_get]("WEEKENDRANGE")));
+    this.FIRSTWEEKCUTOFFDAY = T.intL().as(map[$_get]("FIRSTWEEKCUTOFFDAY"));
+    this.DATETIMEFORMATS = _getStringList("DATETIMEFORMATS");
+  }).prototype = date_symbols.DateSymbols.prototype;
+  dart.addTypeTests(date_symbols.DateSymbols);
+  dart.addTypeCaches(date_symbols.DateSymbols);
+  dart.setMethodSignature(date_symbols.DateSymbols, () => ({
+    __proto__: dart.getMethods(date_symbols.DateSymbols.__proto__),
+    serializeToMap: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), []),
+    [_serializeToMap]: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), []),
     toString: dart.fnType(dart.legacy(core.String), []),
     [$toString]: dart.fnType(dart.legacy(core.String), [])
   }));
-  dart.setLibraryUri(plural_rules.PluralCase, I[0]);
-  dart.setFieldSignature(plural_rules.PluralCase, () => ({
-    __proto__: dart.getFields(plural_rules.PluralCase.__proto__),
-    index: dart.finalFieldType(dart.legacy(core.int)),
-    [_name$]: dart.finalFieldType(dart.legacy(core.String))
+  dart.setLibraryUri(date_symbols.DateSymbols, I[0]);
+  dart.setFieldSignature(date_symbols.DateSymbols, () => ({
+    __proto__: dart.getFields(date_symbols.DateSymbols.__proto__),
+    NAME: dart.fieldType(dart.legacy(core.String)),
+    ERAS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    ERANAMES: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    NARROWMONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONENARROWMONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    MONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONEMONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    SHORTMONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONESHORTMONTHS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    WEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONEWEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    SHORTWEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONESHORTWEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    NARROWWEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    STANDALONENARROWWEEKDAYS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    SHORTQUARTERS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    QUARTERS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    AMPMS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    DATEFORMATS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    TIMEFORMATS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    DATETIMEFORMATS: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    AVAILABLEFORMATS: dart.fieldType(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String)))),
+    FIRSTDAYOFWEEK: dart.fieldType(dart.legacy(core.int)),
+    WEEKENDRANGE: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.int)))),
+    FIRSTWEEKCUTOFFDAY: dart.fieldType(dart.legacy(core.int)),
+    ZERODIGIT: dart.fieldType(dart.legacy(core.String))
   }));
-  dart.defineExtensionMethods(plural_rules.PluralCase, ['toString']);
-  plural_rules.PluralCase.ZERO = C[0] || CT.C0;
-  plural_rules.PluralCase.ONE = C[1] || CT.C1;
-  plural_rules.PluralCase.TWO = C[2] || CT.C2;
-  plural_rules.PluralCase.FEW = C[3] || CT.C3;
-  plural_rules.PluralCase.MANY = C[4] || CT.C4;
-  plural_rules.PluralCase.OTHER = C[5] || CT.C5;
-  plural_rules.PluralCase.values = C[6] || CT.C6;
-  plural_rules._default_rule = function _default_rule() {
-    return plural_rules.OTHER;
-  };
-  plural_rules.startRuleEvaluation = function startRuleEvaluation(howMany, precision = 0) {
-    plural_rules._n = howMany;
-    plural_rules._precision = precision;
-    plural_rules._i = plural_rules._n[$round]();
-    plural_rules._updateVF(plural_rules._n, plural_rules._precision);
-    plural_rules._updateWT(plural_rules._f, plural_rules._v);
-  };
-  plural_rules._decimals = function _decimals(n, precision) {
-    let str = plural_rules._precision == null ? dart.str(n) : n[$toStringAsFixed](precision);
-    let result = str[$indexOf](".");
-    return result === -1 ? 0 : str.length - result - 1;
-  };
-  plural_rules._updateVF = function _updateVF(n, precision) {
-    let t0;
-    let defaultDigits = 3;
-    plural_rules._v = (t0 = precision, t0 == null ? math.min(T.intL(), plural_rules._decimals(n, precision), defaultDigits) : t0);
-    let base = dart.asNullableInt(math.pow(10, plural_rules._v));
-    plural_rules._f = (dart.notNull(n) * base)[$floor]()[$modulo](base);
-  };
-  plural_rules._updateWT = function _updateWT(v, f) {
-    if (f === 0) {
-      plural_rules._t = 0;
-      return;
-    }
-    while (f[$modulo](10) === 0) {
-      f = (dart.notNull(f) / 10)[$floor]();
-      v = dart.notNull(v) - 1;
-    }
-    plural_rules._t = f;
-  };
-  plural_rules._fil_rule = function _fil_rule() {
-    if (plural_rules._v === 0 && (plural_rules._i === 1 || plural_rules._i === 2 || plural_rules._i === 3) || plural_rules._v === 0 && plural_rules._i[$modulo](10) !== 4 && plural_rules._i[$modulo](10) !== 6 && plural_rules._i[$modulo](10) !== 9 || plural_rules._v !== 0 && plural_rules._f[$modulo](10) !== 4 && plural_rules._f[$modulo](10) !== 6 && plural_rules._f[$modulo](10) !== 9) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._pt_PT_rule = function _pt_PT_rule() {
-    if (plural_rules._n === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._br_rule = function _br_rule() {
-    if (plural_rules._n[$modulo](10) === 1 && plural_rules._n[$modulo](100) !== 11 && plural_rules._n[$modulo](100) !== 71 && plural_rules._n[$modulo](100) !== 91) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n[$modulo](10) === 2 && plural_rules._n[$modulo](100) !== 12 && plural_rules._n[$modulo](100) !== 72 && plural_rules._n[$modulo](100) !== 92) {
-      return plural_rules.TWO;
-    }
-    if ((plural_rules._n[$modulo](10) >= 3 && plural_rules._n[$modulo](10) <= 4 || plural_rules._n[$modulo](10) === 9) && (plural_rules._n[$modulo](100) < 10 || plural_rules._n[$modulo](100) > 19) && (plural_rules._n[$modulo](100) < 70 || plural_rules._n[$modulo](100) > 79) && (plural_rules._n[$modulo](100) < 90 || plural_rules._n[$modulo](100) > 99)) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._n !== 0 && plural_rules._n[$modulo](1000000) === 0) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._sr_rule = function _sr_rule() {
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) === 1 && plural_rules._i[$modulo](100) !== 11 || plural_rules._f[$modulo](10) === 1 && plural_rules._f[$modulo](100) !== 11) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) >= 2 && plural_rules._i[$modulo](10) <= 4 && (plural_rules._i[$modulo](100) < 12 || plural_rules._i[$modulo](100) > 14) || plural_rules._f[$modulo](10) >= 2 && plural_rules._f[$modulo](10) <= 4 && (plural_rules._f[$modulo](100) < 12 || plural_rules._f[$modulo](100) > 14)) {
-      return plural_rules.FEW;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._ro_rule = function _ro_rule() {
-    if (plural_rules._i === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._v !== 0 || plural_rules._n === 0 || plural_rules._n !== 1 && plural_rules._n[$modulo](100) >= 1 && plural_rules._n[$modulo](100) <= 19) {
-      return plural_rules.FEW;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._hi_rule = function _hi_rule() {
-    if (plural_rules._i === 0 || plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._fr_rule = function _fr_rule() {
-    if (plural_rules._i === 0 || plural_rules._i === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._cs_rule = function _cs_rule() {
-    if (plural_rules._i === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    if (dart.notNull(plural_rules._i) >= 2 && dart.notNull(plural_rules._i) <= 4 && plural_rules._v === 0) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._v !== 0) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._pl_rule = function _pl_rule() {
-    if (plural_rules._i === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) >= 2 && plural_rules._i[$modulo](10) <= 4 && (plural_rules._i[$modulo](100) < 12 || plural_rules._i[$modulo](100) > 14)) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._v === 0 && plural_rules._i !== 1 && plural_rules._i[$modulo](10) >= 0 && plural_rules._i[$modulo](10) <= 1 || plural_rules._v === 0 && plural_rules._i[$modulo](10) >= 5 && plural_rules._i[$modulo](10) <= 9 || plural_rules._v === 0 && plural_rules._i[$modulo](100) >= 12 && plural_rules._i[$modulo](100) <= 14) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._lv_rule = function _lv_rule() {
-    if (plural_rules._n[$modulo](10) === 0 || plural_rules._n[$modulo](100) >= 11 && plural_rules._n[$modulo](100) <= 19 || plural_rules._v === 2 && plural_rules._f[$modulo](100) >= 11 && plural_rules._f[$modulo](100) <= 19) {
-      return plural_rules.ZERO;
-    }
-    if (plural_rules._n[$modulo](10) === 1 && plural_rules._n[$modulo](100) !== 11 || plural_rules._v === 2 && plural_rules._f[$modulo](10) === 1 && plural_rules._f[$modulo](100) !== 11 || plural_rules._v !== 2 && plural_rules._f[$modulo](10) === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._he_rule = function _he_rule() {
-    if (plural_rules._i === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._i === 2 && plural_rules._v === 0) {
-      return plural_rules.TWO;
-    }
-    if (plural_rules._v === 0 && (dart.notNull(plural_rules._n) < 0 || dart.notNull(plural_rules._n) > 10) && plural_rules._n[$modulo](10) === 0) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._mt_rule = function _mt_rule() {
-    if (plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n === 0 || plural_rules._n[$modulo](100) >= 2 && plural_rules._n[$modulo](100) <= 10) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._n[$modulo](100) >= 11 && plural_rules._n[$modulo](100) <= 19) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._si_rule = function _si_rule() {
-    if (plural_rules._n === 0 || plural_rules._n === 1 || plural_rules._i === 0 && plural_rules._f === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._cy_rule = function _cy_rule() {
-    if (plural_rules._n === 0) {
-      return plural_rules.ZERO;
-    }
-    if (plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n === 2) {
-      return plural_rules.TWO;
-    }
-    if (plural_rules._n === 3) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._n === 6) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._da_rule = function _da_rule() {
-    if (plural_rules._n === 1 || plural_rules._t !== 0 && (plural_rules._i === 0 || plural_rules._i === 1)) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._ru_rule = function _ru_rule() {
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) === 1 && plural_rules._i[$modulo](100) !== 11) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) >= 2 && plural_rules._i[$modulo](10) <= 4 && (plural_rules._i[$modulo](100) < 12 || plural_rules._i[$modulo](100) > 14)) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) === 0 || plural_rules._v === 0 && plural_rules._i[$modulo](10) >= 5 && plural_rules._i[$modulo](10) <= 9 || plural_rules._v === 0 && plural_rules._i[$modulo](100) >= 11 && plural_rules._i[$modulo](100) <= 14) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._be_rule = function _be_rule() {
-    if (plural_rules._n[$modulo](10) === 1 && plural_rules._n[$modulo](100) !== 11) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n[$modulo](10) >= 2 && plural_rules._n[$modulo](10) <= 4 && (plural_rules._n[$modulo](100) < 12 || plural_rules._n[$modulo](100) > 14)) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._n[$modulo](10) === 0 || plural_rules._n[$modulo](10) >= 5 && plural_rules._n[$modulo](10) <= 9 || plural_rules._n[$modulo](100) >= 11 && plural_rules._n[$modulo](100) <= 14) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._mk_rule = function _mk_rule() {
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](10) === 1 || plural_rules._f[$modulo](10) === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._ga_rule = function _ga_rule() {
-    if (plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n === 2) {
-      return plural_rules.TWO;
-    }
-    if (dart.notNull(plural_rules._n) >= 3 && dart.notNull(plural_rules._n) <= 6) {
-      return plural_rules.FEW;
-    }
-    if (dart.notNull(plural_rules._n) >= 7 && dart.notNull(plural_rules._n) <= 10) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._pt_rule = function _pt_rule() {
-    if (dart.notNull(plural_rules._n) >= 0 && dart.notNull(plural_rules._n) <= 2 && plural_rules._n !== 2) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._es_rule = function _es_rule() {
-    if (plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._is_rule = function _is_rule() {
-    if (plural_rules._t === 0 && plural_rules._i[$modulo](10) === 1 && plural_rules._i[$modulo](100) !== 11 || plural_rules._t !== 0) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._ar_rule = function _ar_rule() {
-    if (plural_rules._n === 0) {
-      return plural_rules.ZERO;
-    }
-    if (plural_rules._n === 1) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n === 2) {
-      return plural_rules.TWO;
-    }
-    if (plural_rules._n[$modulo](100) >= 3 && plural_rules._n[$modulo](100) <= 10) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._n[$modulo](100) >= 11 && plural_rules._n[$modulo](100) <= 99) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._sl_rule = function _sl_rule() {
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](100) === 1) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](100) === 2) {
-      return plural_rules.TWO;
-    }
-    if (plural_rules._v === 0 && plural_rules._i[$modulo](100) >= 3 && plural_rules._i[$modulo](100) <= 4 || plural_rules._v !== 0) {
-      return plural_rules.FEW;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._lt_rule = function _lt_rule() {
-    if (plural_rules._n[$modulo](10) === 1 && (plural_rules._n[$modulo](100) < 11 || plural_rules._n[$modulo](100) > 19)) {
-      return plural_rules.ONE;
-    }
-    if (plural_rules._n[$modulo](10) >= 2 && plural_rules._n[$modulo](10) <= 9 && (plural_rules._n[$modulo](100) < 11 || plural_rules._n[$modulo](100) > 19)) {
-      return plural_rules.FEW;
-    }
-    if (plural_rules._f !== 0) {
-      return plural_rules.MANY;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._en_rule = function _en_rule() {
-    if (plural_rules._i === 1 && plural_rules._v === 0) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules._ak_rule = function _ak_rule() {
-    if (dart.notNull(plural_rules._n) >= 0 && dart.notNull(plural_rules._n) <= 1) {
-      return plural_rules.ONE;
-    }
-    return plural_rules.OTHER;
-  };
-  plural_rules.localeHasPluralRules = function localeHasPluralRules(locale) {
-    return plural_rules.pluralRules[$containsKey](locale);
-  };
-  dart.copyProperties(plural_rules, {
-    get ZERO() {
-      return plural_rules.PluralCase.ZERO;
+  dart.defineExtensionMethods(date_symbols.DateSymbols, ['toString']);
+  dart.defineLazy(date_symbols, {
+    /*date_symbols.en_USSymbols*/get en_USSymbols() {
+      return new date_symbols.DateSymbols.new({NAME: "en_US", ERAS: C[0] || CT.C0, ERANAMES: C[1] || CT.C1, NARROWMONTHS: C[2] || CT.C2, STANDALONENARROWMONTHS: C[2] || CT.C2, MONTHS: C[3] || CT.C3, STANDALONEMONTHS: C[3] || CT.C3, SHORTMONTHS: C[4] || CT.C4, STANDALONESHORTMONTHS: C[4] || CT.C4, WEEKDAYS: C[5] || CT.C5, STANDALONEWEEKDAYS: C[5] || CT.C5, SHORTWEEKDAYS: C[6] || CT.C6, STANDALONESHORTWEEKDAYS: C[6] || CT.C6, NARROWWEEKDAYS: C[7] || CT.C7, STANDALONENARROWWEEKDAYS: C[7] || CT.C7, SHORTQUARTERS: C[8] || CT.C8, QUARTERS: C[9] || CT.C9, AMPMS: C[10] || CT.C10, DATEFORMATS: C[11] || CT.C11, TIMEFORMATS: C[12] || CT.C12, FIRSTDAYOFWEEK: 6, WEEKENDRANGE: C[13] || CT.C13, FIRSTWEEKCUTOFFDAY: 5, DATETIMEFORMATS: C[14] || CT.C14});
     },
-    get ONE() {
-      return plural_rules.PluralCase.ONE;
+    set en_USSymbols(_) {},
+    /*date_symbols.en_USPatterns*/get en_USPatterns() {
+      return C[15] || CT.C15;
     },
-    get TWO() {
-      return plural_rules.PluralCase.TWO;
-    },
-    get FEW() {
-      return plural_rules.PluralCase.FEW;
-    },
-    get MANY() {
-      return plural_rules.PluralCase.MANY;
-    },
-    get OTHER() {
-      return plural_rules.PluralCase.OTHER;
-    }
-  });
-  dart.defineLazy(plural_rules, {
-    /*plural_rules._n*/get _n() {
-      return null;
-    },
-    set _n(_) {},
-    /*plural_rules._i*/get _i() {
-      return null;
-    },
-    set _i(_) {},
-    /*plural_rules._precision*/get _precision() {
-      return null;
-    },
-    set _precision(_) {},
-    /*plural_rules._v*/get _v() {
-      return 0;
-    },
-    set _v(_) {},
-    /*plural_rules._f*/get _f() {
-      return 0;
-    },
-    set _f(_) {},
-    /*plural_rules._t*/get _t() {
-      return 0;
-    },
-    set _t(_) {},
-    /*plural_rules.pluralRules*/get pluralRules() {
-      return new _js_helper.LinkedMap.from(["af", C[7] || CT.C7, "am", C[8] || CT.C8, "ar", C[9] || CT.C9, "az", C[7] || CT.C7, "be", C[10] || CT.C10, "bg", C[7] || CT.C7, "bn", C[8] || CT.C8, "br", C[11] || CT.C11, "bs", C[12] || CT.C12, "ca", C[13] || CT.C13, "chr", C[7] || CT.C7, "cs", C[14] || CT.C14, "cy", C[15] || CT.C15, "da", C[16] || CT.C16, "de", C[13] || CT.C13, "de_AT", C[13] || CT.C13, "de_CH", C[13] || CT.C13, "el", C[7] || CT.C7, "en", C[13] || CT.C13, "en_AU", C[13] || CT.C13, "en_CA", C[13] || CT.C13, "en_GB", C[13] || CT.C13, "en_IE", C[13] || CT.C13, "en_IN", C[13] || CT.C13, "en_SG", C[13] || CT.C13, "en_US", C[13] || CT.C13, "en_ZA", C[13] || CT.C13, "es", C[7] || CT.C7, "es_419", C[7] || CT.C7, "es_ES", C[7] || CT.C7, "es_MX", C[7] || CT.C7, "es_US", C[7] || CT.C7, "et", C[13] || CT.C13, "eu", C[7] || CT.C7, "fa", C[8] || CT.C8, "fi", C[13] || CT.C13, "fil", C[17] || CT.C17, "fr", C[18] || CT.C18, "fr_CA", C[18] || CT.C18, "ga", C[19] || CT.C19, "gl", C[13] || CT.C13, "gsw", C[7] || CT.C7, "gu", C[8] || CT.C8, "haw", C[7] || CT.C7, "he", C[20] || CT.C20, "hi", C[8] || CT.C8, "hr", C[12] || CT.C12, "hu", C[7] || CT.C7, "hy", C[18] || CT.C18, "id", C[21] || CT.C21, "in", C[21] || CT.C21, "is", C[22] || CT.C22, "it", C[13] || CT.C13, "iw", C[20] || CT.C20, "ja", C[21] || CT.C21, "ka", C[7] || CT.C7, "kk", C[7] || CT.C7, "km", C[21] || CT.C21, "kn", C[8] || CT.C8, "ko", C[21] || CT.C21, "ky", C[7] || CT.C7, "ln", C[23] || CT.C23, "lo", C[21] || CT.C21, "lt", C[24] || CT.C24, "lv", C[25] || CT.C25, "mk", C[26] || CT.C26, "ml", C[7] || CT.C7, "mn", C[7] || CT.C7, "mo", C[27] || CT.C27, "mr", C[8] || CT.C8, "ms", C[21] || CT.C21, "mt", C[28] || CT.C28, "my", C[21] || CT.C21, "nb", C[7] || CT.C7, "ne", C[7] || CT.C7, "nl", C[13] || CT.C13, "no", C[7] || CT.C7, "no_NO", C[7] || CT.C7, "or", C[7] || CT.C7, "pa", C[23] || CT.C23, "pl", C[29] || CT.C29, "pt", C[30] || CT.C30, "pt_BR", C[30] || CT.C30, "pt_PT", C[31] || CT.C31, "ro", C[27] || CT.C27, "ru", C[32] || CT.C32, "sh", C[12] || CT.C12, "si", C[33] || CT.C33, "sk", C[14] || CT.C14, "sl", C[34] || CT.C34, "sq", C[7] || CT.C7, "sr", C[12] || CT.C12, "sr_Latn", C[12] || CT.C12, "sv", C[13] || CT.C13, "sw", C[13] || CT.C13, "ta", C[7] || CT.C7, "te", C[7] || CT.C7, "th", C[21] || CT.C21, "tl", C[17] || CT.C17, "tr", C[7] || CT.C7, "uk", C[32] || CT.C32, "ur", C[13] || CT.C13, "uz", C[7] || CT.C7, "vi", C[21] || CT.C21, "zh", C[21] || CT.C21, "zh_CN", C[21] || CT.C21, "zh_HK", C[21] || CT.C21, "zh_TW", C[21] || CT.C21, "zu", C[8] || CT.C8, "default", C[21] || CT.C21]);
-    }
+    set en_USPatterns(_) {}
   }, true);
-  dart.trackLibraries("packages/intl/src/plural_rules.dart", {
-    "package:intl/src/plural_rules.dart": plural_rules
+  dart.trackLibraries("packages/intl/date_symbols.dart", {
+    "package:intl/date_symbols.dart": date_symbols
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["plural_rules.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../C:/packages/intl/src/plural_rules.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["date_symbols.dart"],"names":[],"mappings":"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","file":"../../../../../../../../C:/packages/intl/date_symbols.dart.lib.js"}');
   // Exports:
   return {
-    src__plural_rules: plural_rules
+    date_symbols: date_symbols
   };
 }));
 
-//# sourceMappingURL=plural_rules.dart.lib.js.map
+//# sourceMappingURL=date_symbols.dart.lib.js.map

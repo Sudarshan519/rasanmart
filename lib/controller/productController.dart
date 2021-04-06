@@ -16,7 +16,6 @@ class ProductController extends GetxController {
     products.forEach((element) {
       products.forEach((element) {
         if (element.category.toLowerCase().contains(category.toLowerCase())) {
-     
           print(element.productName);
         }
       });
@@ -27,7 +26,7 @@ class ProductController extends GetxController {
   searchItems(String query) {
     List<Product> prod = [];
     products.forEach((element) {
-      if (element.totalFavourite>100) {
+      if (element.totalFavourite > 100) {
         prod.add(element);
       }
     });
@@ -35,17 +34,17 @@ class ProductController extends GetxController {
     return prod;
   }
 
-
   topItems() {
     List<Product> prod = [];
     products.forEach((element) {
-      if (element.totalFavourite>100) {
+      if (element.totalFavourite > 100) {
         prod.add(element);
       }
     });
-  //  print(prod.toString());
+    //  print(prod.toString());
     return prod;
   }
+
   void fetchProducts() async {
     isloading.toggle();
     List<Product> productlist = await ProductFromFirebase().fetchProduct();
@@ -54,5 +53,4 @@ class ProductController extends GetxController {
   }
 }
 
-
-final productController=Get.put(ProductController());
+final productController = Get.find<ProductController>();

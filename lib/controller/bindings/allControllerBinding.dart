@@ -14,6 +14,6 @@ class AllControllerBinding implements Bindings {
    Get.lazyPut(() => AuthController());
    Get.lazyPut(() => NetworkController());
    Get.lazyPut(()=>LanguageController());
-   Get.lazyPut(() => OrderController());
+  // Get.lazyPut(() => OrderController());
   }
 }

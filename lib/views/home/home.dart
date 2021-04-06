@@ -273,11 +273,11 @@ class CategoriesContainer extends StatelessWidget {
             : MediaQuery.of(context).size.height * .34,
         child: GridView.builder(
           //controller: _scrollBottomBarController,
-          padding: EdgeInsets.only(left: 10),
-          scrollDirection: Axis.vertical,
+          //padding: EdgeInsets.only(left: 10),
+          scrollDirection: Axis.horizontal,
           itemCount: category.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, mainAxisSpacing: 6, crossAxisSpacing: 5),
+              crossAxisCount: 2, ),
           itemBuilder: (context, int i) {
             return InkWell(
               onTap: () {

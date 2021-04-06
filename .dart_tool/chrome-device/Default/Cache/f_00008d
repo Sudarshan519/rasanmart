@@ -1,27 +1,21 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/cupertino/route.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__page_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__cupertino__route$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
+define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__flutter__src__material__material_state_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__borders$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const route = packages__flutter__src__cupertino__route$46dart.src__cupertino__route;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  var page = Object.create(dart.library);
+  const mouse_cursor = packages__flutter__src__rendering__layer$46dart.src__rendering__mouse_cursor;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  var material_state = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
-  var T$ = {
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+  var T = {
+    MaterialStateL: () => (T.MaterialStateL = dart.constFn(dart.legacy(material_state.MaterialState)))(),
+    LinkedHashSetOfMaterialState: () => (T.LinkedHashSetOfMaterialState = dart.constFn(collection.LinkedHashSet$(material_state.MaterialState)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T$);
+  }, T);
   var S = {
     _: () => S
   };
@@ -34,315 +28,389 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.hovered",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.focused",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.pressed",
+        index: 2
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scopesRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 118,
-        [_Location_file]: null
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.dragged",
+        index: 3
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "explicitChildNodes",
-        [_Location_column]: 7,
-        [_Location_line]: 119,
-        [_Location_file]: null
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.selected",
+        index: 4
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 120,
-        [_Location_file]: null
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.disabled",
+        index: 5
       });
     },
-    get C2() {
-      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T$._LocationL());
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: material_state.MaterialState.prototype,
+        [_name$]: "MaterialState.error",
+        index: 6
+      });
     },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[2] || CT.C2,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 117,
-        [_Location_file]: "file:///D:/tutorial/flutter/packages/flutter/lib/src/material/page.dart"
+    get C7() {
+      return C[7] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], T.MaterialStateL());
+    },
+    get C8() {
+      return C[8] = dart.constSet(T.MaterialStateL(), []);
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [SystemMouseCursor_kind]: "basic"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [SystemMouseCursor_kind]: "click"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: material_state._EnabledAndDisabledMouseCursor.prototype,
+        [_EnabledAndDisabledMouseCursor_name]: "clickable",
+        [_EnabledAndDisabledMouseCursor_disabledCursor]: C[10] || CT.C10,
+        [_EnabledAndDisabledMouseCursor_enabledCursor]: C[11] || CT.C11
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [SystemMouseCursor_kind]: "text"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: material_state._EnabledAndDisabledMouseCursor.prototype,
+        [_EnabledAndDisabledMouseCursor_name]: "textable",
+        [_EnabledAndDisabledMouseCursor_disabledCursor]: C[10] || CT.C10,
+        [_EnabledAndDisabledMouseCursor_enabledCursor]: C[13] || CT.C13
       });
     }
   }, false);
-  var C = Array(6).fill(void 0);
+  var C = Array(14).fill(void 0);
   var I = [
-    "file:///D:/tutorial/flutter/packages/flutter/lib/src/material/page.dart",
-    "package:flutter/src/material/page.dart"
+    "file:///D:/tutorial/flutter/packages/flutter/lib/src/material/material_state.dart",
+    "package:flutter/src/material/material_state.dart"
   ];
-  var builder$ = dart.privateName(page, "MaterialPageRoute.builder");
-  var maintainState$ = dart.privateName(page, "MaterialPageRoute.maintainState");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const _is_MaterialRouteTransitionMixin_default = Symbol('_is_MaterialRouteTransitionMixin_default');
-  page.MaterialRouteTransitionMixin$ = dart.generic(T => {
-    class MaterialRouteTransitionMixin extends pages.PageRoute$(T) {}
-    MaterialRouteTransitionMixin[dart.mixinOn] = PageRoute => class MaterialRouteTransitionMixin extends PageRoute {
-      get transitionDuration() {
-        return C[0] || CT.C0;
+  var _name$ = dart.privateName(material_state, "_name");
+  material_state.MaterialState = class MaterialState extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (material_state.MaterialState.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[0], 34, 6, "index");
+    if (_name == null) dart.nullFailed(I[0], 34, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = material_state.MaterialState.prototype;
+  dart.addTypeTests(material_state.MaterialState);
+  dart.addTypeCaches(material_state.MaterialState);
+  dart.setLibraryUri(material_state.MaterialState, I[1]);
+  dart.setFieldSignature(material_state.MaterialState, () => ({
+    __proto__: dart.getFields(material_state.MaterialState.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(material_state.MaterialState, ['toString']);
+  material_state.MaterialState.hovered = C[0] || CT.C0;
+  material_state.MaterialState.focused = C[1] || CT.C1;
+  material_state.MaterialState.pressed = C[2] || CT.C2;
+  material_state.MaterialState.dragged = C[3] || CT.C3;
+  material_state.MaterialState.selected = C[4] || CT.C4;
+  material_state.MaterialState.disabled = C[5] || CT.C5;
+  material_state.MaterialState.error = C[6] || CT.C6;
+  material_state.MaterialState.values = C[7] || CT.C7;
+  material_state.MaterialStateColor = class MaterialStateColor extends ui.Color {
+    static resolveWith(callback) {
+      if (callback == null) dart.nullFailed(I[0], 141, 73, "callback");
+      return new material_state._MaterialStateColor.new(callback);
+    }
+  };
+  (material_state.MaterialStateColor.new = function(defaultValue) {
+    if (defaultValue == null) dart.nullFailed(I[0], 131, 32, "defaultValue");
+    material_state.MaterialStateColor.__proto__.new.call(this, defaultValue);
+    ;
+  }).prototype = material_state.MaterialStateColor.prototype;
+  dart.addTypeTests(material_state.MaterialStateColor);
+  dart.addTypeCaches(material_state.MaterialStateColor);
+  material_state.MaterialStateColor[dart.implements] = () => [material_state.MaterialStateProperty$(ui.Color)];
+  dart.setLibraryUri(material_state.MaterialStateColor, I[1]);
+  var _resolve$ = dart.privateName(material_state, "_resolve");
+  material_state._MaterialStateColor = class _MaterialStateColor extends material_state.MaterialStateColor {
+    resolve(states) {
+      let t0;
+      if (states == null) dart.nullFailed(I[0], 165, 36, "states");
+      t0 = states;
+      return this[_resolve$](t0);
+    }
+  };
+  (material_state._MaterialStateColor.new = function(_resolve) {
+    if (_resolve == null) dart.nullFailed(I[0], 157, 28, "_resolve");
+    this[_resolve$] = _resolve;
+    material_state._MaterialStateColor.__proto__.new.call(this, _resolve(material_state._MaterialStateColor._defaultStates).value);
+    ;
+  }).prototype = material_state._MaterialStateColor.prototype;
+  dart.addTypeTests(material_state._MaterialStateColor);
+  dart.addTypeCaches(material_state._MaterialStateColor);
+  dart.setMethodSignature(material_state._MaterialStateColor, () => ({
+    __proto__: dart.getMethods(material_state._MaterialStateColor.__proto__),
+    resolve: dart.fnType(ui.Color, [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setLibraryUri(material_state._MaterialStateColor, I[1]);
+  dart.setFieldSignature(material_state._MaterialStateColor, () => ({
+    __proto__: dart.getFields(material_state._MaterialStateColor.__proto__),
+    [_resolve$]: dart.finalFieldType(dart.fnType(ui.Color, [core.Set$(material_state.MaterialState)]))
+  }));
+  dart.defineLazy(material_state._MaterialStateColor, {
+    /*material_state._MaterialStateColor._defaultStates*/get _defaultStates() {
+      return C[8] || CT.C8;
+    }
+  }, false);
+  var _EnabledAndDisabledMouseCursor_name = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.name");
+  var SystemMouseCursor_kind = dart.privateName(mouse_cursor, "SystemMouseCursor.kind");
+  var _EnabledAndDisabledMouseCursor_disabledCursor = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.disabledCursor");
+  var _EnabledAndDisabledMouseCursor_enabledCursor = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.enabledCursor");
+  material_state.MaterialStateMouseCursor = class MaterialStateMouseCursor extends mouse_cursor.MouseCursor {
+    createSession(device) {
+      if (device == null) dart.nullFailed(I[0], 230, 40, "device");
+      return this.resolve(T.LinkedHashSetOfMaterialState().new()).createSession(device);
+    }
+  };
+  (material_state.MaterialStateMouseCursor.new = function() {
+    material_state.MaterialStateMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = material_state.MaterialStateMouseCursor.prototype;
+  dart.addTypeTests(material_state.MaterialStateMouseCursor);
+  dart.addTypeCaches(material_state.MaterialStateMouseCursor);
+  material_state.MaterialStateMouseCursor[dart.implements] = () => [material_state.MaterialStateProperty$(mouse_cursor.MouseCursor)];
+  dart.setMethodSignature(material_state.MaterialStateMouseCursor, () => ({
+    __proto__: dart.getMethods(material_state.MaterialStateMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor.MouseCursorSession, [core.int])
+  }));
+  dart.setLibraryUri(material_state.MaterialStateMouseCursor, I[1]);
+  dart.defineLazy(material_state.MaterialStateMouseCursor, {
+    /*material_state.MaterialStateMouseCursor.clickable*/get clickable() {
+      return C[9] || CT.C9;
+    },
+    /*material_state.MaterialStateMouseCursor.textable*/get textable() {
+      return C[12] || CT.C12;
+    }
+  }, false);
+  const enabledCursor$ = _EnabledAndDisabledMouseCursor_enabledCursor;
+  const disabledCursor$ = _EnabledAndDisabledMouseCursor_disabledCursor;
+  const name$ = _EnabledAndDisabledMouseCursor_name;
+  material_state._EnabledAndDisabledMouseCursor = class _EnabledAndDisabledMouseCursor extends material_state.MaterialStateMouseCursor {
+    get enabledCursor() {
+      return this[enabledCursor$];
+    }
+    set enabledCursor(value) {
+      super.enabledCursor = value;
+    }
+    get disabledCursor() {
+      return this[disabledCursor$];
+    }
+    set disabledCursor(value) {
+      super.disabledCursor = value;
+    }
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    resolve(states) {
+      if (states == null) dart.nullFailed(I[0], 280, 42, "states");
+      if (dart.test(states.contains(material_state.MaterialState.disabled))) {
+        return this.disabledCursor;
       }
-      get barrierColor() {
-        return null;
+      return this.enabledCursor;
+    }
+    get debugDescription() {
+      return "MaterialStateMouseCursor(" + dart.str(this.name) + ")";
+    }
+  };
+  (material_state._EnabledAndDisabledMouseCursor.new = function(opts) {
+    let enabledCursor = opts && 'enabledCursor' in opts ? opts.enabledCursor : null;
+    if (enabledCursor == null) dart.nullFailed(I[0], 270, 19, "enabledCursor");
+    let disabledCursor = opts && 'disabledCursor' in opts ? opts.disabledCursor : null;
+    if (disabledCursor == null) dart.nullFailed(I[0], 271, 19, "disabledCursor");
+    let name = opts && 'name' in opts ? opts.name : null;
+    if (name == null) dart.nullFailed(I[0], 272, 19, "name");
+    this[enabledCursor$] = enabledCursor;
+    this[disabledCursor$] = disabledCursor;
+    this[name$] = name;
+    material_state._EnabledAndDisabledMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = material_state._EnabledAndDisabledMouseCursor.prototype;
+  dart.addTypeTests(material_state._EnabledAndDisabledMouseCursor);
+  dart.addTypeCaches(material_state._EnabledAndDisabledMouseCursor);
+  dart.setMethodSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
+    __proto__: dart.getMethods(material_state._EnabledAndDisabledMouseCursor.__proto__),
+    resolve: dart.fnType(mouse_cursor.MouseCursor, [core.Set$(material_state.MaterialState)])
+  }));
+  dart.setGetterSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
+    __proto__: dart.getGetters(material_state._EnabledAndDisabledMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(material_state._EnabledAndDisabledMouseCursor, I[1]);
+  dart.setFieldSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
+    __proto__: dart.getFields(material_state._EnabledAndDisabledMouseCursor.__proto__),
+    enabledCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    disabledCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    name: dart.finalFieldType(core.String)
+  }));
+  material_state.MaterialStateBorderSide = class MaterialStateBorderSide extends borders.BorderSide {};
+  (material_state.MaterialStateBorderSide.new = function() {
+    material_state.MaterialStateBorderSide.__proto__.new.call(this);
+    ;
+  }).prototype = material_state.MaterialStateBorderSide.prototype;
+  dart.addTypeTests(material_state.MaterialStateBorderSide);
+  dart.addTypeCaches(material_state.MaterialStateBorderSide);
+  material_state.MaterialStateBorderSide[dart.implements] = () => [material_state.MaterialStateProperty$(dart.nullable(borders.BorderSide))];
+  dart.setLibraryUri(material_state.MaterialStateBorderSide, I[1]);
+  material_state.MaterialStateOutlinedBorder = class MaterialStateOutlinedBorder extends borders.OutlinedBorder {};
+  (material_state.MaterialStateOutlinedBorder.new = function() {
+    material_state.MaterialStateOutlinedBorder.__proto__.new.call(this);
+    ;
+  }).prototype = material_state.MaterialStateOutlinedBorder.prototype;
+  dart.addTypeTests(material_state.MaterialStateOutlinedBorder);
+  dart.addTypeCaches(material_state.MaterialStateOutlinedBorder);
+  material_state.MaterialStateOutlinedBorder[dart.implements] = () => [material_state.MaterialStateProperty$(dart.nullable(borders.OutlinedBorder))];
+  dart.setLibraryUri(material_state.MaterialStateOutlinedBorder, I[1]);
+  const _is_MaterialStateProperty_default = Symbol('_is_MaterialStateProperty_default');
+  material_state.MaterialStateProperty$ = dart.generic(T => {
+    class MaterialStateProperty extends core.Object {
+      static resolveAs(T, value, states) {
+        if (states == null) dart.nullFailed(I[0], 481, 53, "states");
+        if (material_state.MaterialStateProperty$(T).is(value)) {
+          let property = value;
+          return property.resolve(states);
+        }
+        return value;
       }
-      get barrierLabel() {
-        return null;
+      static resolveWith(T, callback) {
+        if (callback == null) dart.nullFailed(I[0], 491, 78, "callback");
+        return new (material_state._MaterialStatePropertyWith$(T)).new(callback);
       }
-      canTransitionTo(nextRoute) {
-        if (nextRoute == null) dart.nullFailed(I[0], 95, 49, "nextRoute");
-        return page.MaterialRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog) || route.CupertinoRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog);
-      }
-      buildPage(context, animation, secondaryAnimation) {
-        if (context == null) dart.nullFailed(I[0], 103, 18, "context");
-        if (animation == null) dart.nullFailed(I[0], 104, 23, "animation");
-        if (secondaryAnimation == null) dart.nullFailed(I[0], 105, 23, "secondaryAnimation");
-        let result = this.buildContent(context);
-        if (!dart.test(dart.fn(() => {
-          if (result == null) {
-            dart.throw(assertions.FlutterError.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null.\n" + "Route builders must never return null."));
-          }
-          return true;
-        }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 108, 12, "() {\r\n      if (result == null) {\r\n        throw FlutterError(\r\n          'The builder for route \"${settings.name}\" returned null.\\n'\r\n          'Route builders must never return null.'\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-        return new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: result, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
-      }
-      buildTransitions(context, animation, secondaryAnimation, child) {
-        if (context == null) dart.nullFailed(I[0], 125, 40, "context");
-        if (animation == null) dart.nullFailed(I[0], 125, 67, "animation");
-        if (secondaryAnimation == null) dart.nullFailed(I[0], 125, 96, "secondaryAnimation");
-        if (child == null) dart.nullFailed(I[0], 125, 123, "child");
-        let theme = theme$.Theme.of(context).pageTransitionsTheme;
-        return theme.buildTransitions(T, this, context, animation, secondaryAnimation, child);
-      }
-    };
-    dart.addTypeTests(MaterialRouteTransitionMixin);
-    MaterialRouteTransitionMixin.prototype[_is_MaterialRouteTransitionMixin_default] = true;
-    dart.addTypeCaches(MaterialRouteTransitionMixin);
-    MaterialRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
-    dart.setMethodSignature(MaterialRouteTransitionMixin, () => ({
-      __proto__: dart.getMethods(MaterialRouteTransitionMixin.__proto__),
-      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation.Animation$(core.double), animation.Animation$(core.double)])
-    }));
-    dart.setGetterSignature(MaterialRouteTransitionMixin, () => ({
-      __proto__: dart.getGetters(MaterialRouteTransitionMixin.__proto__),
-      transitionDuration: core.Duration,
-      barrierColor: dart.nullable(ui.Color),
-      barrierLabel: dart.nullable(core.String)
-    }));
-    dart.setLibraryUri(MaterialRouteTransitionMixin, I[1]);
-    return MaterialRouteTransitionMixin;
-  });
-  page.MaterialRouteTransitionMixin = page.MaterialRouteTransitionMixin$();
-  dart.addTypeTests(page.MaterialRouteTransitionMixin, _is_MaterialRouteTransitionMixin_default);
-  const _is_MaterialPageRoute_default = Symbol('_is_MaterialPageRoute_default');
-  page.MaterialPageRoute$ = dart.generic(T => {
-    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
-      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
-    class MaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
-      get builder() {
-        return this[builder$];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get maintainState() {
-        return this[maintainState$];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      buildContent(context) {
-        let t0;
-        if (context == null) dart.nullFailed(I[0], 54, 36, "context");
-        t0 = context;
-        return this.builder(t0);
-      }
-      get debugLabel() {
-        return dart.str(super.debugLabel) + "(" + dart.str(this.settings.name) + ")";
+      static all(T, value) {
+        return new (material_state._MaterialStatePropertyAll$(T)).new(value);
       }
     }
-    (MaterialPageRoute.new = function(opts) {
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 39, 19, "builder");
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      if (maintainState == null) dart.nullFailed(I[0], 41, 10, "maintainState");
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      if (fullscreenDialog == null) dart.nullFailed(I[0], 42, 10, "fullscreenDialog");
-      this[builder$] = builder;
-      this[maintainState$] = maintainState;
-      if (!(builder != null)) dart.assertFailed(null, I[0], 43, 15, "builder != null");
-      if (!(maintainState != null)) dart.assertFailed(null, I[0], 44, 15, "maintainState != null");
-      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 45, 15, "fullscreenDialog != null");
-      MaterialPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
-      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 47, 12, "opaque");
-    }).prototype = MaterialPageRoute.prototype;
-    dart.addTypeTests(MaterialPageRoute);
-    MaterialPageRoute.prototype[_is_MaterialPageRoute_default] = true;
-    dart.addTypeCaches(MaterialPageRoute);
-    dart.setMethodSignature(MaterialPageRoute, () => ({
-      __proto__: dart.getMethods(MaterialPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setLibraryUri(MaterialPageRoute, I[1]);
-    dart.setFieldSignature(MaterialPageRoute, () => ({
-      __proto__: dart.getFields(MaterialPageRoute.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
-      maintainState: dart.finalFieldType(core.bool)
-    }));
-    return MaterialPageRoute;
-  });
-  page.MaterialPageRoute = page.MaterialPageRoute$();
-  dart.addTypeTests(page.MaterialPageRoute, _is_MaterialPageRoute_default);
-  var child$ = dart.privateName(page, "MaterialPage.child");
-  var maintainState$0 = dart.privateName(page, "MaterialPage.maintainState");
-  var fullscreenDialog$ = dart.privateName(page, "MaterialPage.fullscreenDialog");
-  const _is_MaterialPage_default = Symbol('_is_MaterialPage_default');
-  page.MaterialPage$ = dart.generic(T => {
-    var _PageBasedMaterialPageRouteOfT = () => (_PageBasedMaterialPageRouteOfT = dart.constFn(page._PageBasedMaterialPageRoute$(T)))();
-    class MaterialPage extends navigator.Page$(T) {
-      get child() {
-        return this[child$];
-      }
-      set child(value) {
-        super.child = value;
-      }
-      get maintainState() {
-        return this[maintainState$0];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      get fullscreenDialog() {
-        return this[fullscreenDialog$];
-      }
-      set fullscreenDialog(value) {
-        super.fullscreenDialog = value;
-      }
-      createRoute(context) {
-        if (context == null) dart.nullFailed(I[0], 175, 37, "context");
-        return new (_PageBasedMaterialPageRouteOfT()).new({page: this});
-      }
-    }
-    (MaterialPage.new = function(opts) {
-      let child = opts && 'child' in opts ? opts.child : null;
-      if (child == null) dart.nullFailed(I[0], 154, 19, "child");
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      if (maintainState == null) dart.nullFailed(I[0], 155, 10, "maintainState");
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      if (fullscreenDialog == null) dart.nullFailed(I[0], 156, 10, "fullscreenDialog");
-      let key = opts && 'key' in opts ? opts.key : null;
-      let name = opts && 'name' in opts ? opts.name : null;
-      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
-      this[child$] = child;
-      this[maintainState$0] = maintainState;
-      this[fullscreenDialog$] = fullscreenDialog;
-      if (!(child != null)) dart.assertFailed(null, I[0], 160, 15, "child != null");
-      if (!(maintainState != null)) dart.assertFailed(null, I[0], 161, 15, "maintainState != null");
-      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 162, 15, "fullscreenDialog != null");
-      MaterialPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments});
+    (MaterialStateProperty.new = function() {
       ;
-    }).prototype = MaterialPage.prototype;
-    dart.addTypeTests(MaterialPage);
-    MaterialPage.prototype[_is_MaterialPage_default] = true;
-    dart.addTypeCaches(MaterialPage);
-    dart.setMethodSignature(MaterialPage, () => ({
-      __proto__: dart.getMethods(MaterialPage.__proto__),
-      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
-    }));
-    dart.setLibraryUri(MaterialPage, I[1]);
-    dart.setFieldSignature(MaterialPage, () => ({
-      __proto__: dart.getFields(MaterialPage.__proto__),
-      child: dart.finalFieldType(framework.Widget),
-      maintainState: dart.finalFieldType(core.bool),
-      fullscreenDialog: dart.finalFieldType(core.bool)
-    }));
-    return MaterialPage;
+    }).prototype = MaterialStateProperty.prototype;
+    dart.addTypeTests(MaterialStateProperty);
+    MaterialStateProperty.prototype[_is_MaterialStateProperty_default] = true;
+    dart.addTypeCaches(MaterialStateProperty);
+    dart.setLibraryUri(MaterialStateProperty, I[1]);
+    return MaterialStateProperty;
   });
-  page.MaterialPage = page.MaterialPage$();
-  dart.addTypeTests(page.MaterialPage, _is_MaterialPage_default);
-  var _page = dart.privateName(page, "_page");
-  const _is__PageBasedMaterialPageRoute_default = Symbol('_is__PageBasedMaterialPageRoute_default');
-  page._PageBasedMaterialPageRoute$ = dart.generic(T => {
-    var MaterialPageOfT = () => (MaterialPageOfT = dart.constFn(page.MaterialPage$(T)))();
-    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
-      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
-    class _PageBasedMaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
-      get [_page]() {
-        return MaterialPageOfT().as(this.settings);
-      }
-      buildContent(context) {
-        if (context == null) dart.nullFailed(I[0], 195, 36, "context");
-        return this[_page].child;
-      }
-      get maintainState() {
-        return this[_page].maintainState;
-      }
-      get fullscreenDialog() {
-        return this[_page].fullscreenDialog;
-      }
-      get debugLabel() {
-        return dart.str(super.debugLabel) + "(" + dart.str(this[_page].name) + ")";
+  material_state.MaterialStateProperty = material_state.MaterialStateProperty$();
+  dart.addTypeTests(material_state.MaterialStateProperty, _is_MaterialStateProperty_default);
+  const _is__MaterialStatePropertyWith_default = Symbol('_is__MaterialStatePropertyWith_default');
+  material_state._MaterialStatePropertyWith$ = dart.generic(T => {
+    class _MaterialStatePropertyWith extends core.Object {
+      resolve(states) {
+        let t0;
+        if (states == null) dart.nullFailed(I[0], 504, 32, "states");
+        t0 = states;
+        return this[_resolve$](t0);
       }
     }
-    (_PageBasedMaterialPageRoute.new = function(opts) {
-      let page = opts && 'page' in opts ? opts.page : null;
-      if (page == null) dart.nullFailed(I[0], 186, 30, "page");
-      if (!(page != null)) dart.assertFailed(null, I[0], 187, 15, "page != null");
-      _PageBasedMaterialPageRoute.__proto__.new.call(this, {settings: page});
-      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 189, 12, "opaque");
-    }).prototype = _PageBasedMaterialPageRoute.prototype;
-    dart.addTypeTests(_PageBasedMaterialPageRoute);
-    _PageBasedMaterialPageRoute.prototype[_is__PageBasedMaterialPageRoute_default] = true;
-    dart.addTypeCaches(_PageBasedMaterialPageRoute);
-    dart.setMethodSignature(_PageBasedMaterialPageRoute, () => ({
-      __proto__: dart.getMethods(_PageBasedMaterialPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    (_MaterialStatePropertyWith.new = function(_resolve) {
+      if (_resolve == null) dart.nullFailed(I[0], 499, 35, "_resolve");
+      this[_resolve$] = _resolve;
+      ;
+    }).prototype = _MaterialStatePropertyWith.prototype;
+    dart.addTypeTests(_MaterialStatePropertyWith);
+    _MaterialStatePropertyWith.prototype[_is__MaterialStatePropertyWith_default] = true;
+    dart.addTypeCaches(_MaterialStatePropertyWith);
+    _MaterialStatePropertyWith[dart.implements] = () => [material_state.MaterialStateProperty$(T)];
+    dart.setMethodSignature(_MaterialStatePropertyWith, () => ({
+      __proto__: dart.getMethods(_MaterialStatePropertyWith.__proto__),
+      resolve: dart.fnType(T, [core.Set$(material_state.MaterialState)])
     }));
-    dart.setGetterSignature(_PageBasedMaterialPageRoute, () => ({
-      __proto__: dart.getGetters(_PageBasedMaterialPageRoute.__proto__),
-      [_page]: page.MaterialPage$(T),
-      maintainState: core.bool,
-      fullscreenDialog: core.bool
+    dart.setLibraryUri(_MaterialStatePropertyWith, I[1]);
+    dart.setFieldSignature(_MaterialStatePropertyWith, () => ({
+      __proto__: dart.getFields(_MaterialStatePropertyWith.__proto__),
+      [_resolve$]: dart.finalFieldType(dart.fnType(T, [core.Set$(material_state.MaterialState)]))
     }));
-    dart.setLibraryUri(_PageBasedMaterialPageRoute, I[1]);
-    return _PageBasedMaterialPageRoute;
+    return _MaterialStatePropertyWith;
   });
-  page._PageBasedMaterialPageRoute = page._PageBasedMaterialPageRoute$();
-  dart.addTypeTests(page._PageBasedMaterialPageRoute, _is__PageBasedMaterialPageRoute_default);
-  dart.trackLibraries("packages/flutter/src/material/page.dart", {
-    "package:flutter/src/material/page.dart": page
+  material_state._MaterialStatePropertyWith = material_state._MaterialStatePropertyWith$();
+  dart.addTypeTests(material_state._MaterialStatePropertyWith, _is__MaterialStatePropertyWith_default);
+  const _is__MaterialStatePropertyAll_default = Symbol('_is__MaterialStatePropertyAll_default');
+  material_state._MaterialStatePropertyAll$ = dart.generic(T => {
+    class _MaterialStatePropertyAll extends core.Object {
+      resolve(states) {
+        if (states == null) dart.nullFailed(I[0], 513, 32, "states");
+        return this.value;
+      }
+      toString() {
+        return "MaterialStateProperty.all(" + dart.str(this.value) + ")";
+      }
+    }
+    (_MaterialStatePropertyAll.new = function(value) {
+      this.value = value;
+      ;
+    }).prototype = _MaterialStatePropertyAll.prototype;
+    dart.addTypeTests(_MaterialStatePropertyAll);
+    _MaterialStatePropertyAll.prototype[_is__MaterialStatePropertyAll_default] = true;
+    dart.addTypeCaches(_MaterialStatePropertyAll);
+    _MaterialStatePropertyAll[dart.implements] = () => [material_state.MaterialStateProperty$(T)];
+    dart.setMethodSignature(_MaterialStatePropertyAll, () => ({
+      __proto__: dart.getMethods(_MaterialStatePropertyAll.__proto__),
+      resolve: dart.fnType(T, [core.Set$(material_state.MaterialState)])
+    }));
+    dart.setLibraryUri(_MaterialStatePropertyAll, I[1]);
+    dart.setFieldSignature(_MaterialStatePropertyAll, () => ({
+      __proto__: dart.getFields(_MaterialStatePropertyAll.__proto__),
+      value: dart.finalFieldType(T)
+    }));
+    dart.defineExtensionMethods(_MaterialStatePropertyAll, ['toString']);
+    return _MaterialStatePropertyAll;
+  });
+  material_state._MaterialStatePropertyAll = material_state._MaterialStatePropertyAll$();
+  dart.addTypeTests(material_state._MaterialStatePropertyAll, _is__MaterialStatePropertyAll_default);
+  dart.trackLibraries("packages/flutter/src/material/material_state.dart", {
+    "package:flutter/src/material/material_state.dart": material_state
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAqFqC;MAAiC;;AAGzC;MAAI;;AAGH;MAAI;;YAGc;AAE5C,cAAkB,AAChB,sCADM,SAAS,gBAAqC,AAAU,SAAD,sBAC/C,uCAAV,SAAS,gBAAsC,AAAU,SAAD;MAChE;gBAIe,SACK,WACA;YAFL;YACK;YACA;AAEL,qBAAS,kBAAa,OAAO;AAC1C,uBAAO,AAQN;AAPC,cAAI,AAAO,MAAD;AAIP,YAHD,WAAM,4BAAY,AAChB,sCAA0B,AAAS,sBAAK,wBACxC;;AAGJ,gBAAO;;AAET,cAAO,uCACQ,0BACO,aACb,MAAM;MAEjB;uBAGqC,SAA2B,WAA6B,oBAA2B;YAAnF;YAA2B;YAA6B;YAA2B;AAC3F,oBAAc,AAAY,gBAAT,OAAO;AACnD,cAAO,AAAM,MAAD,qBAAqB,MAAM,OAAO,EAAE,SAAS,EAAE,kBAAkB,EAAE,KAAK;MACtF;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA7EoB;;;;;;MAMT;;;;;;mBAHsB;;;AAAY,aAAQ,OAAO;cAAf,AAAO;MAAS;;AAMpC,cAAuC,UAA9B,oBAAW,eAAG,AAAS,sBAAK;MAAE;;;UArBhD;;UACC;UACV;;UACA;;MAHS;MAET;YAEK,AAAQ,OAAD;YACP,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,4DAAgB,QAAQ,oBAAoB,gBAAgB;AAC/D,qBAAO;IACT;;;;;;;;;;;;;;;;;;;;;;;;;MAsHa;;;;;;MAGF;;;;;;MAGA;;;;;;;YAGuB;AAChC,cAAO,mDAAqC;MAC9C;;;UAvBgB;;UACT;;UACA;;UACK;UACF;UACA;MALM;MACT;MACA;YAIK,AAAM,KAAD;YACL,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,kDAAW,GAAG,QAAQ,IAAI,aAAa;;IAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6BzB,cAAS,sBAAT;MAA2B;;YAGvB;AAC/B,cAAO,AAAM;MACf;;AAG0B,cAAA,AAAM;MAAa;;AAGhB,cAAA,AAAM;MAAgB;;AAG1B,cAAoC,UAA3B,oBAAW,eAAG,AAAM,oBAAK;MAAE;;;UApBlC;;YACf,AAAK,IAAD;AACX,sEAAgB,IAAI;AACvB,qBAAO;IACT","file":"../../../../../../../../C:/packages/flutter/src/material/page.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["material_state.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA8EA;;;QA7CK;;;;;EA6CL;;;;;;;;;;;;;;;;;;;;UA8DwE;AAAa,wDAAoB,QAAQ;IAAC;;;QAVnF;AAAgB,+DAAM,YAAY;;EAAC;;;;;;;YAkC/B;;;AAAW,WAAS,MAAM;YAAf,AAAQ;IAAQ;;;QARnC;;AAAY,gEAAM,AAAQ,AAAiB,QAAjB,CAAC;;EAAsB;;;;;;;;;;;;;MAK1C,iDAAc;;;;;;;;;;UAoET;AACnC,YAAO,AAA2B,cAAJ,sDAAkB,MAAM;IACxD;;;AANM;;EAA0B;;;;;;;;;;MAsBM,iDAAS;;;MAaT,gDAAQ;;;;;;;;IAc5B;;;;;;IACA;;;;;;IACL;;;;;;;UAG0B;AACrC,oBAAI,AAAO,MAAD,UAAwB;AAChC,cAAO;;AAET,YAAO;IACT;;AAG+B,YAAA,AAAiC,wCAAN,aAAI;IAAE;;;QAlBhD;;QACA;;QACA;;IAFA;IACA;IACA;AAHV;;EAIJ;;;;;;;;;;;;;;;;;;;;AAkEI;;EAAyB;;;;;;;AA4DzB;;EAA6B;;;;;;;;0BAkFX;YAA0B;AAChD,YAAU,4CAAN,KAAK;AACwB,yBAAW,KAAK;AAC/C,gBAAO,AAAS,SAAD,SAAS,MAAM;;AAEhC,cAAO,MAAK;MACd;;YAI2E;AAAa,uEAA8B,QAAQ;MAAC;oBAItF;AAAU,sEAA6B,KAAK;MAAC;;;;IACxF;;;;;;;;;;;;cAQ+B;;;AAAW,aAAS,MAAM;cAAf,AAAQ;MAAQ;;;UALxB;;;IAAS;;;;;;;;;;;;;;;;;;;;;;YAcZ;AAAW;MAAK;;AAGxB,cAAA,AAAmC,yCAAP,cAAK;MAAE;;;MARzB;;IAAM","file":"../../../../../../../../C:/packages/flutter/src/material/material_state.dart.lib.js"}');
   // Exports:
   return {
-    src__material__page: page
+    src__material__material_state: material_state
   };
 }));
 
-//# sourceMappingURL=page.dart.lib.js.map
+//# sourceMappingURL=material_state.dart.lib.js.map

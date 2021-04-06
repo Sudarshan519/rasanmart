@@ -216,31 +216,33 @@ class DashboardPage extends GetWidget {
 }
 
 class OrderPage extends StatelessWidget {
+  final orderController = Get.put(OrderController());
   @override
   Widget build(BuildContext context) {
-    if (orderController.orders.length != null)
-      return Scaffold(
-          appBar: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.white,
-            ),
-            backgroundColor: Theme.of(context).backgroundColor,
-            title: Text(
-              'My Orders',
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            ),
+    return Scaffold(
+        appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.white,
           ),
-          body: Obx(() => ListView.builder(
-              itemCount: orderController.orders.length,
-              itemBuilder: (_, int i) {
-                return ListTile(
-                  onTap: () {},
-                  title: Text(
-                    orderController.orders[i].email,
-                  ),
-                  subtitle: Text(orderController.orders[i].address),
-                  trailing: Text(orderController.orders[i].status),
-                );
-              })));
+          backgroundColor: Theme.of(context).backgroundColor,
+          title: Text(
+            'My Orders',
+            style: TextStyle(color: Theme.of(context).primaryColor),
+          ),
+        ),
+        body: Obx(() => orderController.orders.length != null
+            ? ListView.builder(
+                itemCount: orderController.orders.length,
+                itemBuilder: (_, int i) {
+                  return ListTile(
+                    onTap: () {},
+                    title: Text(
+                      orderController.orders[i].email,
+                    ),
+                    subtitle: Text(orderController.orders[i].address),
+                    trailing: Text(orderController.orders[i].status),
+                  );
+                })
+            : CircularProgressIndicator()));
   }
 }
