@@ -18,7 +18,9 @@ class AllControllerBinding implements Bindings {
     Get.lazyPut(() => LanguageController());
     Get.lazyPut(() => ProductController());
     Get.lazyPut(() => UserController());
-    Get.lazyPut(() => ScrollController());
+    // Get.lazyPut(
+    //   () => ScrollController(),
+    // );
     // Get.lazyPut(() => OrderController());
   }
 }

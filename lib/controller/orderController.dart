@@ -5,7 +5,7 @@ import '../services/firestoreProducts.dart';
 class OrderController extends GetxController {
   var isloading = false.obs;
   var orders = List<OrderModelModel>.empty(growable: true).obs;
-
+  var ordermargin = -20.obs;
   var terms = false.obs;
   var id = ''.obs;
   var pay = 'p'.obs;
@@ -22,7 +22,6 @@ class OrderController extends GetxController {
 
     orders = order.obs;
     isloading.toggle();
-   
   }
 
   void placeOrder(String prod) {

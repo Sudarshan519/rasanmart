@@ -38,8 +38,8 @@ class OrderModelModel {
     this.address = json['address'] ?? 'no value';
     this.city = json['city'] ?? 'novalue';
     this.phone = json['phone'] ?? 212313;
-    this.status = json['status']??'sent';
-    this.timeStamp = json['timestamp']??Timestamp.now();
+    this.status = json['status'] ?? 'sent';
+    this.timeStamp = json['timestamp'] ?? Timestamp.now();
   }
 
   Map<String, dynamic> toJson() {
@@ -47,7 +47,7 @@ class OrderModelModel {
     data['id'] = this.id;
     data['products'] = this.products;
     data['address'] = this.address;
-    data['contact'] = this.contact;
+    data['contact'] = this.email;
     data['city'] = this.city;
     data['phone'] = this.phone;
     data['timestamp'] = Timestamp.now();

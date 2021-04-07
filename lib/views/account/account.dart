@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rasanmart/controller/authController.dart';
+import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/login/login.dart';
 import 'package:rasanmart/views/widgets/const.dart';
@@ -48,10 +49,13 @@ class AccountContent extends StatelessWidget {
                 child: Text('Sign in'),
               )))
             : SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                // physics: BouncingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      height: 400,
+                    ),
                     Card(
                       child: Container(
                         padding: EdgeInsets.only(
@@ -226,7 +230,9 @@ class AccountContent extends StatelessWidget {
                                       child: InkWell(
                                         onTap: () {
                                           languageController
-                                              .selectedIndex.value = 1; languageController.changeLanguage('hi', 'IN');
+                                              .selectedIndex.value = 1;
+                                          languageController.changeLanguage(
+                                              'hi', 'IN');
                                         },
                                         child: Row(children: [
                                           Text(

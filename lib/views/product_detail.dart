@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/models/productModel.dart';
@@ -25,7 +23,6 @@ class ProductDetail extends GetWidget<ImageController> {
   ProductDetail(this.product);
   @override
   Widget build(BuildContext context) {
-    print(jsonEncode(imagelist));
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -59,8 +56,7 @@ class ProductDetail extends GetWidget<ImageController> {
                   child: Obx(() {
                     switch (image.selectedIndex.value) {
                       case 0:
-                        return Image.network(
-                            imagelist[image.selectedIndex.value]);
+                        return Image.network(product.productImage);
                         break;
                       default:
                         return Image.network(
@@ -227,7 +223,7 @@ class ProductDetail extends GetWidget<ImageController> {
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
                                   mainAxisSpacing: 30,
-                                //  mainAxisExtent: 150.0,
+                                  //  mainAxisExtent: 150.0,
                                 ),
                                 scrollDirection: Axis.horizontal,
                                 itemCount: controller.products.length,

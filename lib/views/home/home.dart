@@ -11,11 +11,11 @@ import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cartpage/cart_page.dart';
 import 'package:rasanmart/views/categories/categories_page.dart';
 import 'package:rasanmart/views/search/search_field.dart';
+import 'package:rasanmart/views/widgets/cartButton.dart';
 import 'package:rasanmart/views/widgets/const.dart';
-import 'package:rasanmart/views/widgets/productContent.dart';
 import '../../utils/size_util.dart';
+import '../product_detail.dart';
 
-ScrollController _scrollBottomBarController = Get.put(ScrollController());
 final productController = Get.put(ProductController());
 
 class Home extends StatefulWidget {
@@ -27,6 +27,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  ScrollController _scrollBottomBarController = ScrollController();
   final cartController = Get.put(CartController());
 
   final searchController = TextEditingController();
@@ -42,13 +43,6 @@ class _HomeState extends State<Home> {
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
-    //checkScroll();
-  }
-
-  @override
-  void dispose() {
-    _scrollBottomBarController.dispose();
-    super.dispose();
   }
 
   void myScroll() async {
@@ -188,9 +182,7 @@ class _HomeState extends State<Home> {
             SearchField(),
             CarouselPro(),
             SizedBox(height: 10),
-            Row(
-              
-              children: [
+            Row(children: [
               SizedBox(
                 width: 10,
               ),
@@ -210,7 +202,7 @@ class _HomeState extends State<Home> {
                   'Top Products',
                   style: AppTheme.headingStyle,
                 ),
-                SizedBox(height:20),
+                SizedBox(height: 20),
                 Spacer(),
                 InkWell(
                   onTap: () {},
@@ -250,7 +242,10 @@ class _HomeState extends State<Home> {
             SizedBox(height: 15),
             LatestProductContainer(
                 productController: productController,
-                cartController: cartController)
+                cartController: cartController),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .05,
+            ),
           ]),
         ),
       ),
@@ -360,23 +355,17 @@ class TopProductContainer extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       height:
-          height < width ? width / 3 : MediaQuery.of(context).size.height * .3,
+          height < width ? width / 3 : MediaQuery.of(context).size.height * .35,
       child: Obx(() {
         List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
-            //    (productController.products[i].totalFavourite > 100)
-            ? GridView.builder(
-                //padding: EdgeInsets.symmetric( horizontal:10),
+            ? ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: prod.length,
                 itemBuilder: (_, int i) {
-                  return ProductContent(prod[i]);
+                  return ProductContentHome(
+                      height: height, width: width, product: prod[i]);
                 },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  //  mainAxisSpacing: 30,
-                  // mainAxisExtent: 150.0,
-                ),
               )
             : Center(
                 child: CircularProgressIndicator(
@@ -404,15 +393,15 @@ class LatestProductContainer extends StatelessWidget {
     return Container(
         height: height < width
             ? width / 3
-            : MediaQuery.of(context).size.height * .2,
+            : MediaQuery.of(context).size.height * .35,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
             builder: (controller) {
               return controller.isloading.isFalse
-                  ? GridView.builder(
+                  ? ListView.builder(
+                      itemCount: productController.products.length,
                       scrollDirection: Axis.horizontal,
-                      itemCount: controller.products.length,
                       itemBuilder: (_, int i) {
                         DateTime productadded =
                             productController.products[i].dateTime.toDate();
@@ -420,18 +409,35 @@ class LatestProductContainer extends StatelessWidget {
                         Duration difference = dDay.difference(productadded);
 
                         if (difference < Duration(days: 99))
-                          return ProductContent(productController.products[i]);
-                        else
-                          return null;
+                          return ProductContentHome(
+                              height: height,
+                              width: width,
+                              product: productController.products[i]);
+                        return Text('');
                       },
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisSpacing: 0,
-                              crossAxisSpacing: 1
-                              //  mainAxisExtent: 150.0,
-                              ),
                     )
+                  // ? GridView.builder(
+                  //     scrollDirection: Axis.horizontal,
+                  //     itemCount: controller.products.length,
+                  //     itemBuilder: (_, int i) {
+                  //       DateTime productadded =
+                  //           productController.products[i].dateTime.toDate();
+                  //       var dDay = new DateTime.now();
+                  //       Duration difference = dDay.difference(productadded);
+
+                  //       if (difference < Duration(days: 99))
+                  //         return ProductContent(productController.products[i]);
+                  //       else
+                  //         return null;
+                  //     },
+                  //     gridDelegate:
+                  //         const SliverGridDelegateWithFixedCrossAxisCount(
+                  //             crossAxisCount: 1,
+                  //             mainAxisSpacing: 0,
+                  //             crossAxisSpacing: 1
+                  //             //  mainAxisExtent: 150.0,
+                  //             ),
+                  //   )
                   : Center(
                       child: CircularProgressIndicator(
                       strokeWidth: 3,
@@ -440,29 +446,116 @@ class LatestProductContainer extends StatelessWidget {
   }
 }
 
+class ProductContentHome extends StatelessWidget {
+  const ProductContentHome({
+    Key key,
+    @required this.height,
+    @required this.width,
+    @required this.product,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: Colors.grey[300]),
+            borderRadius: BorderRadius.circular(5)
+            // gradient: LinearGradient(
+            //     colors: [Colors.black, Colors.grey])
+            ),
+        //  color: Colors.grey,
+        height: height,
+        width: width / 2.4,
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                Get.to(ProductDetail(product));
+              },
+              child: Stack(alignment: Alignment.topCenter, children: [
+                Image.network(product.productImage, height: 90),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    product.isSale
+                        ? CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.green,
+                            child: Text(
+                              'Sale',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+                          )
+                        : Text(''),
+                    product.discount != 0
+                        ? CircleAvatar(
+                            radius: 15,
+                            backgroundColor: Colors.red.shade900,
+                            child: Text(
+                              product.discount.toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          )
+                        : Text(''),
+                  ],
+                )
+              ]),
+            ),
+            Text(product.productName),
+            SizedBox(height: 10),
+            Text(
+              "Rs. ${product.price.toString()}",
+              style: TextStyle(color: Colors.red, fontSize: 14),
+            ),
+            SizedBox(height: 10),
+            Container(
+              //color: Colors.red,
+              height: 30,
+              child: CartButton(
+                product: product,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 30, runSpacing: 20, children: [
+    return Wrap(spacing: 20, runSpacing: 10, children: [
       ...category
           .map((p) => InkWell(
-            onTap: (){
-             
-                Get.to(
-                    CategoriesPage(
-                      p.categoryName,
-                    ),
-                    transition: Transition.leftToRight);
-              
-            },
-                      child: Container(
-                  height: 110,
-                  width: 90,
+                onTap: () {
+                  Get.to(
+                      CategoriesPage(
+                        p.categoryName,
+                      ),
+                      transition: Transition.leftToRight);
+                },
+                child: Container(
+                  height: 77,
+                  width: 80,
                   child: Column(
                     children: [
                       Container(
                         color: Colors.white,
-                        child: Image.network(p.categoryImage),
+                        child: Image.network(
+                          p.categoryImage,
+                          height: 50,
+                          width: 50,
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -470,12 +563,13 @@ class Categories extends StatelessWidget {
                       Text(
                         p.categoryName,
                         overflow: TextOverflow.fade,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                     ],
                   ),
                 ),
-          ))
+              ))
           .toList()
     ]);
   }

@@ -11,6 +11,7 @@ import 'package:rasanmart/services/getStorage.dart';
 import 'package:rasanmart/views/account/account.dart';
 import 'package:rasanmart/views/home/home.dart';
 import 'package:rasanmart/views/login/login.dart';
+import 'package:rasanmart/views/orderpage/orderpage.dart';
 import '../settings/settings.dart';
 
 class DashboardPage extends GetWidget {
@@ -92,15 +93,18 @@ class DashboardPage extends GetWidget {
               title: Text('home'.tr),
               onTap: () {},
             ),
-            ListTile(
-              leading: Icon(Icons.language),
-              title: Text('MyOrdes'),
-              onTap: () {
-                Get.to(
-                  () => OrderPage(),
+            Obx(() {
+              if (authController.user != null)
+                return ListTile(
+                  leading: Icon(Icons.language),
+                  title: Text('MyOrders'),
+                  onTap: () {
+                    Get.to(
+                      () => OrderPage(),
+                    );
+                  },
                 );
-              },
-            ),
+            }),
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('settings'.tr),
@@ -210,53 +214,6 @@ class DashboardPage extends GetWidget {
               ]),
         );
       }),
-    );
-  }
-}
-
-class OrderPage extends StatelessWidget {
-  final orderController = Get.put(OrderController());
-  @override
-  Widget build(BuildContext context) {
-    orderController.getOrder();
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        backgroundColor: Theme.of(context).backgroundColor,
-        title: Text(
-          'My Orders',
-          style: TextStyle(color: Theme.of(context).primaryColor),
-        ),
-      ),
-      body: Obx(() => orderController.isloading.value
-          ? CircularProgressIndicator(
-              backgroundColor: Theme.of(context).primaryColor)
-          : ListView.builder(
-              itemCount: orderController.orders.length,
-              reverse: true,
-              itemBuilder: (_, int i) {
-                return ListTile(
-                  title: Text(
-                    orderController.orders[i].email,
-                  ),
-                  subtitle: Text(
-                      orderController.orders[i].timeStamp.toDate().toString()),
-                  trailing: Container(
-                      height: 20,
-                      width: 70,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: orderController.orders[i].status == 'sent'
-                              ? Colors.yellow
-                              : Colors.green,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: orderController.orders[i].status != 'sent'
-                          ? Text(orderController.orders[i].status)
-                          : Text('Cancel')),
-                );
-              })),
     );
   }
 }

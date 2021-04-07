@@ -24,23 +24,37 @@ class SettingsPage extends StatelessWidget {
           ),
           backgroundColor: Theme.of(context).backgroundColor,
         ),
-        body: SafeArea(
+        body: Container(
+          padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Text(
+              //   'account'.tr,
+              //   style: TextStyle(color: Colors.grey),
+              // ),
+              // Card(
+              //   child: ListTile(
+              //     onTap: () {
+              //       Get.to(AccountContent());
+              //     },
+              //     leading: Icon(Icons.person),
+              //     title: Text(
+              //       'profile'.tr,
+              //       style: subtitleStyle,
+              //     ),
+              //   ),
+              // ),
               Text(
-                'account'.tr,
+                'Email',
                 style: TextStyle(color: Colors.grey),
               ),
               Card(
                 child: ListTile(
-                  onTap: () {
-                    Get.to(AccountContent());
-                  },
-                  leading: Icon(Icons.person),
+                  leading: Icon(Icons.email),
                   title: Text(
-                    'profile'.tr,
-                    style: subtitleStyle,
+                    'sudarshan@gmail.cm',
+                    style: TextStyle(color: Colors.black, fontSize: 12),
                   ),
                 ),
               ),
@@ -103,7 +117,8 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 0;
-                                    languageController.changeLanguage('en', 'US');
+                                    languageController.changeLanguage(
+                                        'en', 'US');
                                   },
                                   child: Row(
                                     children: [
@@ -134,7 +149,8 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 1;
-                                     languageController.changeLanguage('hi', 'IN');
+                                    languageController.changeLanguage(
+                                        'hi', 'IN');
                                   },
                                   child: Row(children: [
                                     Text(
@@ -165,7 +181,8 @@ class SettingsPage extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     languageController.selectedIndex.value = 2;
-                                    languageController.changeLanguage('ne',"NE");
+                                    languageController.changeLanguage(
+                                        'ne', "NE");
                                   },
                                   child: Row(children: [
                                     Text(
