@@ -125,7 +125,7 @@ class ProductDetail extends GetWidget<ImageController> {
               ),
 
               Container(
-                  height: 20,
+                  height: 40,
                   child: CartButton(
                     product: product,
                   )),
@@ -211,7 +211,10 @@ class ProductDetail extends GetWidget<ImageController> {
                 height: 20,
               ),
               Container(
-                  height: MediaQuery.of(context).size.height * .4,
+                  height: MediaQuery.of(context).size.height <
+                          MediaQuery.of(context).size.width
+                      ? 200
+                      : 500 * .4,
                   width: MediaQuery.of(context).size.width,
                   child: GetX<ProductController>(
                       init: ProductController(),
@@ -222,7 +225,7 @@ class ProductDetail extends GetWidget<ImageController> {
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
-                                  mainAxisSpacing: 30,
+
                                   //  mainAxisExtent: 150.0,
                                 ),
                                 scrollDirection: Axis.horizontal,

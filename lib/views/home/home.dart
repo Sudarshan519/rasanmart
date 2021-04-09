@@ -2,9 +2,11 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:rasanmart/app/modules/CompleteProfile/views/complete_profile_view.dart';
 import 'package:rasanmart/controller/cartController.dart';
 import 'package:rasanmart/controller/networkController.dart';
 import 'package:rasanmart/controller/productController.dart';
+import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/models/category_model.dart';
 import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
@@ -30,7 +32,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   ScrollController _scrollBottomBarController = ScrollController();
   final cartController = Get.put(CartController());
-
+  final userController = Get.find<UserController>();
   final searchController = TextEditingController();
   final networkController =
       Get.find<NetworkController>() ?? Get.put(NetworkController());
@@ -127,44 +129,51 @@ class _HomeState extends State<Home> {
                       },
                       child: Icon(Icons.search, color: Colors.white)))),
       actions: [
-        IconButton(
-          icon: Icon(
-            Icons.notifications,
-            size: 25,
-            color: Theme.of(context).primaryColor,
-          ),
-          onPressed: () {
-            Get.to(NotificationsPage());
+        InkWell(
+          onTap: () {
+            Get.to(CartPage());
           },
-        ),
-        IconButton(
-            icon: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(
-                  Icons.shopping_cart,
-                  size: 25,
-                  color: Theme.of(context).primaryColor,
-                ),
-                Align(
-                    alignment: Alignment.bottomRight,
-                    child: CircleAvatar(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      radius: 7,
-                      child: Obx(() {
-                        return Text(
-                          '${cartController.count}',
-                          style: AppTheme.subtitle.copyWith(
-                              fontSize: 12,
-                              color: Theme.of(context).backgroundColor),
-                        );
-                      }),
-                    ))
-              ],
+          child: IconButton(
+            icon: Icon(
+              Icons.notifications,
+              size: 25,
+              color: Theme.of(context).primaryColor,
             ),
             onPressed: () {
-              Get.to(CartPage(), transition: Transition.rightToLeft);
-            }),
+              Get.to(NotificationsPage());
+            },
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Get.to(CartPage());
+          },
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Icon(
+                Icons.shopping_cart,
+                size: 20,
+                color: Theme.of(context).primaryColor,
+              ),
+              Positioned(
+                bottom: 6,
+                right: 0,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 6,
+                  child: Obx(() {
+                    return Text(
+                      '${cartController.count}',
+                      style: AppTheme.subtitle
+                          .copyWith(fontSize: 8, color: Colors.grey[700]),
+                    );
+                  }),
+                ),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -182,17 +191,42 @@ class _HomeState extends State<Home> {
             networkController.connectionStatus.value == 0
                 ? Text('Connect to Internet')
                 : Container(),
+            if (userController.user == null)
+              Container(
+                alignment: Alignment.center,
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.grey[900].withOpacity(.8),
+                ),
+                child: Row(
+                  children: [
+                    Text(
+                      'Your profile is not complete .\nComplete profile by adding your info.',
+                      style: TextStyle(
+                          color: Theme.of(context).scaffoldBackgroundColor),
+                    ),
+                    Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Get.to(CompleteprofileView());
+                      },
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             SearchField(),
             CarouselPro(),
             SizedBox(height: 10),
             Row(children: [
-              SizedBox(
-                width: 10,
-              ),
               Text(
                 'Categories',
                 textAlign: TextAlign.start,
-                style: headingStyle.copyWith(fontWeight: FontWeight.w600),
+                style: AppTheme.headingStyle,
               ),
             ]),
             SizedBox(height: 20),
@@ -357,8 +391,11 @@ class TopProductContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      height:
-          height < width ? width / 3 : MediaQuery.of(context).size.height * .35,
+      height: height < width
+          ? 300
+          : height < width
+              ? 150
+              : MediaQuery.of(context).size.height * .35,
       child: Obx(() {
         List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
@@ -394,9 +431,7 @@ class LatestProductContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-        height: height < width
-            ? width / 3
-            : MediaQuery.of(context).size.height * .35,
+        height: height < width ? 200 : MediaQuery.of(context).size.height * .35,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
@@ -474,7 +509,7 @@ class ProductContentHome extends StatelessWidget {
             //     colors: [Colors.black, Colors.grey])
             ),
         //  color: Colors.grey,
-        height: height,
+        //  height: height,
         width: width / 2.4,
         child: Column(
           children: [
@@ -521,6 +556,7 @@ class ProductContentHome extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Container(
+              alignment: Alignment.center,
               //color: Colors.red,
               height: 30,
               child: CartButton(
@@ -537,43 +573,47 @@ class ProductContentHome extends StatelessWidget {
 class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 20, runSpacing: 10, children: [
-      ...category
-          .map((p) => InkWell(
-                onTap: () {
-                  Get.to(
-                      CategoriesPage(
-                        p.categoryName,
-                      ),
-                      transition: Transition.leftToRight);
-                },
-                child: Container(
-                  height: 77,
-                  width: 80,
-                  child: Column(
-                    children: [
-                      Container(
-                        color: Colors.white,
-                        child: Image.network(
-                          p.categoryImage,
-                          height: 50,
-                          width: 50,
+    return Container(
+      width: double.infinity,
+      //color: Colors.grey,
+      child: Wrap(children: [
+        ...category
+            .map((p) => InkWell(
+                  onTap: () {
+                    Get.to(
+                        CategoriesPage(
+                          p.categoryName,
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        p.categoryName,
-                        overflow: TextOverflow.fade,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12),
-                      ),
-                    ],
+                        transition: Transition.leftToRight);
+                  },
+                  child: Container(
+                    height: 77,
+                    width: 90,
+                    child: Column(
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          child: Image.network(
+                            p.categoryImage,
+                            height: 50,
+                            width: 50,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          p.categoryName,
+                          overflow: TextOverflow.fade,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ))
-          .toList()
-    ]);
+                ))
+            .toList()
+      ]),
+    );
   }
 }

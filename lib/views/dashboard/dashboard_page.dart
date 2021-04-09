@@ -117,7 +117,7 @@ class DashboardPage extends GetWidget {
               title: Text('profile'.tr),
               onTap: () {
                 Get.to(
-                  AccountContent(),
+                  Profile(),
                 );
               },
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
-import 'package:rasanmart/services/authService.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/signup.dart/signup.dart';
 import 'package:rasanmart/views/widgets/const.dart';

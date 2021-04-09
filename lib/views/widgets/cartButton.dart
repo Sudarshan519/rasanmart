@@ -18,43 +18,44 @@ class CartButton extends StatelessWidget {
     return Obx(() {
       return !cartController.checkItems(product)
           ? Container(
-         
-              padding: EdgeInsets.only(left: 5, right: 5),
+
+              //padding: EdgeInsets.only(left: 5, right: 5),
               child: InkWell(
-                onTap: () {
-                  cartController.addToCart(product);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(5)),
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(Icons.shopping_cart,
-                          size: 10, color: Colors.grey[700]),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'ADD TO CART',
-                        style: AppTheme.subtitle.copyWith(
-                            color: Colors.grey[700],
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                    ],
-                  ),
+              onTap: () {
+                cartController.addToCart(product);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5)),
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(Icons.shopping_cart,
+                        size: 10, color: Colors.grey[700]),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      'ADD TO CART',
+                      style: AppTheme.subtitle.copyWith(
+                          color: Colors.grey[700],
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                  ],
                 ),
-              ))
+              ),
+            ))
           : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 5,

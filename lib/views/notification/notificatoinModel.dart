@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 class NotificationData {
-  String id;
-  final String title;
-  final String message;
-  final String imgpath;
-  final String noticedate;
+  int id;
+  String title;
+  String message;
+  String imgpath;
+  String noticedate;
   bool noticeRead;
   final String payload;
 
@@ -34,14 +34,22 @@ class NotificationData {
 
   factory NotificationData.fromMap(Map<String, dynamic> map) {
     return NotificationData(
-      title: map['title'],
-      message: map['message'],
-      imgpath: map['imgpath'],
-      noticedate: map['noticedate'],
-      noticeRead: map['noticeRead'],
+      title: map['title'] ?? 'empty',
+      message: map['message'] ?? "empty",
+      //imgpath: map['imgpath'],
+      //noticedate: map['noticedate'],
+      //noticeRead: map['noticeRead'],
       payload: map['payload'],
     );
   }
+  // NotificationData.fromJson(Map<String, dynamic> doc) {
+  //   id = doc["id"];
+  //   name = doc["name"];
+  //   email = doc["email"];
+  //   city = doc["city"];
+  //   phone = doc["phone"];
+  //   street = doc["street"];
+  // }
 
   String toJson() => json.encode(toMap());
 

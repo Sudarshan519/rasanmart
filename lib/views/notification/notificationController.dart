@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -5,12 +8,17 @@ import 'package:get/get.dart';
 
 import 'notification_repository.dart';
 import 'notificatoinModel.dart';
+import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationController extends GetxController {
   List<NotificationData> notificationList;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  Stream notificationStream = FirebaseFirestore.instance
+      .collection('notification')
+      .where('id', isEqualTo: FirebaseAuth.instance.currentUser.uid)
+      .snapshots();
   //NotificationProvider notificationProvider = new NotificationRepository();
   RxInt notification = 0.obs;
   RxBool togglenotice = false.obs;
@@ -21,7 +29,7 @@ class NotificationController extends GetxController {
     // tz.setLocalLocation(tz.getLocation('America/Detroit'));
 
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher.png');
     final IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
       requestSoundPermission: false,
@@ -41,9 +49,29 @@ class NotificationController extends GetxController {
             macOS: initializationSettingsMacOS);
     load(initializationSettings);
     //fetchNotification();
-    showNotification('Hello', 'How are you', 0, '');
-    scheduleNotification(id: 2,body: 'Text',duration: 6,title: 'Test ');
+    //showNotification('
+
+    //Hello', 'How are you', 0, '');
+    listenStream();
+    //tz.initializeTimeZones();
+
+    // scheduleNotification(id: 2, body: 'Text', duration: 6, title: 'Test ');
     super.onInit();
+  }
+
+  listenStream() async {
+    List<NotificationData> data = await notificationService.getnotification();
+    print(data.length);
+    notificationStream.forEach((element) {
+      print(element);
+      data.clear();
+
+      data = element.docs
+          .map<NotificationData>((e) => NotificationData.fromMap(e.data()))
+          .toList();
+      showcustomNotification(data[data.length].id, data[data.length].title,
+          data[data.length].message);
+    });
   }
 
   load(InitializationSettings initializationSettings) async {
@@ -58,13 +86,30 @@ class NotificationController extends GetxController {
     }
   }
 
+  showcustomNotification(int id, String title, String body) async {
+    var android = new AndroidNotificationDetails(
+        'id', 'channel ', 'description',
+        priority: Priority.high, importance: Importance.max);
+    // var notificationdata=NotificationData(title: 'title', message: 'message', imgpath: 'assets/logo.png', noticedate: 'noticedate', noticeRead: true);
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(id, title, body, platform,
+        payload: 'payload');
+  }
+
+  fetchdata() {
+    // if (notificationService.fetchNotification().data() != null)
+    //showcustomNotification();
+  }
+
   void fetchNotification() async {
+    notificationService.fetchNotification();
     var user = await FirebaseAuth.instance.currentUser;
     List<NotificationData> newNotification = [];
     if (user != null) {
       String id = user.uid;
       List<NotificationData> data =
-          await NotificationRepository().fetchNotification(id);
+          await NotificationRepository().fetchNotification();
       // data.fold((l) => print(l), (r) {
       //   newNotification = r.toList();
       //   notificationList = newNotification.obs;
@@ -74,29 +119,56 @@ class NotificationController extends GetxController {
 
   Future onDidReceiveLocalNotification(
       int id, String title, String body, String payload) async {
-    // display a dialog with the notification details, tap ok to go to another page
-    Get.dialog(
-        Container(
-          child: Column(
-            children: [Text(title), Text(body)],
-          ),
-        ),
-        barrierDismissible: true);
+    // Get.dialog(
+    //     Container(
+    //       child: Column(
+    //         children: [Text(title), Text(body)],
+    //       ),
+    //     ),
+    //     barrierDismissible: true);
   }
 
   scheduleNotification(
       {int id, String title, String body, int duration = 5}) async {
+    tz.initializeTimeZones();
+    //tz.setLocalLocation(tz.getLocation(timeZoneName));
+
+    print('secheduled run');
+    print(DateTime.now());
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        id,
-        title,
-        body,
-        tz.TZDateTime.now(tz.local).add(Duration(seconds: duration)),
+        0,
+        'scheduled title',
+        'scheduled body',
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
         const NotificationDetails(
             android: AndroidNotificationDetails('your channel id',
                 'your channel name', 'your channel description')),
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime);
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+        0,
+        'scheduled title',
+        'scheduled body',
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 15)),
+        const NotificationDetails(
+            android: AndroidNotificationDetails('your channel id',
+                'your channel name', 'your channel description')),
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+            UILocalNotificationDateInterpretation.absoluteTime);
+
+    // await flutterLocalNotificationsPlugin.zonedSchedule(
+    //     id,
+    //     title,
+    //     body,
+    //     tz.TZDateTime.now(tz.local).add(Duration(seconds: duration)),
+    //     const NotificationDetails(
+    //         android: AndroidNotificationDetails('your channel id',
+    //             'your channel name', 'your channel description')),
+    //     androidAllowWhileIdle: true,
+    //     uiLocalNotificationDateInterpretation:
+    //         UILocalNotificationDateInterpretation.absoluteTime);
   }
 
   repeatedShowNotification() async {
@@ -114,11 +186,11 @@ class NotificationController extends GetxController {
     var android = new AndroidNotificationDetails(
         'id', 'channel ', 'description',
         priority: Priority.high, importance: Importance.max);
-   // var notificationdata=NotificationData(title: 'title', message: 'message', imgpath: 'assets/logo.png', noticedate: 'noticedate', noticeRead: true);
+    // var notificationdata=NotificationData(title: 'title', message: 'message', imgpath: 'assets/logo.png', noticedate: 'noticedate', noticeRead: true);
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(id, title, body, platform,
         payload: 'payload');
-   //await flutterLocalNotificationsPlugin.show(id, title, body, notificationDetails)
+    //await flutterLocalNotificationsPlugin.show(id, title, body, notificationDetails)
   }
 }
