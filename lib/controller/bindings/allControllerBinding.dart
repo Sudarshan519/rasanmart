@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/utils/localization.dart';
+import 'package:rasanmart/views/notification/notificationController.dart';
 
 import '../authController.dart';
 import '../languageController.dart';
@@ -18,6 +19,7 @@ class AllControllerBinding implements Bindings {
     Get.lazyPut(() => LanguageController());
     Get.lazyPut(() => ProductController());
     Get.lazyPut(() => UserController());
+    Get.lazyPut(()=>NotificationController());
     // Get.lazyPut(
     //   () => ScrollController(),
     // );

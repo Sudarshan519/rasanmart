@@ -10,6 +10,7 @@ import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cartpage/cart_page.dart';
 import 'package:rasanmart/views/categories/categories_page.dart';
+import 'package:rasanmart/views/notification/notifications.dart';
 import 'package:rasanmart/views/search/search_field.dart';
 import 'package:rasanmart/views/widgets/cartButton.dart';
 import 'package:rasanmart/views/widgets/const.dart';
@@ -132,7 +133,9 @@ class _HomeState extends State<Home> {
             size: 25,
             color: Theme.of(context).primaryColor,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Get.to(NotificationsPage());
+          },
         ),
         IconButton(
             icon: Stack(

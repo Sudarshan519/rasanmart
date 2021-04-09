@@ -39,8 +39,12 @@ class UserController extends GetxController {
   getUser() async {
     var storageUser = allStorage.readuser();
     if (storageUser == null) {
-      UserModel userinstance = await CloudUser().getUser();
-      user = userinstance.obs;
+      try {
+        UserModel userinstance = await CloudUser().getUser();
+        user = userinstance.obs;
+      } catch (e) {
+        print(e.toString());
+      }
 
       print(user.value.toJson());
       allStorage.writeuser(jsonEncode(user.value.toJson()));
@@ -48,7 +52,7 @@ class UserController extends GetxController {
       // print(storageUser);
       UserModel userinstance = UserModel.fromJson(jsonDecode(storageUser));
       //print(userinstance);
-     
+
       user = userinstance.obs;
     }
     //print(CloudUser().getUser());

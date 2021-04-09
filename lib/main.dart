@@ -14,6 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp();
+  
 //  await firebaseProduct.fetchProduct();
   runApp(MyApp());
 }

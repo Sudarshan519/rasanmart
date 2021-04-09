@@ -25,19 +25,19 @@ dependencies:
     sdk: flutter
   carousel_pro: any
   cloud_firestore: any
+  connectivity: any
   cupertino_icons: any
-  firebase_auth: 
-  firebase_core: 
+  firebase_auth: null
+  firebase_core: null
+  firebase_storage: any
+  flutter_launcher_icons: null
+  flutter_local_notifications: ^5.0.0+1
   flutter_native_splash: any
   font_awesome_flutter: ^8.12.0
   get: ^3.5.1
-  hexcolor: any
-  flutter_launcher_icons: 
-  #carousel_slider: ^3.0.0
   get_storage: any
-  connectivity: any
+  hexcolor: any
   image_picker: any
-  firebase_storage: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,6 +78,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
 # flutter_native_splash:
 #   # This package generates native code to customize Flutter's default white native splash screen
 #   # with background color and splash image.
@@ -97,7 +98,6 @@ flutter:
 #   # The image parameter allows you to specify an image used in the splash screen.  It must be a
 #   # png file.
 #   image: assets/products/logo.PNG
-
 #   # The color_dark, background_image_dark, and image_dark are parameters that set the background
 #   # and image when the device is in dark mode. If they are not specified, the app will use the
 #   # parameters from above. If the image_dark parameter is specified, color_dark or
@@ -106,13 +106,11 @@ flutter:
 #   color_dark: "#b30000"
 #   #background_image_dark: "assets/logo.PNG"
 #   image_dark: assets/products/logo.PNG
-
 #   # The android, ios and web parameters can be used to disable generating a splash screen on a given
 #   # platform.
 #   android: true
 #   ios: false
 #   web: false
-
 #   # The position of the splash image can be set with android_gravity, ios_content_mode, and
 #   # web_image_mode parameters.  All default to center.
 #   #
