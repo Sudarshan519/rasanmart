@@ -12,7 +12,8 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationController extends GetxController {
-  List<NotificationData> notificationList;
+  final notificationstream = List().obs;
+
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   Stream notificationStream = FirebaseFirestore.instance
@@ -25,9 +26,6 @@ class NotificationController extends GetxController {
 
   @override
   void onInit() {
-    //tz.initializeTimeZones();
-    // tz.setLocalLocation(tz.getLocation('America/Detroit'));
-
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher.png');
     final IOSInitializationSettings initializationSettingsIOS =
@@ -47,31 +45,21 @@ class NotificationController extends GetxController {
             android: initializationSettingsAndroid,
             iOS: initializationSettingsIOS,
             macOS: initializationSettingsMacOS);
-    load(initializationSettings);
-    //fetchNotification();
-    //showNotification('
-
-    //Hello', 'How are you', 0, '');
-    listenStream();
-    //tz.initializeTimeZones();
-
-    // scheduleNotification(id: 2, body: 'Text', duration: 6, title: 'Test ');
+    // load(initializationSettings);
     super.onInit();
   }
 
   listenStream() async {
     List<NotificationData> data = await notificationService.getnotification();
     print(data.length);
-    notificationStream.forEach((element) {
-      print(element);
-      data.clear();
+    data = (notificationService.allNotification()) as List<NotificationData>;
+    print(data.length);
+  }
 
-      data = element.docs
-          .map<NotificationData>((e) => NotificationData.fromMap(e.data()))
-          .toList();
-      showcustomNotification(data[data.length].id, data[data.length].title,
-          data[data.length].message);
-    });
+  Stream<List<NotificationData>> listen() {
+    return notificationStream.map((event) => event.docs
+        .map((e) => NotificationData.fromDocumentSnapshot(e))
+        .toList());
   }
 
   load(InitializationSettings initializationSettings) async {

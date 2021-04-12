@@ -37,26 +37,27 @@ class UserController extends GetxController {
   // set user(UserModel value) => this._userModel.value = value;
 
   getUser() async {
-    var storageUser = allStorage.readuser();
-    if (storageUser == null) {
-      try {
-        UserModel userinstance = await CloudUser().getUser();
-        user = userinstance.obs;
-      } catch (e) {
-        print(e.toString());
-      }
-
-      print(user.value.toJson());
-      allStorage.writeuser(jsonEncode(user.value.toJson()));
-    } else {
-      // print(storageUser);
-      UserModel userinstance = UserModel.fromJson(jsonDecode(storageUser));
-      //print(userinstance);
-
+    // var storageUser = allStorage.readuser();
+    // if (storageUser == null || storageUser == []) {
+    try {
+      UserModel userinstance = await CloudUser().getUser();
       user = userinstance.obs;
+    } catch (e) {
+      print(e.toString());
     }
-    //print(CloudUser().getUser());
+
+    print(user.value.toJson());
+    allStorage.writeuser(jsonEncode(user.value.toJson()));
   }
+  //  else {
+  //   // print(storageUser);
+  //   UserModel userinstance = UserModel.fromJson(jsonDecode(storageUser));
+  //   print("this si :$userinstance");
+
+  //   user = userinstance.obs;
+  // }
+  //print(CloudUser().getUser());
+  // }
 
   void clear() {
     user.value = UserModel();

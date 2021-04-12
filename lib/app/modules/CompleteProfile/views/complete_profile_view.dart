@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/views/widgets/custom_textfield.dart';
 
 import '../controllers/complete_profile_controller.dart';
 
 class CompleteprofileView extends GetView<CompleteProfileController> {
   final bool isUpdate;
-  final TextEditingController password = TextEditingController();
+  //final TextEditingController password = TextEditingController();
+  final name = TextEditingController();
+  final email = TextEditingController();
+  final street = TextEditingController();
+  final phone = TextEditingController();
+  final zip = TextEditingController();
+  final city = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+  final userController = Get.find<UserController>();
 
   CompleteprofileView({this.isUpdate = false});
   @override
   Widget build(BuildContext context) {
+    name.text = userController.user.value.name;
+    email.text = userController.user.value.email;
+    street.text = userController.user.value.street;
+    phone.text = userController.user.value.phone;
+    zip.text = userController.user.value.zip;
+    city.text = userController.user.value.city;
     return Scaffold(
       appBar: AppBar(
         title: isUpdate ? Text('Update Profile') : Text('Complete Profile'),
@@ -37,6 +51,7 @@ class CompleteprofileView extends GetView<CompleteProfileController> {
                   height: 20,
                 ),
                 CustomTextField(
+                  controller: name,
                   inputBorder: OutlineInputBorder(),
                   hintText: 'Username',
                 ),
@@ -44,6 +59,7 @@ class CompleteprofileView extends GetView<CompleteProfileController> {
                   height: 20,
                 ),
                 CustomTextField(
+                  controller: email,
                   inputBorder: OutlineInputBorder(),
                   hintText: 'Email',
                 ),
@@ -54,6 +70,7 @@ class CompleteprofileView extends GetView<CompleteProfileController> {
                   children: [
                     Expanded(
                       child: CustomTextField(
+                        controller: street,
                         inputBorder: OutlineInputBorder(),
                         hintText: 'Street',
                       ),
@@ -63,6 +80,7 @@ class CompleteprofileView extends GetView<CompleteProfileController> {
                     ),
                     Expanded(
                       child: CustomTextField(
+                        controller: phone,
                         inputBorder: OutlineInputBorder(),
                         hintText: 'Phone',
                       ),
@@ -73,8 +91,17 @@ class CompleteprofileView extends GetView<CompleteProfileController> {
                   height: 20,
                 ),
                 CustomTextField(
+                  controller: zip,
                   inputBorder: OutlineInputBorder(),
                   hintText: 'Zip',
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomTextField(
+                  controller: city,
+                  inputBorder: OutlineInputBorder(),
+                  hintText: 'City',
                 ),
                 SizedBox(
                   height: 20,

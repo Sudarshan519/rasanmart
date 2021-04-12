@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
         icon: Icon(
           Icons.sort,
           size: 30,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
         ),
         onPressed: () => widget.scaffoldKey.currentState.openDrawer(),
       ),
@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
             )
           : TextFormField(
               textAlign: TextAlign.start,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).accentColor),
               controller: searchController,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(0, 10.0, 20.0, 10.0),
@@ -127,7 +127,8 @@ class _HomeState extends State<Home> {
                             transition: Transition.rightToLeft,
                             duration: Duration(seconds: 10));
                       },
-                      child: Icon(Icons.search, color: Colors.white)))),
+                      child:
+                          Icon(Icons.search, size: 18, color: Colors.white)))),
       actions: [
         InkWell(
           onTap: () {
@@ -137,7 +138,7 @@ class _HomeState extends State<Home> {
             icon: Icon(
               Icons.notifications,
               size: 25,
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).accentColor,
             ),
             onPressed: () {
               Get.to(NotificationsPage());
@@ -154,7 +155,7 @@ class _HomeState extends State<Home> {
               Icon(
                 Icons.shopping_cart,
                 size: 20,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
               ),
               Positioned(
                 bottom: 6,
@@ -333,6 +334,21 @@ class CategoriesContainer extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // CachedNetworkImage(
+                    //   imageUrl: "http://via.placeholder.com/200x150",
+                    //   imageBuilder: (context, imageProvider) => Container(
+                    //     decoration: BoxDecoration(
+                    //       image: DecorationImage(
+                    //           image: imageProvider,
+                    //           fit: BoxFit.cover,
+                    //           colorFilter: ColorFilter.mode(
+                    //               Colors.red, BlendMode.colorBurn)),
+                    //     ),
+                    //   ),
+                    //   placeholder: (context, url) =>
+                    //       CircularProgressIndicator(),
+                    //   errorWidget: (context, url, error) => Icon(Icons.error),
+                    // ),
                     Image.network(category[i].categoryImage,
                         fit: BoxFit.fill, height: 45, width: 45),
                     SizedBox(height: 10),

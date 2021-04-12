@@ -4,7 +4,8 @@ import 'package:rasanmart/services/authService.dart';
 
 class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<User> firebaseUser = Rx<User>();
+
+  Rx<User> firebaseUser;
   User get user => firebaseUser.value;
   var loading = false.obs;
   void setLoading(value) {
@@ -14,7 +15,7 @@ class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
+    firebaseUser = _auth.currentUser.obs;
     firebaseUser.bindStream(_auth.authStateChanges());
   }
 

@@ -6,7 +6,7 @@ class AppTheme {
 //b00000
   static double iconsize = 16;
   static Color lightBackgroundColor = HexColor('#B30000');
-  static Color lightPrimaryColor = const Color(0xfff2f2f2);
+  static Color lightPrimaryColor = Colors.red.shade900;
   static Color lightAccentColor = Colors.blueGrey[50];
   static Color lightBtnColor = HexColor('#F78A04');
   static Color lightSalesolor = Colors.teal[300];

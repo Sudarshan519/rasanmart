@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/controller/dashBoardController.dart';
-import 'package:rasanmart/controller/orderController.dart';
 import 'package:rasanmart/controller/userController.dart';
 import 'package:rasanmart/services/authService.dart';
 import 'package:rasanmart/services/getStorage.dart';
@@ -44,7 +43,7 @@ class DashboardPage extends GetWidget {
   Widget _buildDrawer(context) {
     return Drawer(
       child: Container(
-        color: Theme.of(context).primaryColor,
+        //  color: Theme.of(context).primaryColor,
         width: MediaQuery.of(context).size.width * .7,
         child: ListView(
           padding: EdgeInsets.zero,
@@ -66,14 +65,14 @@ class DashboardPage extends GetWidget {
                         Text(
                           authController.user.displayName ?? '',
                           style:
-                              TextStyle(color: Theme.of(context).primaryColor),
+                              TextStyle(color: Theme.of(context).accentColor),
                         ) ??
                         Text('')),
                     accountEmail: Obx(() => Text(
                           authController.user.email ?? '',
-                          style: TextStyle(
-                                  color: Theme.of(context).primaryColor) ??
-                              Text(''),
+                          style:
+                              TextStyle(color: Theme.of(context).accentColor) ??
+                                  Text(''),
                         )),
                     currentAccountPicture: CircleAvatar(
                       radius: 30,
@@ -104,6 +103,9 @@ class DashboardPage extends GetWidget {
                     );
                   },
                 );
+              else {
+                return Container();
+              }
             }),
             ListTile(
               leading: Icon(Icons.settings),
@@ -172,7 +174,7 @@ class DashboardPage extends GetWidget {
               ),
             ));
           } else
-            Get.to(Login());
+            Get.to(LoginView());
         },
         child: Icon(
           Icons.qr_code,

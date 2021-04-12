@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rasanmart/views/account/account.dart';
+import 'package:rasanmart/controller/authController.dart';
 import 'package:rasanmart/views/widgets/const.dart';
 import '../../controller/languageController.dart';
 
 class SettingsPage extends StatelessWidget {
+  final authController = Get.find<AuthController>();
   final style =
       TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w400);
   @override
@@ -45,19 +46,26 @@ class SettingsPage extends StatelessWidget {
               //     ),
               //   ),
               // ),
-              Text(
-                'Email',
-                style: TextStyle(color: Colors.grey),
-              ),
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.email),
-                  title: Text(
-                    'sudarshan@gmail.cm',
-                    style: TextStyle(color: Colors.black, fontSize: 12),
-                  ),
-                ),
-              ),
+              Obx(() {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Email',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    Card(
+                      child: ListTile(
+                        leading: Icon(Icons.email),
+                        title: Text(
+                          'sudarshan@gmail.cm',
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
               SpaceBox(),
               SpaceBox(),
               Text(

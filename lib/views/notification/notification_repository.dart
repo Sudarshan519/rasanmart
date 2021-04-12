@@ -13,8 +13,19 @@ class NotificationRepository {
   getnotification() async {
     var data = await reference.get();
     return data.docs
-        .map<NotificationData>((e) => NotificationData.fromMap(e.data()))
+        .map<NotificationData>((e) => NotificationData.fromDocumentSnapshot(e))
         .toList();
+  }
+
+  Stream<List<NotificationData>> allNotification() {
+    return collectionStream.map((query) {
+      List<NotificationData> value = [];
+      query.docs.forEach((element) {
+        value.add(NotificationData.fromDocumentSnapshot(element));
+      });
+      return value;
+      // query.docs.forEach((element) {value.add(Notifications.);})
+    });
   }
 
   updatenotification() async {}
@@ -50,7 +61,7 @@ class NotificationRepository {
           imgpath: element['imgpath'].toString(),
           message: element['message'],
           noticedate: element['noticedate'],
-          payload: element['payload'],
+          //  payload: element['payload'],
           noticeRead: element['noticeRead'] as bool,
         ));
       });

@@ -28,18 +28,17 @@ class CheckoutPage extends GetWidget {
   Widget build(BuildContext context) {
     final items = cartController.cartItems;
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      //  backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).backgroundColor,
         leading: InkWell(
           onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back, color: Theme.of(context).primaryColor),
+          child: Icon(Icons.arrow_back, color: Theme.of(context).accentColor),
         ),
         title: Text('CheckOut',
-            style:
-                headingStyle.copyWith(color: Theme.of(context).primaryColor)),
+            style: headingStyle.copyWith(color: Theme.of(context).accentColor)),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -318,7 +317,6 @@ class OrderForm extends StatelessWidget {
   const OrderForm({
     Key key,
     @required GlobalKey<FormState> formKey,
-   
     @required this.orderController,
     @required this.authController,
     @required this.cartController,
@@ -333,7 +331,7 @@ class OrderForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // allStorage.clearuser();
+    // allStorage.clearuser();
 //    print(authController.user.email);
     final email = TextEditingController();
     final city = TextEditingController();
@@ -372,6 +370,7 @@ class OrderForm extends StatelessWidget {
             CustomTextField(
               hintText: 'email',
               controller: email,
+              inputBorder: OutlineInputBorder(),
             ),
             SizedBox(
               height: 10,
@@ -385,6 +384,7 @@ class OrderForm extends StatelessWidget {
                     Text('City',
                         style: TextStyle(fontSize: 12, color: Colors.grey)),
                     CustomTextField(
+                      inputBorder: OutlineInputBorder(),
                       hintText: 'City',
                       controller: city,
                     ),
@@ -402,6 +402,7 @@ class OrderForm extends StatelessWidget {
                       style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     CustomTextField(
+                      inputBorder: OutlineInputBorder(),
                       controller: zip,
                     ),
                   ],
@@ -416,6 +417,7 @@ class OrderForm extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             CustomTextField(
+              inputBorder: OutlineInputBorder(),
               controller: street,
             ),
             SizedBox(
@@ -426,6 +428,7 @@ class OrderForm extends StatelessWidget {
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             CustomTextField(
+              inputBorder: OutlineInputBorder(),
               textInputType: TextInputType.number,
               controller: phone,
             ),

@@ -45,9 +45,10 @@ class AccountContent extends StatelessWidget {
                     backgroundColor: Theme.of(context).backgroundColor,
                     primary: Theme.of(context).primaryColor),
                 onPressed: () {
-                  Get.to(Login());
+                  Get.to(LoginView());
                 },
-                child: Text('Sign in'),
+                child: Text('Sign in',
+                    style: TextStyle(color: Theme.of(context).accentColor)),
               )))
             : SingleChildScrollView(
                 // physics: BouncingScrollPhysics(),
@@ -341,20 +342,10 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Profile'),
-      //   actions: [],
-      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //  Text('Profile'),
-            // Container(
-            //   height: 300,
-            //   color: Colors.red,
-            // ),
-            // Text('Profile'),
             Container(
                 alignment: Alignment.center,
                 height: 300,
@@ -398,18 +389,18 @@ class Profile extends StatelessWidget {
                 SizedBox(height: 20),
                 Text('Name'),
                 SizedBox(height: 10),
-                Text(userController.user.value.name),
+                Text("${userController.user.value.name}"),
                 Divider(),
                 SizedBox(height: 20),
                 Text('Email'),
                 SizedBox(height: 10),
-                Text(userController.user.value.email),
+                Text("${userController.user.value.email}"),
                 Divider(),
                 SizedBox(height: 20),
                 Text('Address'),
                 SizedBox(height: 10),
                 Text(
-                    '${userController.user.value.street},${userController.user.value.city}'),
+                    '  ${userController.user.value.street},${userController.user.value.city}'),
                 Divider(),
                 SizedBox(height: 20),
                 Text('Phone'),
