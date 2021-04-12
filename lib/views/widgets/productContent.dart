@@ -34,7 +34,7 @@ class ProductContent extends StatelessWidget {
                 children: [
                   Image.network(
                     product.productImage,
-                    height: 90,
+                    height: 120,
                     width: 120,
                   ),
                   Row(

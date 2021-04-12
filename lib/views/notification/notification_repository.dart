@@ -3,10 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'notificatoinModel.dart';
 
 class NotificationRepository {
-  Stream collectionStream = FirebaseFirestore.instance
-      .collection('notification')
+  final collectionStream = FirebaseFirestore.instance.collection('notification')
       //.where(FirebaseAuth.instance.currentUser.uid)
-      .snapshots();
+      ;
   CollectionReference reference =
       FirebaseFirestore.instance.collection('notification');
 
@@ -18,11 +17,13 @@ class NotificationRepository {
   }
 
   Stream<List<NotificationData>> allNotification() {
-    return collectionStream.map((query) {
+    return collectionStream.snapshots().map((QuerySnapshot query) {
       List<NotificationData> value = [];
       query.docs.forEach((element) {
+        print(element.id);
         value.add(NotificationData.fromDocumentSnapshot(element));
       });
+     // print(value.length);
       return value;
       // query.docs.forEach((element) {value.add(Notifications.);})
     });
@@ -49,50 +50,50 @@ class NotificationRepository {
     }
   }
 
-  fetchNotification() async {
-    try {
-      bool complete = false;
-      List<NotificationData> newData = [];
-      collectionStream.forEach((element) {
-        return element;
-        newData.add(NotificationData(
-          id: element.id,
-          title: element['title'].toString(),
-          imgpath: element['imgpath'].toString(),
-          message: element['message'],
-          noticedate: element['noticedate'],
-          //  payload: element['payload'],
-          noticeRead: element['noticeRead'] as bool,
-        ));
-      });
+  // fetchNotification() async {
+  //   try {
+  //     bool complete = false;
+  //     List<NotificationData> newData = [];
+  //     collectionStream.snapshots().forEach((element) {
+  //       return element;
+  //       newData.add(NotificationData(
+  //         id: element.id,
+  //         title: element['title'].toString(),
+  //         imgpath: element['imgpath'].toString(),
+  //         message: element['message'],
+  //         noticedate: element['noticedate'],
+  //         //  payload: element['payload'],
+  //         noticeRead: element['noticeRead'] as bool,
+  //       ));
+  //     });
 
-      print(newData.length);
-      return newData;
-      // await FirebaseFirestore.instance
-      //     .collection('notification')
-      //     .where('id', isEqualTo: userId)
-      //     .get()
-      //     .then((value) {
-      //   value.docs.forEach((element) {
-      //     newData.add(NotificationData(
-      //       id: element.id,
-      //       title: element['title'].toString(),
-      //       imgpath: element['imgpath'].toString(),
-      //       message: element['message'],
-      //       noticedate: element['noticedate'],
-      //       payload: element['payload'],
-      //       noticeRead: element['noticeRead'] as bool,
-      //     ));
-      //   });
-      // }).whenComplete(() => complete = true);
-      // if (complete)
-      //   return right(newData);
-      // else
-      //   return left('Error while fetching notification');
-    } catch (error) {
-      //return left('Error Occured while updating notifications');
-    }
-  }
+  //     print(newData.length);
+  //     return newData;
+  // await FirebaseFirestore.instance
+  //     .collection('notification')
+  //     .where('id', isEqualTo: userId)
+  //     .get()
+  //     .then((value) {
+  //   value.docs.forEach((element) {
+  //     newData.add(NotificationData(
+  //       id: element.id,
+  //       title: element['title'].toString(),
+  //       imgpath: element['imgpath'].toString(),
+  //       message: element['message'],
+  //       noticedate: element['noticedate'],
+  //       payload: element['payload'],
+  //       noticeRead: element['noticeRead'] as bool,
+  //     ));
+  //   });
+  // }).whenComplete(() => complete = true);
+  // if (complete)
+  //   return right(newData);
+  // else
+  //   return left('Error while fetching notification');
+  //   } catch (error) {
+  //     //return left('Error Occured while updating notifications');
+  //   }
+  // }
 
   void update(String id) {
     reference.doc(id).update({'viewed': true});

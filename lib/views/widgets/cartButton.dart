@@ -57,20 +57,19 @@ class CartButton extends StatelessWidget {
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 5,
-                ),
                 Text(
                   'Qty',
-                  style: AppTheme.subheadingStyle
-                      .copyWith(color: Colors.blueGrey, fontSize: 10),
+                  style: AppTheme.subheadingStyle.copyWith(
+                      color: Colors.blueGrey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  width: 5,
+                  width: 10,
                 ),
                 Container(
-                    height: 12,
-                    width: 20,
+                    height: 20,
+                    width: 30,
                     decoration: BoxDecoration(
                       color: AppTheme.lightBackgroundColor,
                       borderRadius: BorderRadius.only(
@@ -83,13 +82,16 @@ class CartButton extends StatelessWidget {
                         },
                         child:
                             Icon(Icons.remove, size: 12, color: Colors.white))),
+                SizedBox(width: 10),
                 Obx(() => Text(
                       "${cartController.getItems(product)} ",
-                      style: TextStyle(fontSize: 12),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     )),
+                SizedBox(width: 10),
                 Container(
-                    height: 12,
-                    width: 20,
+                    height: 20,
+                    width: 30,
                     decoration: BoxDecoration(
                       color: AppTheme.lightBackgroundColor,
                       borderRadius: BorderRadius.only(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rasanmart/controller/authController.dart';
-import 'package:rasanmart/utils/app_theme.dart';
+import 'package:rasanmart/views/home/home.dart';
 import 'package:rasanmart/views/signup.dart/signup.dart';
-import 'package:rasanmart/views/widgets/const.dart';
 import 'package:rasanmart/views/widgets/custom_textfield.dart';
 
 import 'forgotpass.dart';
@@ -193,6 +192,7 @@ final style = TextStyle(color: Colors.white);
 // }
 
 class LoginView extends GetView {
+  final authController = Get.find<AuthController>();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -237,12 +237,16 @@ class LoginView extends GetView {
                   height: 20,
                 ),
                 CustomTextField(
-                    hintText: 'Email', inputBorder: OutlineInputBorder()),
+                    controller: email,
+                    hintText: 'Email',
+                    inputBorder: OutlineInputBorder()),
                 SizedBox(
                   height: 20,
                 ),
                 CustomTextField(
-                    hintText: 'Password', inputBorder: OutlineInputBorder()),
+                    controller: password,
+                    hintText: 'Password',
+                    inputBorder: OutlineInputBorder()),
                 SizedBox(
                   height: 20,
                 ),
@@ -261,20 +265,30 @@ class LoginView extends GetView {
                 SizedBox(
                   height: 20,
                 ),
-                TextButton(
-                  onPressed: () {
-                    //Get.to(LoginsuccessView());
-                  },
-                  child: Container(
-                      alignment: Alignment.center,
-                      height: 30,
-                      width: double.infinity,
-                      child: Text('Continue')),
-                  style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      backgroundColor: Colors.red.shade800,
-                      primary: Theme.of(context).scaffoldBackgroundColor),
+                Obx(
+                  () => !authController.loading.value
+                      ? TextButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate())
+                              authController.login(email.text, password.text);
+                            if (authController.user.email != null)
+                              Get.to(Home());
+                            // Get.to(CircualrProgressIndicatior())
+                            //Get.to(LoginsuccessView());
+                          },
+                          child: Container(
+                              alignment: Alignment.center,
+                              height: 30,
+                              width: double.infinity,
+                              child: Text('Continue')),
+                          style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor: Colors.red.shade800,
+                              primary:
+                                  Theme.of(context).scaffoldBackgroundColor),
+                        )
+                      : CircularProgressIndicator(),
                 ),
                 SizedBox(height: 30),
                 Center(

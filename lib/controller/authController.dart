@@ -24,7 +24,9 @@ class AuthController extends GetxController {
     try {
       loading.value = true;
       await authService.login(email, password);
+
       loading.value = false;
+      
     } catch (e) {}
   }
 

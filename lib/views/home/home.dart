@@ -12,6 +12,7 @@ import 'package:rasanmart/models/productModel.dart';
 import 'package:rasanmart/utils/app_theme.dart';
 import 'package:rasanmart/views/cartpage/cart_page.dart';
 import 'package:rasanmart/views/categories/categories_page.dart';
+import 'package:rasanmart/views/notification/notification_repository.dart';
 import 'package:rasanmart/views/notification/notifications.dart';
 import 'package:rasanmart/views/search/search_field.dart';
 import 'package:rasanmart/views/widgets/cartButton.dart';
@@ -42,10 +43,15 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-
+  //  listenNot();
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
+  }
+
+  listenNot() {
+  //  var sum = notificationService.allNotification();
+   // print(sum.length);
   }
 
   void myScroll() async {
@@ -141,7 +147,7 @@ class _HomeState extends State<Home> {
               color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              Get.to(NotificationsPage());
+              Get.to(()=>NotificationsPage());
             },
           ),
         ),
@@ -407,11 +413,12 @@ class TopProductContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
+      // color: Colors.red,
       height: height < width
-          ? 300
+          ? 200
           : height < width
               ? 150
-              : MediaQuery.of(context).size.height * .35,
+              : MediaQuery.of(context).size.height * .25,
       child: Obx(() {
         List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
@@ -447,7 +454,7 @@ class LatestProductContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-        height: height < width ? 200 : MediaQuery.of(context).size.height * .35,
+        height: height < width ? 200 : MediaQuery.of(context).size.height * .25,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),
@@ -564,13 +571,17 @@ class ProductContentHome extends StatelessWidget {
                 )
               ]),
             ),
-            Text(product.productName),
+            Text(
+              product.productName,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: 10),
             Text(
               "Rs. ${product.price.toString()}",
-              style: TextStyle(color: Colors.red, fontSize: 14),
+              style: TextStyle(
+                  color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 15),
             Container(
               alignment: Alignment.center,
               //color: Colors.red,

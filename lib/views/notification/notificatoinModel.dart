@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
@@ -43,13 +42,23 @@ class NotificationData {
   //   );
   // }
 
-  NotificationData.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
-    id:
-    documentSnapshot.id;
-    title:
-    documentSnapshot.data()['title'];
-    message:
-    documentSnapshot.data()['message'];
+  // NotificationData.fromDocumentSnapshot(DocumentSnapshot documentSnapshot) {
+  //   id:
+  //   documentSnapshot.id;
+  //   title:
+  //   documentSnapshot.data()['title'];
+  //   message:
+  //   documentSnapshot.data()['message'];
+  // }
+  NotificationData.fromDocumentSnapshot(DocumentSnapshot doc) {
+    id = doc.id;
+    //print(doc.id);
+     // title = doc["title"];
+     // message = doc["message"];
+    // city = doc["city"];
+    // phone = doc["phone"];
+    // street = doc["street"];
+    // zip = doc['zip'];
   }
   // NotificationData.fromJson(Map<String, dynamic> doc) {
   //   id = doc["id"];

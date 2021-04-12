@@ -13,7 +13,7 @@ class AllControllerBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MyController>(() => MyController());
-  //  Get.put(NotificationController());
+   Get.put(NotificationController());
     Get.lazyPut(() => AuthController());
     Get.lazyPut(() => NetworkController());
     Get.lazyPut(() => LanguageController());

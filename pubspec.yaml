@@ -32,12 +32,15 @@ dependencies:
   firebase_storage: any
   flutter_launcher_icons: null
   flutter_local_notifications: ^5.0.0+1
-  flutter_native_splash: any
+  #flutter_native_splash: any
   font_awesome_flutter: ^9.0.0
   get: ^4.1.4
   get_storage: any
   hexcolor: any
   image_picker: any
+  http: any
+  path_provider: any
+  url_launcher: ^6.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
