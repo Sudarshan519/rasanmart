@@ -34,14 +34,15 @@ class NotificationController extends GetxController {
 
   listenStream() {
     loading.value = true;
-    notificationData.bindStream(notificationService.allNotification());
-    loading.value = false;
-    for (int i = 0; i < notificationData.length; i++)
+     for (int i = 0; i < notificationData.length; i++)
       imageNotification(
           'https://lh3.googleusercontent.com/-TJ4K4KHhQkk/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnO0KqtmeWm40Cuo4dcfflkUghLoA/photo.jpg?sz=46',
           '');
-    stylishNotification();
-    secheduledNotification();
+    notificationData.bindStream(notificationService.allNotification());
+    loading.value = false;
+   inistantNotification(1, 'FirebaseDEmo', "description");
+    //stylishNotification();
+   // secheduledNotification();
     // print(notificationData.value.length);
   }
 
@@ -49,7 +50,7 @@ class NotificationController extends GetxController {
     FlutterLocalNotificationsPlugin flutterLocalNotificationPlugin =
         FlutterLocalNotificationsPlugin();
     AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings("assets/logo.png");
+        AndroidInitializationSettings("@mipmap/ic_launcher");
     final MacOSInitializationSettings initializationSettingsMacOS =
         MacOSInitializationSettings(
             requestAlertPermission: true,

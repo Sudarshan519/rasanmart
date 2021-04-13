@@ -134,7 +134,7 @@ class AccountContent extends StatelessWidget {
                         leading: Icon(Icons.person),
                         title: Text(
                           'profile'.tr,
-                          style: titleStyle,
+                          style: titleStyle.copyWith(fontSize: 16,), 
                         ),
                       ),
                     ),
@@ -142,7 +142,10 @@ class AccountContent extends StatelessWidget {
                     SpaceBox(),
                     Text(
                       'settings'.tr,
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(
+                                                color: Colors.grey[800],
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400),
                     ),
                     Card(
                       child: ListTile(

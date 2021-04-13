@@ -43,15 +43,15 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-  //  listenNot();
+    //  listenNot();
     _show = false;
     _scrollBottomBarController.removeListener(() {});
     myScroll();
   }
 
   listenNot() {
-  //  var sum = notificationService.allNotification();
-   // print(sum.length);
+    //  var sum = notificationService.allNotification();
+    // print(sum.length);
   }
 
   void myScroll() async {
@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
               color: Theme.of(context).accentColor,
             ),
             onPressed: () {
-              Get.to(()=>NotificationsPage());
+              Get.to(() => NotificationsPage());
             },
           ),
         ),
@@ -381,7 +381,7 @@ class CarouselPro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.height * .3,
+        height: MediaQuery.of(context).size.height * .35,
         child: Carousel(
           dotSize: 0,
           indicatorBgPadding: 0,
@@ -418,7 +418,7 @@ class TopProductContainer extends StatelessWidget {
           ? 200
           : height < width
               ? 150
-              : MediaQuery.of(context).size.height * .25,
+              : MediaQuery.of(context).size.height * .3,
       child: Obx(() {
         List<Product> prod = productController.topItems();
         return productController.isloading.isFalse
@@ -454,7 +454,7 @@ class LatestProductContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-        height: height < width ? 200 : MediaQuery.of(context).size.height * .25,
+        height: height < width ? 200 : MediaQuery.of(context).size.height * .3,
         // decoration: BoxDecoration(border: Border.all(width: 1)),
         child: GetX<ProductController>(
             init: ProductController(),

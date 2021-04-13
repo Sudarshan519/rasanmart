@@ -26,9 +26,23 @@ class CloudUser {
           .collection("users")
           .doc(FirebaseAuth.instance.currentUser.uid)
           .get();
-      UserModel user = UserModel.fromDocumentSnapshot(doc);
-      print(user.name);
-      return user;
+      if(doc.exists)
+    {  UserModel user = UserModel.fromDocumentSnapshot(doc);
+    //  print(user.name);
+     return user;}
+     else
+     {  await _firestore
+          .collection("users")
+          .doc(FirebaseAuth.instance.currentUser.uid)
+          .set({
+            "id":FirebaseAuth.instance.currentUser.uid,
+            "email":FirebaseAuth.instance.currentUser.email,
+            "name":"",
+            "city":"",
+            "street":"",
+            "zip":"",
+          });
+          getUser();}
     } catch (e) {
       print(e);
       rethrow;

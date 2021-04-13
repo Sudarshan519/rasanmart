@@ -30,7 +30,7 @@ dependencies:
   firebase_auth: null
   firebase_core: null
   firebase_storage: any
-  flutter_launcher_icons: null
+  #flutter_launcher_icons: null
   flutter_local_notifications: ^5.0.0+1
   #flutter_native_splash: any
   font_awesome_flutter: ^9.0.0
@@ -41,6 +41,7 @@ dependencies:
   http: any
   path_provider: any
   url_launcher: ^6.0.3
+  google_sign_in: ^5.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -149,3 +150,4 @@ flutter:
 #   android: true
 #   ios: true
 #   web: false
+

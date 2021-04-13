@@ -47,6 +47,7 @@ class SettingsPage extends StatelessWidget {
               //   ),
               // ),
               Obx(() {
+               if( authController.loading.value)
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -58,13 +59,14 @@ class SettingsPage extends StatelessWidget {
                       child: ListTile(
                         leading: Icon(Icons.email),
                         title: Text(
-                          'sudarshan@gmail.cm',
+                          '${authController.user.email}',
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         ),
                       ),
                     ),
                   ],
                 );
+                else return Container();
               }),
               SpaceBox(),
               SpaceBox(),

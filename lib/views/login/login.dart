@@ -291,6 +291,12 @@ class LoginView extends GetView {
                       : CircularProgressIndicator(),
                 ),
                 SizedBox(height: 30),
+                TextButton(
+                  onPressed: () {
+                    authController.signinWithGoogle();
+                  },
+                  child: Text('Google'),
+                ),
                 Center(
                     child: InkWell(
                         onTap: () {
